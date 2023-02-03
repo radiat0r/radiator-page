@@ -9,6 +9,8 @@ export namespace Components {
     interface RdtHead {
         "logoImage": string;
     }
+    interface RdtIndex {
+    }
 }
 declare global {
     interface HTMLRdtHeadElement extends Components.RdtHead, HTMLStencilElement {
@@ -17,16 +19,26 @@ declare global {
         prototype: HTMLRdtHeadElement;
         new (): HTMLRdtHeadElement;
     };
+    interface HTMLRdtIndexElement extends Components.RdtIndex, HTMLStencilElement {
+    }
+    var HTMLRdtIndexElement: {
+        prototype: HTMLRdtIndexElement;
+        new (): HTMLRdtIndexElement;
+    };
     interface HTMLElementTagNameMap {
         "rdt-head": HTMLRdtHeadElement;
+        "rdt-index": HTMLRdtIndexElement;
     }
 }
 declare namespace LocalJSX {
     interface RdtHead {
         "logoImage"?: string;
     }
+    interface RdtIndex {
+    }
     interface IntrinsicElements {
         "rdt-head": RdtHead;
+        "rdt-index": RdtIndex;
     }
 }
 export { LocalJSX as JSX };
@@ -34,6 +46,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "rdt-head": LocalJSX.RdtHead & JSXBase.HTMLAttributes<HTMLRdtHeadElement>;
+            "rdt-index": LocalJSX.RdtIndex & JSXBase.HTMLAttributes<HTMLRdtIndexElement>;
         }
     }
 }
