@@ -1,7 +1,7 @@
 {
-  "name": "ui-stencil",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "name": "radiator",
+  "version": "0.1.0",
+  "description": "radiator",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -27,7 +27,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^3.0.0"
+    "@stencil/core": "^2.22.2"
   },
   "devDependencies": {
     "@stencil/sass": "^2.0.3",
