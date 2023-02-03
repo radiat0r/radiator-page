@@ -16,11 +16,9 @@ export class RdtHead {
         <div class="header-main">
           <div class="header-container container">
             <div class="header-wrap">
-              <div class="header-logo header-logo-ls logo animated" data-animate="fadeInDown"
-                data-delay=".65">
+              <div class="header-logo header-logo-ls logo animated" data-animate="fadeInDown" data-delay=".65">
                 <a href="./" class="logo-link">
-                  <img class="logo-light" src={getAssetPath(`./assets/${this.logoImage}`)}
-                    alt="logo"></img>
+                  <img class="logo-light" src={getAssetPath(`./assets/${this.logoImage}`)} alt="logo"></img>
                 </a>
               </div>
               <div class="header-nav-toggle">
@@ -40,14 +38,6 @@ export class RdtHead {
                     <li class="menu-item"><a class="menu-link nav-link" href="#team">Team</a></li>
                     <li class="menu-item"><a class="menu-link nav-link" href="#faq">Faq</a></li>
                     <li class="menu-item"><a class="menu-link nav-link" href="#contact">Contact</a></li>
-                  </ul>
-                  <ul class="menu-btns animated" data-animate="fadeInDown" data-delay=".85">
-                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#register-popup"
-                      class="btn btn-rg btn-auto btn-outline btn-grad on-bg-theme-dark-alt"><span>Sign
-                        Up</span></a></li>
-                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#login-popup"
-                      class="btn btn-rg btn-auto btn-outline btn-grad on-bg-theme-dark-alt"><span>Log
-                        In</span></a></li>
                   </ul>
                 </nav>
               </div>

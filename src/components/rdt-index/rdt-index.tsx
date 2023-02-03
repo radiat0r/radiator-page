@@ -11,7 +11,7 @@ export class RdtHead {
         return (
             <Host>
                 <div class="nk-wrap">
-                    <p>Hello World!</p>
+                    <p>Hello World</p>
                 </div>
 
                 <script src="assets/js/jquery.bundle.js?ver=210"></script>
