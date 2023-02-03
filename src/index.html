@@ -29,38 +29,25 @@
 <body class="nk-body body-wider mode-onepage">
     <div class="nk-wrap">
         <header class="nk-header page-header is-transparent is-sticky is-shrink is-dark" id="header">
-            <!-- Header @s -->
             <div class="header-main">
                 <div class="header-container container">
                     <div class="header-wrap">
-                        <!-- Logo @s -->
                         <div class="header-logo header-logo-ls logo animated" data-animate="fadeInDown"
                             data-delay=".65">
                             <a href="./" class="logo-link">
-                                <img class="logo-dark" src="images/logo.png" srcset="images/logo2x.png 2x" alt="logo">
-                                <img class="logo-light" src="images/logo-white.png" srcset="images/logo-white2x.png 2x"
-                                    alt="logo">
+                                <img class="logo-light" src={getAssetPath(`./assets/${this.logoImage}`)}
+                                    alt="logo"></img>
                             </a>
-                            <div class="language-switcher language-switcher-s3 toggle-wrap">
-                                <a class="toggle-tigger" href="#">EN</a>
-                                <ul class="toggle-class toggle-drop text-center drop-list drop-list-xs">
-                                    <li><a href="#">Fr</a></li>
-                                    <li><a href="#">Ch</a></li>
-                                    <li><a href="#">Hi</a></li>
-                                </ul>
-                            </div>
                         </div>
-                        <!-- Menu Toogle @s -->
                         <div class="header-nav-toggle">
-                            <a href="#" class="navbar-toggle" data-menu-toggle="example-menu-04">
+                            <a href="#" class="navbar-toggle" data-menu-toggle="rdt-navbar-menu">
                                 <div class="toggle-line">
                                     <span></span>
                                 </div>
                             </a>
                         </div>
-                        <!-- Menu @s -->
                         <div class="header-navbar header-navbar-s3">
-                            <nav class="header-menu justify-content-between" id="example-menu-04">
+                            <nav class="header-menu justify-content-between" id="rdt-navbar-menu">
                                 <ul class="menu menu-s2 animated" data-animate="fadeInDown" data-delay=".75">
                                     <li class="menu-item"><a class="menu-link nav-link" href="#ico">What is ICO</a></li>
                                     <li class="menu-item"><a class="menu-link nav-link" href="#tokens">Tokens</a></li>
@@ -79,11 +66,10 @@
                                                 In</span></a></li>
                                 </ul>
                             </nav>
-                        </div><!-- .header-navbar @e -->
+                        </div>
                     </div>
                 </div>
-            </div><!-- .header-main @e -->
-            <!-- Banner @s -->
+            </div>
             <div class="header-banner bg-theme-alt">
                 <div class="nk-banner bg-grad-special">
                     <div class="banner banner-fs banner-single bg-grad-special-alt tc-light">
@@ -93,7 +79,7 @@
                                     <div class="col-lg-5 order-lg-last animated" data-animate="fadeInUp"
                                         data-delay="1.25">
                                         <div class="banner-gfx banner-gfx-ovfix banner-gfx-re-s5 op-30">
-                                            <img src="images/header/gfx-f.png" alt="header">
+                                            <img src="images/header/gfx-f.png" alt="header"></img>
                                         </div>
                                         <div class="abs-center w-100 index-9">
                                             <div class="token-status token-status-s5 no-bd round animated"
@@ -104,7 +90,7 @@
                                                 <div class="progress-wrap progress-wrap-point progress-wrap-point-s1">
                                                     <div class="progress-bar progress-bar-sm progress-bar-s3 round-sm">
                                                         <div class="progress-percent progress-percent-s3 bg-accent"
-                                                            data-percent="75" style="width:75%;"></div>
+                                                            data-percent="75"></div>
                                                         <div class="progress-point progress-point-s1" data-point="20">
                                                             Pre Sale </div>
                                                         <div class="progress-point progress-point-s1" data-point="45">
@@ -119,7 +105,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- .col -->
+                                    </div>
                                     <div class="col-lg-6 text-center text-lg-start">
                                         <div class="banner-caption cpn tc-light">
                                             <div class="cpn-head">
@@ -140,8 +126,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div><!-- .col -->
-                                </div><!-- .row -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="nk-block mt-auto pdb-r">
@@ -149,45 +135,43 @@
                                 <ul class="partner-list-s3 row align-items-center justify-content-center">
                                     <li class="col-12 col-md-2 text-center text-md-start">
                                         <h6 class="title title-xs tc-primary mb-md-0 mb-4 animated"
-                                            data-animate="fadeInUp" data-delay="1.65">Our <br> Partners</h6>
+                                            data-animate="fadeInUp" data-delay="1.65">Our <br> Partners</br></h6>
                                     </li>
                                     <li class="col-4 col-md-2 animated" data-animate="fadeInUp" data-delay="1.7">
                                         <a href="#">
-                                            <img src="images/partners/a-xs-light.png" alt="partner">
+                                            <img src="images/partners/a-xs-light.png" alt="partner"></img>
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-2 animated" data-animate="fadeInUp" data-delay="1.75">
                                         <a href="#">
-                                            <img src="images/partners/b-xs-light.png" alt="partner">
+                                            <img src="images/partners/b-xs-light.png" alt="partner"></img>
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-2 animated" data-animate="fadeInUp" data-delay="1.8">
                                         <a href="#">
-                                            <img src="images/partners/c-xs-light.png" alt="partner">
+                                            <img src="images/partners/c-xs-light.png" alt="partner"></img>
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-2 animated" data-animate="fadeInUp" data-delay="1.85">
                                         <a href="#">
-                                            <img src="images/partners/d-xs-light.png" alt="partner">
+                                            <img src="images/partners/d-xs-light.png" alt="partner"></img>
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-2 animated" data-animate="fadeInUp" data-delay="1.9">
                                         <a href="#">
-                                            <img src="images/partners/e-xs-light.png" alt="partner">
+                                            <img src="images/partners/e-xs-light.png" alt="partner"></img>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </div><!-- .block @e -->
+                        </div>
                         <div class="nk-ovm shape-u shape-contain shape-left-top"></div>
-                        <!-- Place Particle Js -->
                         <div id="particles-bg" class="particles-container particles-bg" data-pt-base="#00c0fa"
                             data-pt-base-op=".3" data-pt-line="#2b56f5" data-pt-line-op=".5" data-pt-shape="#00c0fa"
                             data-pt-shape-op=".2"></div>
                     </div>
-                </div><!-- .nk-banner -->
+                </div>
             </div>
-            <!-- .header-banner @e -->
         </header>
         <main class="nk-pages bg-transparent">
             <!-- Start Section -->
@@ -1447,7 +1431,6 @@
     <!-- JavaScript -->
     <script src="assets/js/jquery.bundle.js?ver=210"></script>
     <script src="assets/js/scripts.js?ver=210"></script>
-    <script src="assets/js/charts.js?ver=210"></script>
     <script src="assets/js/charts.js?ver=210"></script>
 </body>
 
