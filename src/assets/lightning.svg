@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<svg width="128" height="128" viewBox="0,0,128,128" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path id="wing" d="M 91 4 L 13 70 L 63 71 L 34 123 L112 56 L64 55 Z " fill="#ffac33"
+    stroke-width="7" stroke="#ffac33" stroke-linejoin="round" />
+</svg>

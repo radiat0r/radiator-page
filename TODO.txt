@@ -1,0 +1,11 @@
+
+- convert to SPA
+- copy manifest.json and use pics for apple
+- test stencil component
+Sites:
+- home
+- news
+- about
+- stake
+- cashback
+- tokenomics

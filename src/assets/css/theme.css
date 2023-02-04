@@ -5,3 +5,7 @@ Theme	 :  Default
 * Updated	 :	11/22/2022
 */
 /*! WRITE YOUR CUSTOM STYLE **/
+
+.logo-inline {
+    white-space: nowrap;
+}
