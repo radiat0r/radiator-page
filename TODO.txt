@@ -12,6 +12,7 @@ Sites:
 
 
 - Von den anderen
-    - Title logo
+    - Logo
+    - RADIATOR Schriftzug
     - Banner Picture
     - Description Text
