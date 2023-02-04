@@ -6,6 +6,6 @@ Theme	 :  Default
 */
 /*! WRITE YOUR CUSTOM STYLE **/
 
-.logo-inline {
-    white-space: nowrap;
-}
+.card-s4 { padding: 55px 30px 110px; box-shadow: 0px 5px 46px rgba(235, 235, 235, 1); }
+
+.project-img { height: 6em;}
