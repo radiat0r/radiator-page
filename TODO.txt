@@ -9,3 +9,9 @@ Sites:
 - stake
 - cashback
 - tokenomics
+
+
+- Von den anderen
+    - Title logo
+    - Banner Picture
+    - Description Text
