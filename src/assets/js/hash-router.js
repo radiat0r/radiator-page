@@ -12,7 +12,7 @@ const routes = {
 		template: "",
 	},
 	project: {
-		template: "/assets/templates/project.js",
+		template: "/assets/templates/project.html",
 	},
 };
 
@@ -26,10 +26,15 @@ const locationHandler = async () => {
 	}
 	// get the route object from the routes object
 	const route = routes[location] || routes["404"];
-	
+
 	let html = ""
 	if (route.template != "") {
+		let path = ""
 		// get the html from the template
+		if (window.location.hostname.startsWith("github.io")) {
+			path = "/radiator-page"
+		} 
+
 		html = await fetch(route.template).then((response) => response.text());
 	}
 	// set the content of the content div to the html
@@ -40,6 +45,8 @@ const locationHandler = async () => {
 		document.getElementById("banner").hidden = true;
 		document.getElementById("content").innerHTML = html;
 	}
+
+	console.log("window.URL: " + window.location.hostname);
 };
 // create a function that watches the hash and calls the urlLocationHandler
 window.addEventListener("hashchange", locationHandler);
