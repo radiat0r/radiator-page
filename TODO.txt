@@ -19,5 +19,4 @@ Sites:
 
 
 - Finetuning:
-  - landing page: social media icons centered
-  - project page: less empty space on lower side on cards
+  - project side calc correct viewheight but how?
