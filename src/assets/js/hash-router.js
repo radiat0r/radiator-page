@@ -5,11 +5,11 @@ const routes = {
 	},
 	"/": {
 		isBannner: true,
-		template: "/assets/templates/home.html",
+		template: "",
 	},
 	home: {
 		isBannner: true,
-		template: "/assets/templates/home.html",
+		template: "",
 	},
 	project: {
 		template: "/assets/templates/project.html",
@@ -26,8 +26,12 @@ const locationHandler = async () => {
 	}
 	// get the route object from the routes object
 	const route = routes[location] || routes["404"];
-	// get the html from the template
-	const html = await fetch(route.template).then((response) => response.text());
+	
+	let html = ""
+	if (route.template != "") {
+		// get the html from the template
+		html = await fetch(route.template).then((response) => response.text());
+	}
 	// set the content of the content div to the html
 	if (route.isBannner) {
 		document.getElementById("banner").hidden = false;
