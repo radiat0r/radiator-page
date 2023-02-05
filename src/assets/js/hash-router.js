@@ -12,7 +12,7 @@ const routes = {
 		template: "",
 	},
 	project: {
-		template: "/assets/templates/project.jhtml",
+		template: "/assets/templates/project.js",
 	},
 };
 
