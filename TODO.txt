@@ -8,6 +8,7 @@ Sites:
 - stake
 - cashback
 - tokenomics
+- 404 page
 
 
 - Von den anderen

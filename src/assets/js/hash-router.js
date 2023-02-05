@@ -14,6 +14,9 @@ const routes = {
 	project: {
 		template: "/assets/templates/project.html",
 	},
+	news: {
+  		template: "/assets/templates/news.html",
+  	},
 };
 
 // create a function that watches the url and calls the urlLocationHandler
@@ -33,7 +36,7 @@ const locationHandler = async () => {
 		// get the html from the template
 		if (window.location.hostname.includes("github.io")) {
 			path = "/radiator-page"
-		} 
+		}
 
 		html = await fetch(path + route.template).then((response) => response.text());
 	}
