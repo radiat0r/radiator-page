@@ -18,3 +18,7 @@ Theme	 :  Default
 .z-0 {
     z-index: 0;
 }
+
+.fullsize {
+    min-height: 100vh;
+}
