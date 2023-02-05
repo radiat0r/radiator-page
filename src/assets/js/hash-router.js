@@ -1,4 +1,3 @@
-const pageTitle = "JS Single Page Application Router";
 // create an object that maps the url to the template, title, and description
 const routes = {
 	404: {
@@ -31,10 +30,10 @@ const locationHandler = async () => {
 	const html = await fetch(route.template).then((response) => response.text());
 	// set the content of the content div to the html
 	if (route.isBannner) {
+		document.getElementById("banner").hidden = false;
 		document.getElementById("content").innerHTML = "";
-		document.getElementById("banner").innerHTML = html;
 	} else {
-		document.getElementById("banner").innerHTML = "";
+		document.getElementById("banner").hidden = true;
 		document.getElementById("content").innerHTML = html;
 	}
 };

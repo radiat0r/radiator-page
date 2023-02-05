@@ -20,7 +20,6 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "build-copy": "npm run build && rm -rf ../service/static && mkdir -p ../service/static && cp -r www/* ../service/static",
     "start": "stencil build --dev --watch --serve --no-open",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
