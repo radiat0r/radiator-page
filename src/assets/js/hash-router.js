@@ -31,11 +31,11 @@ const locationHandler = async () => {
 	if (route.template != "") {
 		let path = ""
 		// get the html from the template
-		if (window.location.hostname.startsWith("github.io")) {
+		if (window.location.hostname.includes("github.io")) {
 			path = "/radiator-page"
 		} 
 
-		html = await fetch(route.template).then((response) => response.text());
+		html = await fetch(path + route.template).then((response) => response.text());
 	}
 	// set the content of the content div to the html
 	if (route.isBannner) {
