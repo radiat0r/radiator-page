@@ -7,8 +7,15 @@ Sites:
 - about
 - stake
 - cashback
+  - page-mission.html
+    - bei 1. Absatz -> coin? https://icons.getbootstrap.com/icons/coin/
+    - bei 2. Absatz conditions -> partner icons -> 
+      https://www.flaticon.com/de/kostenloses-icon/partner_1322246
+      https://icons8.de/icon/43627/h%C3%A4ndesch%C3%BCtteln
+      https://icons8.de/icon/37965/h%C3%A4ndesch%C3%BCtteln-herz
 - tokenomics
 - 404 page
+- Wallet Check -> page-wallets-v2.html die Liste
 
 
 - Von den anderen
@@ -20,3 +27,7 @@ Sites:
 
 - Finetuning:
   - project side calc correct viewheight but how?
+
+  - staking gif erneuern
+  - regeln für die AirDrops transparent machen aktuell nur vage
+  - geringe Gebühren für das Staking herausstellen
