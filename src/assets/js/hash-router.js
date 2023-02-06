@@ -15,8 +15,11 @@ const routes = {
 		template: "/assets/templates/project.html",
 	},
 	news: {
-  		template: "/assets/templates/news.html",
-  	},
+  	template: "/assets/templates/news.html",
+  },
+  cashback: {
+    template: "/assets/templates/cashback.html",
+  },
 };
 
 // create a function that watches the url and calls the urlLocationHandler
