@@ -11,19 +11,23 @@ const routes = {
 		isBannner: true,
 		template: "",
 	},
+	cashback: {
+		template: "/assets/templates/cashback.html",
+	},
+	news: {
+		template: "/assets/templates/news.html",
+	},
 	project: {
 		template: "/assets/templates/project.html",
 	},
-	news: {
-  	template: "/assets/templates/news.html",
-  },
-  cashback: {
-    template: "/assets/templates/cashback.html",
-  },
+	wallet: {
+		template: "/assets/templates/wallet.html",
+	},
 };
 
 // create a function that watches the url and calls the urlLocationHandler
 const locationHandler = async () => {
+
 	// get the url path, replace hash with empty string
 	var location = window.location.hash.replace("#", "");
 	// if the path length is 0, set it to primary page route
@@ -52,7 +56,10 @@ const locationHandler = async () => {
 		document.getElementById("content").innerHTML = html;
 	}
 
-	console.log("window.URL: " + window.location.hostname);
+	// window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+
+	// document.body.scrollTop = 0;
+	// document.documentElement.scrollTop = 0; 
 };
 // create a function that watches the hash and calls the urlLocationHandler
 window.addEventListener("hashchange", locationHandler);

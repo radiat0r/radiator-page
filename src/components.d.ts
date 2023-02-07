@@ -6,19 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface RdtWallet {
+    }
 }
 declare global {
+    interface HTMLRdtWalletElement extends Components.RdtWallet, HTMLStencilElement {
+    }
+    var HTMLRdtWalletElement: {
+        prototype: HTMLRdtWalletElement;
+        new (): HTMLRdtWalletElement;
+    };
     interface HTMLElementTagNameMap {
+        "rdt-wallet": HTMLRdtWalletElement;
     }
 }
 declare namespace LocalJSX {
+    interface RdtWallet {
+    }
     interface IntrinsicElements {
+        "rdt-wallet": RdtWallet;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "rdt-wallet": LocalJSX.RdtWallet & JSXBase.HTMLAttributes<HTMLRdtWalletElement>;
         }
     }
 }
