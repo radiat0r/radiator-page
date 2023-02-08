@@ -1,4 +1,5 @@
 import { Component, Host, h, State } from '@stencil/core'
+import { Notify } from 'notiflix/build/notiflix-notify-aio'
 import { loadWallet } from '../../assets/js/wallet';
 
 @Component({
@@ -68,9 +69,6 @@ export class RdtWallet {
           </div>
         </div>
 
-        <div class="alert alert-warning" role="alert">
-          This is a warning alert—check it out!
-        </div>
       </Host >
     );
   }
@@ -80,6 +78,12 @@ export class RdtWallet {
   }
 
   private searchWallet() {
+
+    if (this.walletKey == null || this.walletKey == "") {
+      Notify.warning("Please specify your wallet address.");
+      return;
+    }
+
 
     console.log("Search for wallet: " + this.walletKey);
 
