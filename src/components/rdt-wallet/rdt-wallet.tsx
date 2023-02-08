@@ -1,10 +1,14 @@
-import { Component, Host, h } from '@stencil/core'
+import { Component, Host, h, State } from '@stencil/core'
+import { loadWallet } from '../../assets/js/wallet';
 
 @Component({
   tag: 'rdt-wallet',
   styleUrl: 'rdt-wallet.scss',
 })
 export class RdtWallet {
+
+  @State()
+  walletKey: string;
 
   render() {
     return (
@@ -21,12 +25,20 @@ export class RdtWallet {
             <div class="col-sm-7">
               <div class="field-item">
                 <div class="field-wrap">
-                  <input type="text" class="input-bordered" placeholder="Wallet Address"></input>
+                  <input type="text" class="input-bordered" placeholder="Wallet Address" value={this.walletKey} onInput={(event) => this.walletKeyChange(event)}></input>
                 </div>
               </div>
             </div>
             <div class="col-sm-3">
-              <button type="submit" class="btn btn-md btn-grad">Check</button>
+              <button type="submit" class="btn btn-md btn-grad" onClick={() => this.searchWallet()}>Check</button>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-sm-6">
+              <p>Search result:</p>
+            </div>
+            <div class="col-sm-6">
+              <p id="result"></p>"
             </div>
           </div>
           <div class="row justify-content-center">
@@ -55,8 +67,24 @@ export class RdtWallet {
             </div>
           </div>
         </div>
+
+        <div class="alert alert-warning" role="alert">
+          This is a warning alert—check it out!
+        </div>
       </Host >
     );
+  }
+
+  private walletKeyChange(event) {
+    this.walletKey = event.target.value;
+  }
+
+  private searchWallet() {
+
+    console.log("Search for wallet: " + this.walletKey);
+
+    const wallet = loadWallet(this.walletKey);
+    console.log(wallet);
   }
 
 }
