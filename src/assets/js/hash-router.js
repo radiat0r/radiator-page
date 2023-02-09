@@ -56,10 +56,7 @@ const locationHandler = async () => {
 		document.getElementById("content").innerHTML = html;
 	}
 
-	// window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-
-	// document.body.scrollTop = 0;
-	// document.documentElement.scrollTop = 0; 
+    setTimeout(() => { window.scrollTo(0, 0) }, 100);
 };
 // create a function that watches the hash and calls the urlLocationHandler
 window.addEventListener("hashchange", locationHandler);
