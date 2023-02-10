@@ -1,6 +1,6 @@
 import { Component, Host, h, State } from '@stencil/core'
 import { Notify } from 'notiflix/build/notiflix-notify-aio'
-import { loadWallet } from '../../assets/js/wallet';
+import { WalletService, Wallet } from '../../assets/wallet/wallet-service';
 
 @Component({
   tag: 'rdt-wallet',
@@ -10,6 +10,9 @@ export class RdtWallet {
 
   @State()
   walletKey: string;
+
+  @State()
+  wallet: Wallet;
 
   render() {
     return (
@@ -35,36 +38,8 @@ export class RdtWallet {
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-sm-6">
-              <p>Search result:</p>
-            </div>
-            <div class="col-sm-6">
-              <p id="result"></p>"
-            </div>
-          </div>
-          <div class="row justify-content-center">
             <div class="col-sm-10">
-              <div class="data-table-area">
-                <table class="data-table">
-                  <thead class="bg-primary">
-                    <tr class="data-head">
-                      <th class="data-col text-start">Cashback Campaign</th>
-                      <th class="data-col text-center">Benefit</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-center">
-                    <tr class="data-item">
-                      <td class="data-col-inner index"> Radorables </td>
-                      <td class="data-col-inner alphabetical">
-                        <div class="d align-items-center">
-                          <em class="icon-bg icon-bg-md icon-bg-eth ikon ikon-eth"></em>
-                          <h4 class="title title-sm title-dark">Ethereum (ETH)</h4>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              {this.renderResult()}
             </div>
           </div>
         </div>
@@ -72,6 +47,14 @@ export class RdtWallet {
       </Host >
     );
   }
+
+  renderResult() {
+    if (this.wallet == null) {
+      return
+    }
+  }
+    
+  
 
   private walletKeyChange(event) {
     this.walletKey = event.target.value;
@@ -84,11 +67,15 @@ export class RdtWallet {
       return;
     }
 
-
     console.log("Search for wallet: " + this.walletKey);
+    this.wallet = WalletService.loadWallet(this.walletKey);
 
-    const wallet = loadWallet(this.walletKey);
-    console.log(wallet);
+    console.log(this.wallet);
+
+    if (this.wallet.error && this.wallet.error != '') {
+      Notify.warning(this.wallet.error);
+      return;
+    }
   }
 
 }
