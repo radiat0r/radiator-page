@@ -1,6 +1,6 @@
 import { Component, Host, h, State } from '@stencil/core'
 import { Notify } from 'notiflix/build/notiflix-notify-aio'
-import { WalletService, Wallet } from '../../assets/wallet/wallet-service';
+import { WalletService, Wallet } from '../../assets/wallet/wallet-service'
 
 @Component({
   tag: 'rdt-wallet',
@@ -9,10 +9,10 @@ import { WalletService, Wallet } from '../../assets/wallet/wallet-service';
 export class RdtWallet {
 
   @State()
-  walletKey: string;
-
+  walletKey: string
   @State()
-  wallet: Wallet;
+  wallet: Wallet
+
 
   render() {
     return (
@@ -45,37 +45,38 @@ export class RdtWallet {
         </div>
 
       </Host >
-    );
+    )
   }
 
   renderResult() {
-    if (this.wallet == null) {
-      return
+    if (this.wallet != null) {
+      return (<p>$RDT {this.wallet.rdt}</p>)
     }
   }
-    
-  
+
 
   private walletKeyChange(event) {
-    this.walletKey = event.target.value;
+    this.walletKey = event.target.value
   }
 
   private searchWallet() {
 
+    this.wallet = null
+
     if (this.walletKey == null || this.walletKey == "") {
-      Notify.warning("Please specify your wallet address.");
-      return;
+      Notify.warning("Please specify your wallet address.")
+      return
     }
+    console.log("Search for wallet: " + this.walletKey)
 
-    console.log("Search for wallet: " + this.walletKey);
-    this.wallet = WalletService.loadWallet(this.walletKey);
-
-    console.log(this.wallet);
-
-    if (this.wallet.error && this.wallet.error != '') {
-      Notify.warning(this.wallet.error);
-      return;
-    }
+    WalletService.loadWallet(this.walletKey)
+      .then(wallet => {
+        this.wallet = wallet
+        console.log("Wallet: " + JSON.stringify(this.wallet))
+      })
+      .catch(error => {
+        Notify.warning("An error occured while fetching wallet data. Maybe the specified wallet key is wrong. Please try again later.")
+        console.log("loadWallet error: " + error)
+      })
   }
-
 }

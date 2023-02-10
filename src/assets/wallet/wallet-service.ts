@@ -1,25 +1,25 @@
 import { WalletBalance } from './wallet-balance'
 
 export type Wallet = {
-    error: string
     rdt: number
 }
 
 export class WalletService {
 
-    static loadWallet(walletKey: string): Wallet {
-        let wallet: Wallet = {
-            error: '',
-            rdt: 0
-        }
+    static loadWallet(walletKey: string): Promise<Wallet> {
 
-        this.getBalances(walletKey)
-            .then(walletBalance => {
-                wallet.rdt = getRdtFromWalletBalance(walletBalance);
-            }
-            ).catch(error => wallet.error = error.message)
+        return new Promise((resolve, reject) => {
 
-        return wallet;
+            this.getBalances(walletKey)
+                .then(walletBalance => {
+                    console.log("WalletBalance: " + JSON.stringify(walletBalance))
+                    let wallet: Wallet = {
+                        rdt: getRdtFromWalletBalance(walletBalance)
+                    }
+                    resolve(wallet)
+                }
+                ).catch(error => reject(error))
+        })
     }
 
     static getBalances(walletKey: string): Promise<WalletBalance> {
@@ -47,16 +47,15 @@ export class WalletService {
                     }
                 })
                 .then(response => {
-                    console.log(response)
+                    console.log("Balances response: " + JSON.stringify(response))
                     if (!response.ok) {
-                        throw new Error("An error occured while fetching wallet data. Maybe the specified wallet key is wrong. Please try again later.");
+                        throw new Error(response.status.toString() + " | " + response.statusText)
                     }
-                    resolve(response.json());
+                    resolve(response.json())
                 })
                 .catch(error => {
-                    console.log(error.message)
                     reject(error)
-                });
+                })
         })
     }
 }
@@ -65,13 +64,15 @@ export class WalletService {
 function getRdtFromWalletBalance(walletBalance: WalletBalance): number {
 
     const RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
-    
+
+    let rdt = 0
     walletBalance.account_balances.liquid_balances.forEach(balance => {
         if (balance.token_identifier.rri == RDT_IDENTIFIER) {
-            return balance.value;
+            rdt = parseInt(balance.value)
+            console.log("$RDT: " + rdt)
         }
-    });
+    })
 
-    return 0;
+    return rdt
 }
 
