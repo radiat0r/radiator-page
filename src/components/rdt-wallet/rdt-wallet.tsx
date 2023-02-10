@@ -39,7 +39,7 @@ export class RdtWallet {
           </div>
           <div class="row justify-content-center">
             <div class="col-sm-10">
-              {this.renderResult()}
+              {this.renderWalletInfo()}
             </div>
           </div>
         </div>
@@ -48,9 +48,25 @@ export class RdtWallet {
     )
   }
 
-  renderResult() {
+  renderWalletInfo() {
     if (this.wallet != null) {
-      return (<p>$RDT {this.wallet.rdt}</p>)
+      return (
+        <div class="token-info">
+          <h4 class="title title-md mb-2 text-sm-center">Wallet Information</h4>
+          <table class="table table-s1 table-token">
+            <tbody>
+              <tr>
+                <td class="table-head">$RDT</td>
+                <td class="table-des">{this.formatToken(this.wallet.rdt)}</td>
+              </tr>
+              <tr>
+                <td class="table-head">Hold</td>
+                <td class="table-des">14th Dec 2022 12:00 GMT</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )
     }
   }
 
@@ -78,5 +94,10 @@ export class RdtWallet {
         Notify.warning("An error occured while fetching wallet data. Maybe the specified wallet key is wrong. Please try again later.")
         console.log("loadWallet error: " + error)
       })
+  }
+
+  private formatToken(value: number) : string {
+      let valueNormal = value / 10e17
+      return valueNormal.toFixed(4)
   }
 }
