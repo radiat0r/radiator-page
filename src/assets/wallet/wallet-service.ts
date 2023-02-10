@@ -1,6 +1,7 @@
 import { WalletBalance } from './wallet-balance'
 
 export type Wallet = {
+    key: string,
     rdt: number
 }
 
@@ -14,6 +15,7 @@ export class WalletService {
                 .then(walletBalance => {
                     console.log("WalletBalance: " + JSON.stringify(walletBalance))
                     let wallet: Wallet = {
+                        key: walletKey,
                         rdt: getRdtFromWalletBalance(walletBalance)
                     }
                     resolve(wallet)

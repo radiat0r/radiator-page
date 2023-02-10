@@ -42,13 +42,18 @@ export class RdtWallet {
               {this.renderWalletInfo()}
             </div>
           </div>
+          <div class="row justify-content-center">
+            <div class="col-sm-10">
+              {this.renderCashbacks()}
+            </div>
+          </div>
         </div>
 
       </Host >
     )
   }
 
-  renderWalletInfo() {
+  private renderWalletInfo() {
     if (this.wallet != null) {
       return (
         <div class="token-info">
@@ -62,6 +67,30 @@ export class RdtWallet {
               <tr>
                 <td class="table-head">Hold</td>
                 <td class="table-des">14th Dec 2022 12:00 GMT</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+  }
+
+  private renderCashbacks() {
+    if (this.wallet != null) {
+      return (
+        <div class="token-info">
+          <h4 class="title title-md mb-2 text-sm-center">Cashbacks</h4>
+          <table class="table table-s1 table-token">
+            <tbody>
+              <tr>
+                <td class="table-head"><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez</a></td>
+                <td class="table-des"><a href='https://t.me/radix_radiator/1249' target="_blank">Hold 150$RDT Stake 1000XRD</a></td>
+                <td class="table-des">20%</td>
+              </tr>
+              <tr>
+                <td class="table-head"><a href='https://www.vikingland.net/collection/Mutant%20Cat%20Society' target="_blank">Mutant Cat Society</a></td>
+                <td class="table-des"><a href='https://t.me/radix_radiator/1886' target="_blank">Hold 150$RDT</a></td>
+                <td class="table-des">20%</td>
               </tr>
             </tbody>
           </table>
@@ -96,8 +125,8 @@ export class RdtWallet {
       })
   }
 
-  private formatToken(value: number) : string {
-      let valueNormal = value / 10e17
-      return valueNormal.toFixed(4)
+  private formatToken(value: number): string {
+    let valueNormal = value / 10e17
+    return valueNormal.toFixed(4)
   }
 }
