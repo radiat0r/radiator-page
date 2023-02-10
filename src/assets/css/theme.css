@@ -6,6 +6,10 @@ Theme	 :  Default
 */
 /*! WRITE YOUR CUSTOM STYLE **/
 
+td img {
+    height: 1rem;
+}
+
 .card-s4 {
     padding: 2em 1em;
     box-shadow: 0px 5px 46px rgba(235, 235, 235, 1);
@@ -29,4 +33,4 @@ Theme	 :  Default
     -moz-animation: fadeIn 2.5s;
     -o-animation: fadeIn 2.5s;
     -ms-animation: fadeIn 2.5s;
-  }
+}
