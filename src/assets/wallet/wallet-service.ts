@@ -1,5 +1,6 @@
 import { AccountBalance, AccountBalanceService } from './account-balance'
 import { AccountStake, AccountStakeService } from './account-stake'
+import { AccountTransactions, AccountTransactionsService } from './account-transactions'
 
 export type Wallet = {
     key: string,
@@ -13,31 +14,37 @@ export class WalletService {
 
         return new Promise((resolve, reject) => {
 
-            Promise.all([AccountBalanceService.getBalances(walletKey), AccountStakeService.getStakes(walletKey)])
+            Promise.all(
+                [AccountBalanceService.getBalances(walletKey),
+                AccountStakeService.getStakes(walletKey),
+                AccountTransactionsService.getTransactions(walletKey)])
                 .then((results) => {
-                    
-                    const accountBalance = results[0] as AccountBalance
-                    console.log("AccountBalance: " + JSON.stringify(accountBalance))
 
-                    const accountStake = results[1] as AccountStake
-                    console.log("AccountStake: " + JSON.stringify(accountBalance))
+                    const balance = results[0] as AccountBalance
+                    console.log("AccountBalance: " + JSON.stringify(balance))
+
+                    const stake = results[1] as AccountStake
+                    console.log("AccountStake: " + JSON.stringify(balance))
+
+                    const transactions = results[2] as AccountTransactions
+                    console.log("AccountStake: " + JSON.stringify(transactions))
 
                     let wallet: Wallet = {
                         key: walletKey,
-                        rdt: this.getRdtFromAccountBalance(accountBalance),
-                        staked_at_nordic: this.getStakedXrdAtNordic(accountStake)
+                        rdt: this.getRdtFromAccountBalance(balance),
+                        staked_at_nordic: this.getStakedXrdAtNordic(stake)
                     }
                     resolve(wallet)
 
                 }).catch(error => reject(error));
-            
+
         })
     }
 
     static getRdtFromAccountBalance(accountBalance: AccountBalance): number {
 
         const RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
-    
+
         let rdt = 0
         accountBalance.account_balances.liquid_balances.forEach(balance => {
             if (balance.token_identifier.rri == RDT_IDENTIFIER) {
@@ -45,7 +52,7 @@ export class WalletService {
                 console.log("$RDT: " + rdt)
             }
         })
-    
+
         return rdt
     }
 

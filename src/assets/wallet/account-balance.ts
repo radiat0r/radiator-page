@@ -20,7 +20,7 @@ export class AccountBalanceService {
     static getBalances(walletKey: string): Promise<AccountBalance> {
         return new Promise((resolve, reject) => {
 
-            fetch(RadixAccountStakeService.getAccountUrl("/balances"), RadixAccountStakeService.getFetchOptions(walletKey))
+            fetch(RadixAccountStakeService.getAccountUrl("/balances"), RadixAccountStakeService.getFetchOptionsByAddress(walletKey))
                 .then(response => {
                     console.log(response)
                     if (!response.ok) {
@@ -31,7 +31,7 @@ export class AccountBalanceService {
                 .catch(error => {
                     reject(error)
                 })
-                
+
         })
     }
 }

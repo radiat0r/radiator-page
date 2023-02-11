@@ -4,33 +4,33 @@ export type AccountStake = {
     pending_stakes: PendingStake[]
     stakes: Stake[]
     ledger_state: LedgerState
-  }
-  
-  export type PendingStake = {
+}
+
+export type PendingStake = {
     validator_identifier: ValidatorIdentifier
     delegated_stake: DelegatedStake
-  }
-  
-  export type ValidatorIdentifier = {
+}
+
+export type ValidatorIdentifier = {
     address: string
-  }
-  
-  export type DelegatedStake = {
+}
+
+export type DelegatedStake = {
     value: string
     token_identifier: TokenIdentifier
-  }
-  
-  export type Stake = {
+}
+
+export type Stake = {
     validator_identifier: ValidatorIdentifier
     delegated_stake: DelegatedStake
-  }
-  
-  export class AccountStakeService {
-    
+}
+
+export class AccountStakeService {
+
     static getStakes(walletKey: string): Promise<AccountStake> {
         return new Promise((resolve, reject) => {
 
-          fetch(RadixAccountStakeService.getAccountUrl("/stakes"), RadixAccountStakeService.getFetchOptions(walletKey))
+            fetch(RadixAccountStakeService.getAccountUrl("/stakes"), RadixAccountStakeService.getFetchOptionsByAddress(walletKey))
                 .then(response => {
                     console.log(response)
                     if (!response.ok) {

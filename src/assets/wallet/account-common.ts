@@ -15,9 +15,8 @@ export class RadixAccountStakeService {
         return "https://mainnet.radixdlt.com/account" + resource
     }
     
-    static getFetchOptions(accountAddress: string): RequestInit {
-
-        let requestBody = {
+    static getRequestBody(accountAddress: string) {
+        return {
             network_identifier: {
                 network: "mainnet"
             },
@@ -26,6 +25,23 @@ export class RadixAccountStakeService {
                 address: accountAddress
             }
         }
+    }
+
+    static getFetchOptionsByAddress(accountAddress: string): RequestInit {
+
+        const requestBody = this.getRequestBody(accountAddress)
+
+        return {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+            redirect: 'follow',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    }
+
+    static getFetchOptionsWithRequestBody(requestBody: any): RequestInit {
 
         return {
             method: 'POST',
