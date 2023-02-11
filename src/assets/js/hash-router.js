@@ -60,6 +60,7 @@ const locationHandler = async () => {
 	} else {
 		document.getElementById("banner").hidden = true;
 		document.getElementById("content").innerHTML = html;
+		drawTokenomicsChart()
 	}
 
     setTimeout(() => { window.scrollTo(0, 0) }, 100);

@@ -3,6 +3,8 @@
 - wallet nachladen bis alles der letzten 7 Tage vorhanden ist
 - wallet die restlichen Partner aufnehmen
 - news Horrible Heads aufnehmen
+- Tokenomics laden nicht mehr im hash-router triggern und kann an die charts.js import in der index.html loswerden?
+
 Sites:
 - stake
 - tokenomics
