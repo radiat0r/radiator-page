@@ -1,7 +1,7 @@
 // create an object that maps the url to the template, title, and description
 const routes = {
 	404: {
-		template: "/assets/templates/404.html",
+		template: "/assets/templates/error404.html",
 	},
 	"/": {
 		isBannner: true,
