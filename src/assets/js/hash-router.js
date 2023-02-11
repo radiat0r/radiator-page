@@ -23,6 +23,9 @@ const routes = {
 	tokenomics: {
 		template: "/assets/templates/tokenomics.html",
 	},
+  stake: {
+    template: "/assets/templates/stake.html",
+  },
 	wallet: {
 		template: "/assets/templates/wallet.html",
 	},
