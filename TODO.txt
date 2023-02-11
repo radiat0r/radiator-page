@@ -4,9 +4,9 @@
 - wallet die restlichen Partner aufnehmen
 - news Horrible Heads aufnehmen
 - Tokenomics laden nicht mehr im hash-router triggern und kann an die charts.js import in der index.html loswerden?
+- Stake: notiflix-info when validator address was copied
 
 Sites:
-- stake
 - tokenomics
 
 - Von den anderen
