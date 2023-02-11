@@ -5,10 +5,16 @@ import { AccountTransactions, AccountTransactionsService } from './account-trans
 export type Wallet = {
     key: string,
     rdt: number,
+    rdt_hold_time_ok: boolean,
     staked_at_nordic: number,
 }
 
 export class WalletService {
+
+    private static readonly RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
+    private static readonly NORDIC_NODE_IDENTIFIER = "rv1qvq5dpfrte49l3hdzzarftmsqejqzf3d8dxnrx2tzdc0ljcrg88uvnlvpau"
+    private static readonly XRD_IDENTIFIER = "xrd_rr1qy5wfsfh"
+
 
     static loadWallet(walletKey: string): Promise<Wallet> {
 
@@ -32,6 +38,7 @@ export class WalletService {
                     let wallet: Wallet = {
                         key: walletKey,
                         rdt: this.getRdtFromAccountBalance(balance),
+                        rdt_hold_time_ok: this.holdRdtLongerThan(balance, transactions),
                         staked_at_nordic: this.getStakedXrdAtNordic(stake)
                     }
                     resolve(wallet)
@@ -41,13 +48,17 @@ export class WalletService {
         })
     }
 
-    static getRdtFromAccountBalance(accountBalance: AccountBalance): number {
+    static getRdtFromAccountBalance(balance: AccountBalance): number {
 
-        const RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
+        if (balance == null
+            || balance.account_balances == null
+            || balance.account_balances.liquid_balances == null) {
+            return 0
+        }
 
         let rdt = 0
-        accountBalance.account_balances.liquid_balances.forEach(balance => {
-            if (balance.token_identifier.rri == RDT_IDENTIFIER) {
+        balance.account_balances.liquid_balances.forEach(balance => {
+            if (balance.token_identifier.rri == this.RDT_IDENTIFIER) {
                 rdt = parseInt(balance.value) / 10e17
                 console.log("$RDT: " + rdt)
             }
@@ -56,15 +67,16 @@ export class WalletService {
         return rdt
     }
 
-    static getStakedXrdAtNordic(accountStake: AccountStake): number {
+    static getStakedXrdAtNordic(stake: AccountStake): number {
 
-        const NORDIC_NODE_IDENTIFIER = "rv1qvq5dpfrte49l3hdzzarftmsqejqzf3d8dxnrx2tzdc0ljcrg88uvnlvpau"
-        const XRD_IDENTIFIER = "xrd_rr1qy5wfsfh"
+        if (stake == null || stake.stakes == null) {
+            return 0
+        }
 
         let stakedXrd = 0
-        accountStake.stakes.forEach(stake => {
-            if (stake.validator_identifier.address == NORDIC_NODE_IDENTIFIER
-                && stake.delegated_stake.token_identifier.rri == XRD_IDENTIFIER) {
+        stake.stakes.forEach(stake => {
+            if (stake.validator_identifier.address == this.NORDIC_NODE_IDENTIFIER
+                && stake.delegated_stake.token_identifier.rri == this.XRD_IDENTIFIER) {
 
                 stakedXrd = parseInt(stake.delegated_stake.value) / 10e17
                 console.log("Staked at StakeNordic $XRD: " + stakedXrd)
@@ -74,8 +86,7 @@ export class WalletService {
         return stakedXrd
     }
 
+    static holdRdtLongerThan(balance: AccountBalance, transactions: AccountTransactions): boolean {
+        return false
+    }
 }
-
-
-
-

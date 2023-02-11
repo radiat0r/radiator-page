@@ -68,8 +68,8 @@ export class RdtWallet {
                 <td class="table-des">{wallet.rdt.toFixed(2)}</td>
               </tr>
               <tr>
-                <td class="table-head">Hold</td>
-                <td class="table-des">14th Dec 2022 12:00 GMT</td>
+                <td class="table-head">Holdtime $RDT &gt; 7 days</td>
+                <td class="table-des">{this.renderOkNo(wallet.rdt_hold_time_ok)}</td>
               </tr>
               <tr>
                 <td class="table-head">Staked @ StakeNordic</td>
@@ -91,12 +91,12 @@ export class RdtWallet {
             <tbody>
               <tr>
                 <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez</a></td>
-                <td class="table-des"><a href='https://t.me/radix_radiator/1249' target="_blank">Hold 150$RDT{this.renderHold(wallet, 150)} Stake 1000XRD</a></td>
+                <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.renderOkNo(wallet.rdt >= 150)} Hold 150$RDT<br />{this.renderOkNo(wallet.staked_at_nordic >= 1000)} Stake 1000XRD</a></td>
                 <td class="table-head">20%</td>
               </tr>
               <tr>
                 <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Mutant%20Cat%20Society' target="_blank">Mutant Cat Society</a></td>
-                <td class="table-des"><a href='https://t.me/radix_radiator/1886' target="_blank">Hold 150$RDT{this.renderHold(wallet, 150)}</a></td>
+                <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.renderOkNo(wallet.rdt >= 150)} Hold 150$RDT</a></td>
                 <td class="table-head">20%</td>
               </tr>
             </tbody>
@@ -106,14 +106,15 @@ export class RdtWallet {
     }
   }
 
-  private renderHold(wallet: Wallet, minHold: number) {
+  private renderOkNo(ok: boolean) {
+
     const okIconSrc = getAssetPath(`./assets/${this.okIcon}`);
     const errorIconSrc = getAssetPath(`./assets/${this.errorIcon}`);
 
-    if (wallet.rdt >= minHold) {
+    if (ok) {
       return (<img src={okIconSrc} alt="ok"></img>)
     } else {
-      return (<img src={errorIconSrc} alt="ok"></img>)
+      return (<img src={errorIconSrc} alt="no"></img>)
     }
   }
 
