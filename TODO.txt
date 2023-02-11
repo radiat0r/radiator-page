@@ -1,20 +1,11 @@
 
 - copy manifest.json and use pics for apple
-- test stencil component
+- wallet nachladen bis alles der letzten 7 Tage vorhanden ist
+- wallet die restlichen Partner aufnehmen
+- news Horrible Heads aufnehmen
 Sites:
-- home
-- news
-- about
 - stake
-- cashback
-  - page-mission.html
-    - bei 1. Absatz -> coin? https://icons.getbootstrap.com/icons/coin/
-    - bei 2. Absatz conditions -> partner icons ->
-      https://icons8.de/icon/43627/h%C3%A4ndesch%C3%BCtteln
 - tokenomics
-- 404 page
-- Wallet Check -> page-wallets-v2.html die Liste
-
 
 - Von den anderen
     - Logo

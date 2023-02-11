@@ -20,6 +20,9 @@ const routes = {
 	project: {
 		template: "/assets/templates/project.html",
 	},
+	tokenomics: {
+		template: "/assets/templates/tokenomics.html",
+	},
 	wallet: {
 		template: "/assets/templates/wallet.html",
 	},
