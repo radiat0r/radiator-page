@@ -25,7 +25,23 @@ export type TransactionIdentifier = {
 }
 
 export type Action = {
+    from_account: FromAccount
+    to_account: ToAccount
+    amount: Amount
     type: string
+}
+
+export type FromAccount = {
+    address: string
+}
+
+export type ToAccount = {
+    address: string
+}
+
+export type Amount = {
+    value: string
+    token_identifier: TokenIdentifier
 }
 
 export type Metadata = {

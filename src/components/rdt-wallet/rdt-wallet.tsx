@@ -69,7 +69,7 @@ export class RdtWallet {
               </tr>
               <tr>
                 <td class="table-head">Holdtime $RDT &gt; 7 days</td>
-                <td class="table-des">{this.renderOkNo(wallet.rdt_hold_time_ok)}</td>
+                <td class="table-des">{this.renderOkNo(wallet.rdt_7_days_ago > 150)}</td>
               </tr>
               <tr>
                 <td class="table-head">Staked @ StakeNordic</td>

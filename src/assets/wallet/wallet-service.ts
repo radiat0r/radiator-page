@@ -5,7 +5,7 @@ import { AccountTransactions, AccountTransactionsService } from './account-trans
 export type Wallet = {
     key: string,
     rdt: number,
-    rdt_hold_time_ok: boolean,
+    rdt_7_days_ago: number,
     staked_at_nordic: number,
 }
 
@@ -14,6 +14,7 @@ export class WalletService {
     private static readonly RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
     private static readonly NORDIC_NODE_IDENTIFIER = "rv1qvq5dpfrte49l3hdzzarftmsqejqzf3d8dxnrx2tzdc0ljcrg88uvnlvpau"
     private static readonly XRD_IDENTIFIER = "xrd_rr1qy5wfsfh"
+    private static readonly HOLD_TIME = 7 * 24 * 60 * 60 * 1000
 
 
     static loadWallet(walletKey: string): Promise<Wallet> {
@@ -35,10 +36,11 @@ export class WalletService {
                     const transactions = results[2] as AccountTransactions
                     console.log("AccountStake: " + JSON.stringify(transactions))
 
+                    const rdt = this.getRdtFromAccountBalance(balance)
                     let wallet: Wallet = {
                         key: walletKey,
-                        rdt: this.getRdtFromAccountBalance(balance),
-                        rdt_hold_time_ok: this.holdRdtLongerThan(balance, transactions),
+                        rdt: rdt,
+                        rdt_7_days_ago: this.getRdt7DaysAgo(transactions, walletKey, rdt),
                         staked_at_nordic: this.getStakedXrdAtNordic(stake)
                     }
                     resolve(wallet)
@@ -86,7 +88,26 @@ export class WalletService {
         return stakedXrd
     }
 
-    static holdRdtLongerThan(balance: AccountBalance, transactions: AccountTransactions): boolean {
-        return false
+    static getRdt7DaysAgo(transactions: AccountTransactions, walletKey: string, currentRdt: number): number {
+        const holdtTimeBegin = Date.now() - this.HOLD_TIME
+        console.log("Hold Time begin: " + new Date(holdtTimeBegin))
+
+        //the executed actions of the last 7 days
+        const actions = transactions.transactions
+            .filter(transaction => transaction.transaction_status.status == "CONFIRMED")
+            .filter(transaction => Date.parse(transaction.transaction_status.confirmed_time) > holdtTimeBegin)
+            .flatMap(transaction => transaction.actions)
+
+        console.log(actions)
+        const rdtActions = actions
+            .filter(action => action.type == "TransferTokens")
+            .filter(action => action.to_account.address == walletKey)
+            .filter(action => action.amount.token_identifier.rri == this.RDT_IDENTIFIER)
+
+        const transactionAmount = rdtActions
+            .map(action => parseInt(action.amount.value) / 10e17)
+            .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+
+        return currentRdt - transactionAmount
     }
 }
