@@ -65,11 +65,15 @@ export class RdtWallet {
             <tbody>
               <tr>
                 <td class="table-head">$RDT</td>
-                <td class="table-des">{this.formatToken(wallet.rdt)}</td>
+                <td class="table-des">{wallet.rdt.toFixed(2)}</td>
               </tr>
               <tr>
                 <td class="table-head">Hold</td>
                 <td class="table-des">14th Dec 2022 12:00 GMT</td>
+              </tr>
+              <tr>
+                <td class="table-head">Staked @ StakeNordic</td>
+                <td class="table-des">{wallet.staked_at_nordic.toFixed(2)}</td>
               </tr>
             </tbody>
           </table>
@@ -137,10 +141,5 @@ export class RdtWallet {
         Notify.warning("An error occured while fetching wallet data. Maybe the specified wallet key is wrong. Please try again later.")
         console.log("loadWallet error: " + error)
       })
-  }
-
-  private formatToken(value: number): string {
-    let valueNormal = value / 10e17
-    return valueNormal.toFixed(2)
   }
 }
