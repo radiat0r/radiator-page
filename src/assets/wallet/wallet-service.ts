@@ -49,7 +49,7 @@ export class WalletService {
                     }
                 })
                 .then(response => {
-                    console.log("Balances response: " + JSON.stringify(response))
+                    console.log(response)
                     if (!response.ok) {
                         throw new Error(response.status.toString() + " | " + response.statusText)
                     }

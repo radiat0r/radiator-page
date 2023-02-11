@@ -1,3 +1,5 @@
+import { LedgerState, TokenIdentifier } from './wallet-common'
+
 export type WalletBalance = {
     ledger_state:     LedgerState
     account_balances: AccountBalances
@@ -11,15 +13,4 @@ export type AccountBalances = {
 export type Balance = {
     value:            string
     token_identifier: TokenIdentifier
-}
-
-export type TokenIdentifier = {
-    rri: string
-}
-
-export type LedgerState  = {
-    version:   number
-    timestamp: Date
-    epoch:     number
-    round:     number
 }
