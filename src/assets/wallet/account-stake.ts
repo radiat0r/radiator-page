@@ -1,6 +1,6 @@
-import { LedgerState, TokenIdentifier } from './wallet-common'
+import { LedgerState, TokenIdentifier } from './account-common'
 
-export type WalletStake = {
+export type AccountStake = {
     pending_stakes: PendingStake[]
     stakes: Stake[]
     ledger_state: LedgerState

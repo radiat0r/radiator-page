@@ -1,4 +1,4 @@
-import { WalletBalance } from './wallet-balance'
+import { AccountBalance } from './account-balance'
 
 export type Wallet = {
     key: string,
@@ -24,7 +24,7 @@ export class WalletService {
         })
     }
 
-    static getBalances(walletKey: string): Promise<WalletBalance> {
+    static getBalances(walletKey: string): Promise<AccountBalance> {
 
         let requestBody = {
             network_identifier: {
@@ -63,7 +63,7 @@ export class WalletService {
 }
 
 
-function getRdtFromWalletBalance(walletBalance: WalletBalance): number {
+function getRdtFromWalletBalance(walletBalance: AccountBalance): number {
 
     const RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
 

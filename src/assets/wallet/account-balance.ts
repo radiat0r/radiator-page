@@ -1,6 +1,6 @@
-import { LedgerState, TokenIdentifier } from './wallet-common'
+import { LedgerState, TokenIdentifier } from './account-common'
 
-export type WalletBalance = {
+export type AccountBalance = {
     ledger_state:     LedgerState
     account_balances: AccountBalances
 }
