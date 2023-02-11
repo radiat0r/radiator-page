@@ -1,4 +1,4 @@
-import { LedgerState, TokenIdentifier } from './account-common'
+import { RadixAccountStakeService, LedgerState, TokenIdentifier } from './account-common'
 
 export type AccountStake = {
     pending_stakes: PendingStake[]
@@ -25,3 +25,23 @@ export type AccountStake = {
     delegated_stake: DelegatedStake
   }
   
+  export class AccountStakeService {
+    
+    static getStakes(walletKey: string): Promise<AccountStake> {
+        return new Promise((resolve, reject) => {
+
+          fetch(RadixAccountStakeService.getAccountUrl("/stakes"), RadixAccountStakeService.getFetchOptions(walletKey))
+                .then(response => {
+                    console.log(response)
+                    if (!response.ok) {
+                        throw new Error(response.status.toString() + " | " + response.statusText)
+                    }
+                    resolve(response.json())
+                })
+                .catch(error => {
+                    reject(error)
+                })
+
+        })
+    }
+}

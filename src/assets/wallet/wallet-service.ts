@@ -1,4 +1,5 @@
-import { AccountBalance } from './account-balance'
+import { AccountBalance, AccountBalanceService } from './account-balance'
+import { AccountStake, AccountStakeService } from './account-stake'
 
 export type Wallet = {
     key: string,
@@ -9,55 +10,19 @@ export class WalletService {
 
     static loadWallet(walletKey: string): Promise<Wallet> {
 
-        return new Promise((resolve, reject) => {
+        AccountStakeService.getStakes(walletKey)
 
-            this.getBalances(walletKey)
-                .then(walletBalance => {
-                    console.log("WalletBalance: " + JSON.stringify(walletBalance))
+        return new Promise((resolve, reject) => {
+            AccountBalanceService.getBalances(walletKey)
+                .then(accountBalance => {
+                    console.log("AccountBalance: " + JSON.stringify(accountBalance))
                     let wallet: Wallet = {
                         key: walletKey,
-                        rdt: getRdtFromWalletBalance(walletBalance)
+                        rdt: getRdtFromWalletBalance(accountBalance)
                     }
                     resolve(wallet)
                 }
                 ).catch(error => reject(error))
-        })
-    }
-
-    static getBalances(walletKey: string): Promise<AccountBalance> {
-
-        let requestBody = {
-            network_identifier: {
-                network: "mainnet"
-            },
-
-            account_identifier: {
-                address: walletKey
-            }
-        }
-
-        const url = "https://mainnet.radixdlt.com/account/balances"
-
-        return new Promise((resolve, reject) => {
-            fetch(url.toString(),
-                {
-                    method: 'POST',
-                    body: JSON.stringify(requestBody),
-                    redirect: 'follow',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    console.log(response)
-                    if (!response.ok) {
-                        throw new Error(response.status.toString() + " | " + response.statusText)
-                    }
-                    resolve(response.json())
-                })
-                .catch(error => {
-                    reject(error)
-                })
         })
     }
 }
