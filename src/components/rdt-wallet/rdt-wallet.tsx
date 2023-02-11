@@ -68,8 +68,8 @@ export class RdtWallet {
                 <td class="table-des">{wallet.rdt.toFixed(2)}</td>
               </tr>
               <tr>
-                <td class="table-head">Holdtime $RDT &gt; 7 days</td>
-                <td class="table-des">{this.renderOkNo(wallet.rdt_7_days_ago > 150)}</td>
+                <td class="table-head">$RDT 7 days ago</td>
+                <td class="table-des">{wallet.rdt_7_days_ago}</td>
               </tr>
               <tr>
                 <td class="table-head">Staked @ StakeNordic</td>
@@ -90,15 +90,11 @@ export class RdtWallet {
           <table class="table table-s1 table-token">
             <tbody>
               <tr>
-                <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez</a></td>
-                <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.renderOkNo(wallet.rdt >= 150)} Hold 150$RDT<br />{this.renderOkNo(wallet.staked_at_nordic >= 1000)} Stake 1000XRD</a></td>
-                <td class="table-head">20%</td>
-              </tr>
-              <tr>
                 <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Mutant%20Cat%20Society' target="_blank">Mutant Cat Society</a></td>
-                <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.renderOkNo(wallet.rdt >= 150)} Hold 150$RDT</a></td>
+                <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.renderOkNo(wallet.rdt >= 150)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= 150)}  Hold $RDT &gt; 7 days</a></td>
                 <td class="table-head">20%</td>
               </tr>
+              {this.renderShardeezSection(wallet)}
             </tbody>
           </table>
         </div>
@@ -107,7 +103,6 @@ export class RdtWallet {
   }
 
   private renderOkNo(ok: boolean) {
-
     const okIconSrc = getAssetPath(`./assets/${this.okIcon}`);
     const errorIconSrc = getAssetPath(`./assets/${this.errorIcon}`);
 
@@ -115,6 +110,30 @@ export class RdtWallet {
       return (<img src={okIconSrc} alt="ok"></img>)
     } else {
       return (<img src={errorIconSrc} alt="no"></img>)
+    }
+  }
+
+  private static readonly SHARDEEZ_RDT_LIMIT = 150
+  private static readonly SHARDEEZ_NORDIC_STAKE_LIMIT = 1000
+  private renderShardeezSection(wallet: Wallet) {
+    return (
+      <tr>
+        <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.renderOkNo(wallet.rdt >= 150)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= 150)}  Hold 150$RDT &gt; 7 days<br />{this.renderOkNo(wallet.staked_at_nordic >= 1000)} Stake @ StakeNordic 1000XRD</a></td>
+        <td class="table-head">{this.calcShardeezBenefit(wallet)}</td>
+      </tr>
+    )
+  }
+
+  private calcShardeezBenefit(wallet: Wallet): string {
+    if (wallet.rdt >= RdtWallet.SHARDEEZ_RDT_LIMIT && wallet.rdt_7_days_ago >= RdtWallet.SHARDEEZ_RDT_LIMIT) {
+      if (wallet.staked_at_nordic >= RdtWallet.SHARDEEZ_NORDIC_STAKE_LIMIT) {
+        return "25%"
+      } else {
+        return "20%"
+      }
+    } else {
+      return "0%"
     }
   }
 
