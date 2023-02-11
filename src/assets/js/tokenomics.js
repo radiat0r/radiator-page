@@ -1,12 +1,12 @@
 
 const drawTokenomicsChart = async () => {
 
-    if(!document.getElementById('tokenomicsChart')) {
+    if (!document.getElementById('tokenomicsChart')) {
         return;
     }
 
     const image = new Image();
-    image.src = 'assets/img/logo_white_192.png';
+    image.src = 'assets/images/tokenomics/logo_white_192.png';
 
     const backgroundimage = {
         id: 'custom_canvas_background_image',
@@ -46,10 +46,10 @@ const drawTokenomicsChart = async () => {
                 '#98D7CF',
                 '#D2EFE0'
             ],
+            color: '#FFFFFF',
             hoverOffset: 25
         }]
     };
-
 
 
     const config = {
@@ -67,7 +67,7 @@ const drawTokenomicsChart = async () => {
                     align: 'center',
                     fullSize: false,
                     labels: {
-                        color: '#D2EFE0',
+                        color: '#FFFFFF',
                         boxWidth: 60,
                         boxHeight: 20,
                         padding: 20,
