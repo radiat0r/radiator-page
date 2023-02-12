@@ -14,7 +14,8 @@ export class WalletService {
     private static readonly RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
     private static readonly NORDIC_NODE_IDENTIFIER = "rv1qvq5dpfrte49l3hdzzarftmsqejqzf3d8dxnrx2tzdc0ljcrg88uvnlvpau"
     private static readonly XRD_IDENTIFIER = "xrd_rr1qy5wfsfh"
-    private static readonly HOLD_TIME = 7 * 24 * 60 * 60 * 1000
+    private static readonly RDT_HOLD_TIME_DAYS = 7
+    private static readonly HOLD_TIME = WalletService.RDT_HOLD_TIME_DAYS * 24 * 60 * 60 * 1000
 
 
     static loadWallet(walletKey: string): Promise<Wallet> {
