@@ -125,6 +125,10 @@ export class RdtWallet {
     return (<Fragment>{this.renderOkNo(wallet.rdt >= rdt)} Hold {rdt}$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= rdt)} Hold {rdt}$RDT &gt; 7 days</Fragment>)
   }
 
+  private getStakeNordicMsg(wallet: Wallet) {
+    return (<Fragment><br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic {RdtWallet.NORDIC_STAKE_LIMIT}XRD</Fragment>)
+  }
+
   private getBenefitMsg(value: number) {
     return (<Fragment>Your benefit:<br /> {value}% cashback</Fragment>)
   }
@@ -134,7 +138,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_SHARDEEZ)}<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_SHARDEEZ)}{this.getStakeNordicMsg(wallet)}</a></td>
         <td class="table-head">{this.calcShardeezBenefit(wallet)}</td>
       </tr>
     )
@@ -157,7 +161,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Mutant%20Cat%20Society' target="_blank">Mutant Cat Society{this.getProjectUpToMsg(20)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_MUTANT_CAT)}<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_MUTANT_CAT)}{this.getStakeNordicMsg(wallet)}</a></td>
         <td class="table-head">{this.calcMutantCatBenefit(wallet)}</td>
       </tr>
     )
@@ -218,7 +222,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.io/collection/RadFam' target="_blank">RadFam{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3059' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RAD_FAM)}<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3059' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RAD_FAM)}{this.getStakeNordicMsg(wallet)}</a></td>
         <td class="table-head">{this.calcRadFamBenefit(wallet)}</td>
       </tr>
     )
