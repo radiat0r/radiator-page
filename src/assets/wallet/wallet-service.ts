@@ -1,6 +1,6 @@
 import { AccountBalance, AccountBalanceService } from './account-balance'
 import { AccountStake, AccountStakeService } from './account-stake'
-import { AccountTransactions, AccountTransactionsService } from './account-transactions'
+import { Transaction, AccountTransactionsService } from './account-transactions'
 
 export type Wallet = {
     key: string,
@@ -25,7 +25,7 @@ export class WalletService {
             Promise.all(
                 [AccountBalanceService.getBalances(walletKey),
                 AccountStakeService.getStakes(walletKey),
-                AccountTransactionsService.getTransactions(walletKey)])
+                AccountTransactionsService.getTransactions(walletKey, Date.now() - this.HOLD_TIME)])
                 .then((results) => {
 
                     const balance = results[0] as AccountBalance
@@ -34,8 +34,8 @@ export class WalletService {
                     const stake = results[1] as AccountStake
                     console.log("AccountStake: " + JSON.stringify(balance))
 
-                    const transactions = results[2] as AccountTransactions
-                    console.log("AccountStake: " + JSON.stringify(transactions))
+                    const transactions = results[2] as Transaction[]
+                    console.log("AccountTransactions: " + JSON.stringify(transactions))
 
                     const rdt = this.getRdtFromAccountBalance(balance)
                     let wallet: Wallet = {
@@ -89,14 +89,10 @@ export class WalletService {
         return stakedXrd
     }
 
-    static getRdt7DaysAgo(transactions: AccountTransactions, walletKey: string, currentRdt: number): number {
-        const holdtTimeBegin = Date.now() - this.HOLD_TIME
-        console.log("Hold Time begin: " + new Date(holdtTimeBegin))
+    static getRdt7DaysAgo(transactions: Transaction[], walletKey: string, currentRdt: number): number {
 
-        //the executed actions of the last 7 days
-        const actions = transactions.transactions
+        const actions = transactions
             .filter(transaction => transaction.transaction_status.status == "CONFIRMED")
-            .filter(transaction => Date.parse(transaction.transaction_status.confirmed_time) > holdtTimeBegin)
             .flatMap(transaction => transaction.actions)
 
         console.log(actions)
