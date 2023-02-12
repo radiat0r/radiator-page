@@ -94,6 +94,7 @@ export class RdtWallet {
               {this.renderMysticTigerSection(wallet)}
               {this.renderRadixPandaSection(wallet)}
               {this.renderRadFamSection(wallet)}
+              {this.renderRoidettesSection(wallet)}
             </tbody>
           </table>
         </div>
@@ -223,6 +224,25 @@ export class RdtWallet {
       } else {
         return this.getBenefitMsg(20)
       }
+    } else {
+      return RdtWallet.NO_CASHBACK
+    }
+  }
+
+  private static readonly RDT_LIMIT_ROIDETTES = 300
+  private renderRoidettesSection(wallet: Wallet) {
+    return (
+      <tr>
+        <td class="table-head text-start"><a href='https://www.vikingland.io/collection/Roidettes' target="_blank">Roidettes{this.getProjectUpToMsg(20)}</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3605' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_ROIDETTES)} Hold 300$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_ROIDETTES)}  Hold 300$RDT &gt; 7 days</a></td>
+        <td class="table-head">{this.calcRoidettesBenefit(wallet)}</td>
+      </tr>
+    )
+  }
+
+  private calcRoidettesBenefit(wallet: Wallet): string {
+    if (wallet.rdt >= RdtWallet.RDT_LIMIT_ROIDETTES && wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_ROIDETTES) {
+      return this.getBenefitMsg(20)
     } else {
       return RdtWallet.NO_CASHBACK
     }
