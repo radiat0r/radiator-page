@@ -95,6 +95,7 @@ export class RdtWallet {
               {this.renderRadixPandaSection(wallet)}
               {this.renderRadFamSection(wallet)}
               {this.renderRoidettesSection(wallet)}
+              {this.renderHorribleHeadsSection(wallet)}
             </tbody>
           </table>
         </div>
@@ -129,7 +130,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT)}  Hold 150$RDT &gt; 7 days<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT)} Hold 150$RDT &gt; 7 days<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
         <td class="table-head">{this.calcShardeezBenefit(wallet)}</td>
       </tr>
     )
@@ -151,7 +152,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Mutant%20Cat%20Society' target="_blank">Mutant Cat Society{this.getProjectUpToMsg(20)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT)}  Hold 150$RDT &gt; 7 days<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT)} Hold 150$RDT &gt; 7 days<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
         <td class="table-head">{this.calcMutantCatBenefit(wallet)}</td>
       </tr>
     )
@@ -173,7 +174,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Mystic%20Tigers%20Brotherhood' target="_blank">Mystic Tiger Brotherhood{this.getProjectUpToMsg(20)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1654' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT)}  Hold 150$RDT &gt; 7 days</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1654' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT)} Hold 150$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT)} Hold 150$RDT &gt; 7 days</a></td>
         <td class="table-head">{this.calcMysticTigerBenefit(wallet)}</td>
       </tr>
     )
@@ -192,7 +193,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Radix%20Panda' target="_blank">Radix Panda{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/2760' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_RADIX_PANDA)} Hold 300$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_RADIX_PANDA)}  Hold 300$RDT &gt; 7 days</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/2760' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_RADIX_PANDA)} Hold 300$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_RADIX_PANDA)} Hold 300$RDT &gt; 7 days</a></td>
         <td class="table-head">{this.calcRadixPandaBenefit(wallet)}</td>
       </tr>
     )
@@ -211,7 +212,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.io/collection/RadFam' target="_blank">RadFam{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3059' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_RAD_FAM)} Hold 500$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_RAD_FAM)}  Hold 500$RDT &gt; 7 days<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3059' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_RAD_FAM)} Hold 500$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_RAD_FAM)} Hold 500$RDT &gt; 7 days<br />{this.renderOkNo(wallet.staked_at_nordic >= RdtWallet.NORDIC_STAKE_LIMIT)} Stake @ StakeNordic 1000XRD</a></td>
         <td class="table-head">{this.calcRadFamBenefit(wallet)}</td>
       </tr>
     )
@@ -234,7 +235,7 @@ export class RdtWallet {
     return (
       <tr>
         <td class="table-head text-start"><a href='https://www.vikingland.io/collection/Roidettes' target="_blank">Roidettes{this.getProjectUpToMsg(20)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3605' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_ROIDETTES)} Hold 300$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_ROIDETTES)}  Hold 300$RDT &gt; 7 days</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3605' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_ROIDETTES)} Hold 300$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_ROIDETTES)} Hold 300$RDT &gt; 7 days</a></td>
         <td class="table-head">{this.calcRoidettesBenefit(wallet)}</td>
       </tr>
     )
@@ -243,6 +244,25 @@ export class RdtWallet {
   private calcRoidettesBenefit(wallet: Wallet): string {
     if (wallet.rdt >= RdtWallet.RDT_LIMIT_ROIDETTES && wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_ROIDETTES) {
       return this.getBenefitMsg(20)
+    } else {
+      return RdtWallet.NO_CASHBACK
+    }
+  }
+
+  private static readonly RDT_LIMIT_HORRIBLE_HEADS = 500
+  private renderHorribleHeadsSection(wallet: Wallet) {
+    return (
+      <tr>
+        <td class="table-head text-start"><a href='https://www.vikingland.io/collection/Horrible%20Heads' target="_blank">Horrible Heads{this.getProjectUpToMsg(25)}</a></td>
+        <td class="table-des text-start"><a href='https://t.me/radix_radiator/4571' target="_blank">{this.renderOkNo(wallet.rdt >= RdtWallet.RDT_LIMIT_HORRIBLE_HEADS)} Hold 500$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_HORRIBLE_HEADS)} Hold 500$RDT &gt; 7 days</a></td>
+        <td class="table-head">{this.calcHorribleHeadsBenefit(wallet)}</td>
+      </tr>
+    )
+  }
+
+  private calcHorribleHeadsBenefit(wallet: Wallet): string {
+    if (wallet.rdt >= RdtWallet.RDT_LIMIT_HORRIBLE_HEADS && wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_HORRIBLE_HEADS) {
+      return this.getBenefitMsg(25)
     } else {
       return RdtWallet.NO_CASHBACK
     }
