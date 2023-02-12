@@ -1,5 +1,4 @@
 
-- news Horrible Heads aufnehmen
 - wallet die restlichen Partner aufnehmen
 - wallet nachladen bis alles der letzten 7 Tage vorhanden ist
 - wallet benefit herausstellen
@@ -15,6 +14,8 @@ Sites:
 - tokenomics
 
 - Von den anderen
+    - Benefit herausgestellt
+
     - Logo
     - RADIATOR Schriftzug
     - Banner Picture
