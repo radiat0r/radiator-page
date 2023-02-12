@@ -1,7 +1,6 @@
 
 - wallet die restlichen Partner aufnehmen
 - wallet nachladen bis alles der letzten 7 Tage vorhanden ist
-- wallet benefit herausstellen
 - landing page mit wallet suche
 - landing page mit hot&new
 
