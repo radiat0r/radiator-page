@@ -11,11 +11,14 @@ const routes = {
 		isBannner: true,
 		template: "",
 	},
-	cashback: {
-		template: "/assets/templates/cashback.html",
+	benefits: {
+		template: "/assets/templates/benefits.html",
 	},
 	news: {
 		template: "/assets/templates/news.html",
+	},
+	cashback: {
+		template: "/assets/templates/cashback.html",
 	},
 	project: {
 		template: "/assets/templates/project.html",
@@ -23,11 +26,8 @@ const routes = {
 	tokenomics: {
 		template: "/assets/templates/tokenomics.html",
 	},
-  stake: {
-    template: "/assets/templates/stake.html",
-  },
-	wallet: {
-		template: "/assets/templates/wallet.html",
+	stake: {
+		template: "/assets/templates/stake.html",
 	},
 };
 
@@ -63,7 +63,7 @@ const locationHandler = async () => {
 		drawTokenomicsChart()
 	}
 
-    setTimeout(() => { window.scrollTo(0, 0) }, 100);
+	setTimeout(() => { window.scrollTo(0, 0) }, 100);
 };
 // create a function that watches the hash and calls the urlLocationHandler
 window.addEventListener("hashchange", locationHandler);
