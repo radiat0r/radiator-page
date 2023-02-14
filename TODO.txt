@@ -1,5 +1,3 @@
-
-- wallet die restlichen Partner aufnehmen
 - landing page mit wallet suche
 - landing page mit hot&new
 
