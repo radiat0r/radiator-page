@@ -10,7 +10,10 @@ Sites:
 - tokenomics
 
 - Von den anderen
-    - Benefit herausgestellt
+    - Unter jeder Seite ist jetzt die Möglichkeit mit Links durch die Seite zu navigieren
+    - Wallet umbenannt to Benefits
+    - Benefits bei den einzelnen Projekten deutlicher gemacht
+    - Glow im Logo oben links ist animiert (Danke an meine Frau Anna :) )
     - staking gif erneuern
 
     - Logo
