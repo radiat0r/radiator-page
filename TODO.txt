@@ -17,7 +17,6 @@ Sites:
 
 - Finetuning:
   - project side calc correct viewheight but how?
-
-  
+ 
   - regeln für die AirDrops transparent machen aktuell nur vage
   - geringe Gebühren für das Staking herausstellen

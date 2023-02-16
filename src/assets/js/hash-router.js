@@ -1,7 +1,7 @@
 // create an object that maps the url to the template, title, and description
 const routes = {
 	404: {
-		template: "/assets/templates/error404.html",
+		template: "assets/templates/error404.html",
 	},
 	"/": {
 		isBannner: true,
@@ -12,22 +12,22 @@ const routes = {
 		template: "",
 	},
 	benefits: {
-		template: "/assets/templates/benefits.html",
+		template: "assets/templates/benefits.html",
 	},
 	news: {
-		template: "/assets/templates/news.html",
+		template: "assets/templates/news.html",
 	},
 	cashback: {
-		template: "/assets/templates/cashback.html",
+		template: "assets/templates/cashback.html",
 	},
 	project: {
-		template: "/assets/templates/project.html",
+		template: "assets/templates/project.html",
 	},
 	tokenomics: {
-		template: "/assets/templates/tokenomics.html",
+		template: "assets/templates/tokenomics.html",
 	},
 	stake: {
-		template: "/assets/templates/stake.html",
+		template: "assets/templates/stake.html",
 	},
 };
 
@@ -45,13 +45,7 @@ const locationHandler = async () => {
 
 	let html = ""
 	if (route.template != "") {
-		let path = ""
-		// get the html from the template
-		if (window.location.hostname.includes("github.io")) {
-			path = "/radiator-page"
-		}
-
-		html = await fetch(path + route.template).then((response) => response.text());
+		html = await fetch(route.template).then((response) => response.text());
 	}
 	// set the content of the content div to the html
 	if (route.isBannner) {
