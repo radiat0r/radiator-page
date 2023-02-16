@@ -1,6 +1,7 @@
-
+- tokenomics site ready
 - social media icons not in the middle
 - mask on links page
+- notiflix bei copy
 
 - copy manifest.json and use pics for apple
 - wallet limitierte nfts zählen

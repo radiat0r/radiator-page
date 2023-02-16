@@ -1,5 +1,5 @@
 import { Config } from '@stencil/core';
-import {sass} from "@stencil/sass";
+import { sass } from "@stencil/sass";
 
 export const config: Config = {
   namespace: 'ui-stencil',
@@ -8,8 +8,19 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
+    {
+      type: 'dist-custom-elements',
+      copy: [
+        {
+          // this copies the logo.png into the root of the www folder
+          src: './*.{jpg,png}', 
+          dest: 'www',
+          warn: true,
+        }
+      ]
+    },
   ],
-  plugins:[
+  plugins: [
     sass()
   ]
 };
