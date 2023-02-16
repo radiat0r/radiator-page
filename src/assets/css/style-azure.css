@@ -1030,7 +1030,7 @@ h6, .h6, .fz-6 { font-size: 0.94rem; }
 
 .nk-ovm { z-index: 1; }
 
-.nk-ovm:before, .nk-ovm:after { bottom: -1px; left: -1px; }
+/* .nk-ovm:before, .nk-ovm:after { bottom: -1px; left: -1px; } */
 
 .nk-ovm:before { z-index: 1; }
 
