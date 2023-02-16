@@ -34,3 +34,7 @@ td img {
     -o-animation: fadeIn 2.5s;
     -ms-animation: fadeIn 2.5s;
 }
+
+.line-height-55px {
+    line-height: 55px;
+}
