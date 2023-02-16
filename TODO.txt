@@ -1,5 +1,6 @@
-- landing page mit wallet suche
-- landing page mit hot&new
+
+- social media icons not in the middle
+- mask on links page
 
 - copy manifest.json and use pics for apple
 - wallet limitierte nfts zählen
@@ -10,17 +11,7 @@ Sites:
 - tokenomics
 
 - Von den anderen
-    - Banner ist das im neuen Font mit leichtem glow 
-    - Unter jeder Seite ist jetzt die Möglichkeit mit Links durch die Seite zu navigieren
-    - Wallet umbenannt zu Benefits
-    - Benefits bei den einzelnen Projekten deutlicher gemacht
-    - Glow im Logo oben links ist animiert (Danke an meine Frau Anna :) )
     - staking gif erneuern
-
-    - Logo
-    - RADIATOR Schriftzug
-    - Banner Picture
-    - Description Text
 
 
 - Finetuning:
