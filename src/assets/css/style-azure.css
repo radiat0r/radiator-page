@@ -5426,7 +5426,7 @@ ul.progress-info { display: flex; justify-content: space-between; }
 
 .token-alocate-item { position: relative; padding: 0 20px 15px; margin-bottom: 30px; margin-left: auto; margin-right: auto; background: #fff; height: calc(100% - 30px); border-radius: 4px; }
 
-.token-alocate-item:not([class*='shadow']) { box-shadow: 0 5px 45px 0 rgba(49, 60, 86, 0.08); }
+/*.token-alocate-item:not([class*='shadow']) { box-shadow: 0 5px 45px 0 rgba(49, 60, 86, 0.08); }*/
 
 .token-alocate-item-s1 { padding-left: 0; padding-right: 0; background-color: transparent; }
 
