@@ -54,7 +54,7 @@ const locationHandler = async () => {
 	} else {
 		document.getElementById("banner").hidden = true;
 		document.getElementById("content").innerHTML = html;
-		drawTokenomicsChart()
+		NioApp.Chart.ChartJs()
 	}
 
 	setTimeout(() => { window.scrollTo(0, 0) }, 100);

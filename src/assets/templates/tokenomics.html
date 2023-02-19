@@ -12,10 +12,19 @@
 
     <div class="row justify-content-center">
       <div class="col-sm-10 feature card card-lg-y card-s4">
-        <h4 class="text-center">100.000.000 $RDT</h4>
-        <div class="tokenomics">
-          <canvas id="tokenomicsChart"></canvas>
-        </div>
+        <div class="token-alocate-item">
+          <div class="token-alocate-graph">
+              <span>100 Mio<br>$RDT</span>
+              <canvas class="chart-canvas" id="token-alocate"></canvas>
+          </div>
+          <ul class="chart-data" data-canvas="token-alocate" data-canvas-type="doughnut">
+              <li data-color="#223fa8" data-title="Incentives & Rewards" data-amount="40"></li>
+              <li data-color="#8fa0df" data-title="Airdrops & Presale" data-amount="26"></li>
+              <li data-color="#4aa0f6" data-title="Team & Development" data-amount="18"></li>
+              <li data-color="#6ad9ac" data-title="Consulting & Advisors" data-amount="8"></li>
+              <li data-color="#4d6fe9" data-title="Marketing & Promotion" data-amount="8"></li>
+          </ul>
+      </div>
       </div>
     </div>
 

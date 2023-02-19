@@ -2,8 +2,6 @@
  * Charts - ICOCrypto v2.1.0 by Softnio.
 **/
 NioApp = (function (NioApp, $, window) {
-    "use strict";
-	var $chart = $('.chart-data'), $chart_s2 = $('.chart-data-s2'), $chart_s1 = $('.chart-data-s1');
     
 	NioApp.Chart = {};
 	
@@ -11,6 +9,9 @@ NioApp = (function (NioApp, $, window) {
     
 	// ChartsJS @v1.0
     NioApp.Chart.ChartJs = function () {
+
+        "use strict";
+	    var $chart = $('.chart-data'), $chart_s2 = $('.chart-data-s2'), $chart_s1 = $('.chart-data-s1');
         
         NioApp.Chart.ChartJs.Doughnut = function (_canvas, _titles, _colors, _amounts, _canvas_border, _canvas_cutout) {
             if ($('#'+_canvas).length) {
