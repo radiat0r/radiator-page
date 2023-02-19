@@ -137,8 +137,8 @@ export class RdtWallet {
   private renderShardeezSection(wallet: Wallet) {
     return (
       <tr>
-        <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1249' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_SHARDEEZ)}{this.getStakeNordicMsg(wallet)}</a></td>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.net/collection/Shardeez' target="_blank">Shardeez{this.getProjectUpToMsg(25)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/1249' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_SHARDEEZ)}{this.getStakeNordicMsg(wallet)}</a></ins></td>
         <td class="table-head">{this.calcShardeezBenefit(wallet)}</td>
       </tr>
     )
@@ -160,8 +160,8 @@ export class RdtWallet {
   private renderMutantCatSection(wallet: Wallet) {
     return (
       <tr>
-        <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Mutant%20Cat%20Society' target="_blank">Mutant Cat Society{this.getProjectUpToMsg(20)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1886' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_MUTANT_CAT)}{this.getStakeNordicMsg(wallet)}</a></td>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.net/collection/Mutant%20Cat%20Society' target="_blank">Mutant Cat Society{this.getProjectUpToMsg(20)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/1886' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_MUTANT_CAT)}{this.getStakeNordicMsg(wallet)}</a></ins></td>
         <td class="table-head">{this.calcMutantCatBenefit(wallet)}</td>
       </tr>
     )
@@ -183,8 +183,8 @@ export class RdtWallet {
   private renderMysticTigerSection(wallet: Wallet) {
     return (
       <tr>
-        <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Mystic%20Tigers%20Brotherhood' target="_blank">Mystic Tiger Brotherhood{this.getProjectUpToMsg(20)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/1654' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_MYSTIC_TIGER)}</a></td>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.net/collection/Mystic%20Tigers%20Brotherhood' target="_blank">Mystic Tiger Brotherhood{this.getProjectUpToMsg(20)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/1654' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_MYSTIC_TIGER)}</a></ins></td>
         <td class="table-head">{this.calcMysticTigerBenefit(wallet)}</td>
       </tr>
     )
@@ -202,8 +202,8 @@ export class RdtWallet {
   private renderRadixPandaSection(wallet: Wallet) {
     return (
       <tr>
-        <td class="table-head text-start"><a href='https://www.vikingland.net/collection/Radix%20Panda' target="_blank">Radix Panda{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/2760' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RADIX_PANDA)}</a></td>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.net/collection/Radix%20Panda' target="_blank">Radix Panda{this.getProjectUpToMsg(25)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/2760' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RADIX_PANDA)}</a></ins></td>
         <td class="table-head">{this.calcRadixPandaBenefit(wallet)}</td>
       </tr>
     )
@@ -221,8 +221,8 @@ export class RdtWallet {
   private renderRadFamSection(wallet: Wallet) {
     return (
       <tr>
-        <td class="table-head text-start"><a href='https://www.vikingland.io/collection/RadFam' target="_blank">RadFam{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3059' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RAD_FAM)}{this.getStakeNordicMsg(wallet)}</a></td>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.io/collection/RadFam' target="_blank">RadFam{this.getProjectUpToMsg(25)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/3059' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RAD_FAM)}{this.getStakeNordicMsg(wallet)}</a></ins></td>
         <td class="table-head">{this.calcRadFamBenefit(wallet)}</td>
       </tr>
     )
@@ -244,8 +244,8 @@ export class RdtWallet {
   private renderRoidettesSection(wallet: Wallet) {
     return (
       <tr>
-        <td class="table-head text-start"><a href='https://www.vikingland.io/collection/Roidettes' target="_blank">Roidettes{this.getProjectUpToMsg(20)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/3605' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_ROIDETTES)}</a></td>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.io/collection/Roidettes' target="_blank">Roidettes{this.getProjectUpToMsg(20)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/3605' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_ROIDETTES)}</a></ins></td>
         <td class="table-head">{this.calcRoidettesBenefit(wallet)}</td>
       </tr>
     )
@@ -263,8 +263,8 @@ export class RdtWallet {
   private renderHorribleHeadsSection(wallet: Wallet) {
     return (
       <tr>
-        <td class="table-head text-start"><a href='https://www.vikingland.io/collection/Horrible%20Heads' target="_blank">Horrible Heads{this.getProjectUpToMsg(25)}</a></td>
-        <td class="table-des text-start"><a href='https://t.me/radix_radiator/4571' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_HORRIBLE_HEADS)}</a></td>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.io/collection/Horrible%20Heads' target="_blank">Horrible Heads{this.getProjectUpToMsg(25)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/4571' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_HORRIBLE_HEADS)}</a></ins></td>
         <td class="table-head">{this.calcHorribleHeadsBenefit(wallet)}</td>
       </tr>
     )
