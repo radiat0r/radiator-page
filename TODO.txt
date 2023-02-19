@@ -1,14 +1,11 @@
-- tokenomics site ready
+
 - social media icons not in the middle
-- notiflix bei copy
+
 
 - copy manifest.json and use pics for apple
 - wallet limitierte nfts zählen
 - Tokenomics laden nicht mehr im hash-router triggern und kann an die charts.js import in der index.html loswerden?
-- Stake: notiflix-info when validator address was copied
 
-Sites:
-- tokenomics
 
 - Von den anderen
     - staking gif erneuern
