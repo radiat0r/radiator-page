@@ -1,7 +1,8 @@
 
 - social media icons not in the middle
 
-
+- Banner mit 2. A einbauen
+- SEO optmierung
 - copy manifest.json and use pics for apple
 - wallet limitierte nfts zählen
 - Tokenomics laden nicht mehr im hash-router triggern und kann an die charts.js import in der index.html loswerden?
@@ -16,3 +17,15 @@
  
   - regeln für die AirDrops transparent machen aktuell nur vage
   - geringe Gebühren für das Staking herausstellen
+
+
+- Grafana für 2. Validator
+- 
+
+  Martin:
+  - VPS server Contabo
+    - host name setzen?
+    - ssh key?
+  - ionos backup 
+  - Python server
+  - Radorables
