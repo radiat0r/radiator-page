@@ -2,6 +2,7 @@ DONE:
 - Google Analytics eingebettet
 - Claim to Connecting Values eingefügt und größer
 - News auf 5 beschränkt
+- Benefits: Hold auf Vorrausetzung mit Hold > 7 Tage
 
 - SEO optmierung
 - copy manifest.json and use pics for apple
