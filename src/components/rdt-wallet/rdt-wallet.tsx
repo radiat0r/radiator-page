@@ -122,7 +122,7 @@ export class RdtWallet {
   }
 
   private getHoldRdtMsg(wallet: Wallet, rdt: number) {
-    return (<Fragment>{this.renderOkNo(wallet.rdt >= rdt)} Hold {rdt}$RDT<br />{this.renderOkNo(wallet.rdt_7_days_ago >= rdt)} Hold {rdt}$RDT &gt; 7 days</Fragment>)
+    return (<Fragment>{this.renderOkNo((wallet.rdt_7_days_ago >= rdt) && (wallet.rdt >= rdt))} Hold {rdt}$RDT &gt; 7 days</Fragment>)
   }
 
   private getStakeNordicMsg(wallet: Wallet) {
