@@ -95,7 +95,6 @@ export class RdtWallet {
               {this.renderShardeezSection(wallet)}
               {this.renderMutantCatSection(wallet)}
               {this.renderMysticTigerSection(wallet)}
-              {this.renderRadixPandaSection(wallet)}
               {this.renderRadFamSection(wallet)}
               {this.renderRoidettesSection(wallet)}
               {this.renderHorribleHeadsSection(wallet)}
@@ -197,25 +196,6 @@ export class RdtWallet {
   private calcMysticTigerBenefit(wallet: Wallet): string {
     if (wallet.rdt >= RdtWallet.RDT_LIMIT_MYSTIC_TIGER && wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_MYSTIC_TIGER) {
       return this.getBenefitMsg(20)
-    } else {
-      return RdtWallet.NO_CASHBACK
-    }
-  }
-
-  private static readonly RDT_LIMIT_RADIX_PANDA = 300
-  private renderRadixPandaSection(wallet: Wallet) {
-    return (
-      <tr>
-        <td class="table-head text-start"><ins><a href='https://www.vikingland.net/collection/Radix%20Panda' target="_blank">Radix Panda{this.getProjectUpToMsg(25)}</a></ins></td>
-        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/2760' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RADIX_PANDA)}</a></ins></td>
-        <td class="table-head">{this.calcRadixPandaBenefit(wallet)}</td>
-      </tr>
-    )
-  }
-
-  private calcRadixPandaBenefit(wallet: Wallet): string {
-    if (wallet.rdt >= RdtWallet.RDT_LIMIT_RADIX_PANDA && wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_RADIX_PANDA) {
-      return this.getBenefitMsg(25)
     } else {
       return RdtWallet.NO_CASHBACK
     }

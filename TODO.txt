@@ -4,6 +4,7 @@ DONE:
 - News auf 5 beschränkt
 - Benefits: Hold auf Vorrausetzung mit Hold > 7 Tage
 - Benefits: Radix Ratz hinzugefügt
+- Benefits: Radix Pandas entfernt
 
 - SEO optmierung
 - copy manifest.json and use pics for apple
