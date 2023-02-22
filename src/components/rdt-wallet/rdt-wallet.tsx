@@ -52,6 +52,9 @@ export class RdtWallet {
           </div>
         </div>
 
+        <div class="row pb-5">
+        </div>
+
       </Host >
     )
   }
@@ -96,6 +99,7 @@ export class RdtWallet {
               {this.renderRadFamSection(wallet)}
               {this.renderRoidettesSection(wallet)}
               {this.renderHorribleHeadsSection(wallet)}
+              {this.renderRadixRatzSection(wallet)}
             </tbody>
           </table>
         </div>
@@ -273,6 +277,25 @@ export class RdtWallet {
   private calcHorribleHeadsBenefit(wallet: Wallet): string {
     if (wallet.rdt >= RdtWallet.RDT_LIMIT_HORRIBLE_HEADS && wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_HORRIBLE_HEADS) {
       return this.getBenefitMsg(25)
+    } else {
+      return RdtWallet.NO_CASHBACK
+    }
+  }
+
+  private static readonly RDT_LIMIT_RADIX_RATZ = 500
+  private renderRadixRatzSection(wallet: Wallet) {
+    return (
+      <tr>
+        <td class="table-head text-start"><ins><a href='https://www.vikingland.io/collection/Radix%20Ratz' target="_blank">Radix Ratz{this.getProjectUpToMsg(30)}</a></ins></td>
+        <td class="table-des text-start"><ins><a href='https://t.me/radix_radiator/4886' target="_blank">{this.getHoldRdtMsg(wallet, RdtWallet.RDT_LIMIT_RADIX_RATZ)}</a></ins></td>
+        <td class="table-head">{this.calcRadixRatzBenefit(wallet)}</td>
+      </tr>
+    )
+  }
+
+  private calcRadixRatzBenefit(wallet: Wallet): string {
+    if (wallet.rdt >= RdtWallet.RDT_LIMIT_RADIX_RATZ && wallet.rdt_7_days_ago >= RdtWallet.RDT_LIMIT_RADIX_RATZ) {
+      return this.getBenefitMsg(30)
     } else {
       return RdtWallet.NO_CASHBACK
     }
