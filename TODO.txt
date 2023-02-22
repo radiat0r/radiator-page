@@ -13,6 +13,7 @@ DONE:
 
 - Von den anderen
     - staking gif erneuern
+    - Partner Bild irgendwo auf der Website?
 
 
 - Finetuning:
