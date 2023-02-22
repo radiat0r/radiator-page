@@ -1,7 +1,6 @@
 
 - social media icons not in the middle
 
-- Banner mit 2. A einbauen
 - SEO optmierung
 - copy manifest.json and use pics for apple
 - wallet limitierte nfts zählen
