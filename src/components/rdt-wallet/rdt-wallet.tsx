@@ -281,8 +281,8 @@ export class RdtWallet {
     }
   }
 
-  private walletKeyChange(event: InputEvent) {
-    this.walletKey = event.data
+  private walletKeyChange(event) {
+    this.walletKey = event.target.value
   }
 
   private walletKeyDown(event: KeyboardEvent) {
