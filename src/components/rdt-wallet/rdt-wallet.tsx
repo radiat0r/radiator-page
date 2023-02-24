@@ -32,7 +32,7 @@ export class RdtWallet {
             <div class="col-sm-7">
               <div class="field-item">
                 <div class="field-wrap">
-                  <input type="text" class="input-bordered" placeholder="Wallet Address" value={this.walletKey} onInput={(event) => this.walletKeyChange(event)}></input>
+                  <input type="text" class="input-bordered" placeholder="Wallet Address" value={this.walletKey} onInput={(event) => this.walletKeyChange(event)} onKeyDown={(event) => this.walletKeyDown(event)}></input>
                 </div>
               </div>
             </div>
@@ -281,8 +281,15 @@ export class RdtWallet {
     }
   }
 
-  private walletKeyChange(event) {
-    this.walletKey = event.target.value
+  private walletKeyChange(event: InputEvent) {
+    this.walletKey = event.data
+  }
+
+  private walletKeyDown(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      event.preventDefault()
+      this.searchWallet()
+    }
   }
 
   private searchWallet() {
