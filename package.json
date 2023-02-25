@@ -1,7 +1,7 @@
 {
-  "name": "radiator",
-  "version": "0.1.0",
-  "description": "radiator",
+  "name": "radiator-page",
+  "version": "1.0.0",
+  "description": "radiator-page that serves radiator.run",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -26,7 +26,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^3.0.0",
+    "@stencil/core": "^3.0.1",
     "notiflix": "^3.2.6"
   },
   "devDependencies": {
