@@ -6,6 +6,11 @@ Theme	 :  Default
 */
 /*! WRITE YOUR CUSTOM STYLE **/
 
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/montserrat/Montserrat-SemiBold.otf");
+}
+
 td img {
     height: 1rem;
 }
