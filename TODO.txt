@@ -1,12 +1,7 @@
 DONE:
-- Google Analytics eingebettet
-- Claim to Connecting Values eingefügt und größer
-- News auf 5 beschränkt
-- Benefits: Hold auf Vorrausetzung mit Hold > 7 Tage
-- Benefits: Radix Ratz hinzugefügt
-- Benefits: Radix Pandas entfernt
+- Connecting Values beide Anfangsbuchstaben groß und der korrekte Font wird verwendet
 
-- SEO optmierung
+
 - copy manifest.json and use pics for apple
 - wallet limitierte nfts zählen
 - Tokenomics laden nicht mehr im hash-router triggern und kann an die charts.js import in der index.html loswerden?
