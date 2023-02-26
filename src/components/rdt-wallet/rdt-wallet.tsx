@@ -24,7 +24,8 @@ export class RdtWallet {
           <div class="row justify-content-center">
             <div class="col-sm-10">
               <div class="feature-text">
-                <h5 class="title title-md pb-2">Check if you can benefit from our CASHBACK campaigns</h5>
+                <h5 class="title title-md pb-2">Check if you can benefit from RADIATOR CASHBACK campaigns</h5>
+                <p class="pb-3">Our search bar is only meant for <strong>public wallet addresses.</strong><br />Never share your private wallet address or seed phrase with anyone!</p>
               </div>
             </div>
           </div>
@@ -32,7 +33,7 @@ export class RdtWallet {
             <div class="col-sm-7">
               <div class="field-item">
                 <div class="field-wrap">
-                  <input type="text" class="input-bordered" placeholder="Wallet Address" value={this.walletKey} onInput={(event) => this.walletKeyChange(event)} onKeyDown={(event) => this.walletKeyDown(event)}></input>
+                  <input type="text" class="input-bordered" placeholder="Public Wallet Address" value={this.walletKey} onInput={(event) => this.walletKeyChange(event)} onKeyDown={(event) => this.walletKeyDown(event)}></input>
                 </div>
               </div>
             </div>
