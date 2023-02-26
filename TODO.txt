@@ -1,5 +1,6 @@
 DONE:
 - Connecting Values beide Anfangsbuchstaben groß und der korrekte Font wird verwendet
+- SEO Begriffe
 
 
 - copy manifest.json and use pics for apple
