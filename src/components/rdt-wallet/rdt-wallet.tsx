@@ -2,7 +2,7 @@ import { Component, Fragment, getAssetPath, Host, h, Prop, State } from '@stenci
 import { Notify } from 'notiflix/build/notiflix-notify-aio'
 import { WalletService, Wallet } from '../../assets/wallet/wallet-service'
 import { Cashbacks, CashbackConfig } from './cashbacks';
-import { LimitedCashbacks/*, LimitedCashbacksService*/ } from '../../assets/limited-cashbacks/limited-cashbacks'
+import { LimitedCashbacks, LimitedCashbacksService } from '../../assets/limited-cashbacks/limited-cashbacks'
 
 @Component({
   tag: 'rdt-wallet',
@@ -17,24 +17,39 @@ export class RdtWallet {
   @State()
   limitedCashbacks: LimitedCashbacks
   @State()
+  limitedCashbacksError = false
+  @State()
   walletKey: string
   @State()
   wallet: Wallet
 
   componentWillLoad() {
-    /*LimitedCashbacksService.loadLimitedCashbacks().then(limitedCashbacks => {
+    this.limitedCashbacksError = false
+    LimitedCashbacksService.loadLimitedCashbacks().then(limitedCashbacks => {
+      this.limitedCashbacksError = false
       this.limitedCashbacks = limitedCashbacks
       console.log("LimitedCashbacks: " + JSON.stringify(this.limitedCashbacks))
     })
-    .catch(error => {
-      //Notify.warning("An error occured while fetching limited cashback data. Please try again later.")
-      console.log("loadLimitedCashbacks error: " + error)
-    })*/
+      .catch(error => {
+        this.limitedCashbacksError = true
+        this.limitedCashbacks = null
+        Notify.warning("An error occured while fetching limited cashback data. Please try again later.")
+        console.log("loadLimitedCashbacks error: " + error)
+      })
   }
 
   render() {
     return (
       <Host>
+        <div class="feature feature-center card card-lg-y card-s4">
+          <div class="row justify-content-center">
+            <div class="col-sm-10">
+              <div class="feature-text">
+                {this.renderlimitedCashbacks(this.limitedCashbacks, this.limitedCashbacksError)}
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="feature feature-center card card-lg-y card-s4">
           <div class="row justify-content-center">
             <div class="col-sm-10">
@@ -73,6 +88,40 @@ export class RdtWallet {
 
       </Host >
     )
+  }
+
+  private renderlimitedCashbacks(limitedCashbacks: LimitedCashbacks, limitedCashbacksError: Boolean) {
+    if (limitedCashbacksError) {
+      return (<p class="pb-3">An error occured, while checking limited cashbacks.<br /><a href="https://t.me/radix_radiator" target="_blank">Please get in touch with us and try again later.</a></p>)
+    }
+
+    if (limitedCashbacks != null) {
+      let roidettes = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_roidettes");
+      let horrible = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_horribleheads");
+      let ratz = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_radixratz");
+      return (<Fragment>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="feature-text pb-3">
+              <h6 class="title title-md">Roidettes</h6>
+              <p><strong>only {roidettes['max-cashback-count'] - roidettes['total-cashback-count']} left</strong></p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="feature-text pb-3">
+              <h6 class="title title-md">Horrible Heads</h6>
+              <p><strong>only {horrible['max-cashback-count'] - horrible['total-cashback-count']} left</strong></p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="feature-text pb-3">
+              <h6 class="title title-md">Radix Ratz</h6>
+              <p><strong>only {ratz['max-cashback-count'] - ratz['total-cashback-count']} left</strong></p>
+            </div>
+          </div>
+        </div>
+      </Fragment>)
+    }
   }
 
   private renderWalletInfo(wallet: Wallet) {
