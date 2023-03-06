@@ -2,7 +2,7 @@ import { Component, Fragment, getAssetPath, Host, h, Prop, State } from '@stenci
 import { Notify } from 'notiflix/build/notiflix-notify-aio'
 import { WalletService, Wallet } from '../../assets/wallet/wallet-service'
 import { Cashbacks, CashbackConfig } from './cashbacks';
-import { LimitedCashbacks, LimitedCashbacksService } from '../../assets/limited-cashbacks/limited-cashbacks'
+import { LimitedCashbacks/*, LimitedCashbacksService*/ } from '../../assets/limited-cashbacks/limited-cashbacks'
 
 @Component({
   tag: 'rdt-wallet',
@@ -22,14 +22,14 @@ export class RdtWallet {
   wallet: Wallet
 
   componentWillLoad() {
-    LimitedCashbacksService.loadLimitedCashbacks().then(limitedCashbacks => {
+    /*LimitedCashbacksService.loadLimitedCashbacks().then(limitedCashbacks => {
       this.limitedCashbacks = limitedCashbacks
       console.log("LimitedCashbacks: " + JSON.stringify(this.limitedCashbacks))
     })
     .catch(error => {
       //Notify.warning("An error occured while fetching limited cashback data. Please try again later.")
       console.log("loadLimitedCashbacks error: " + error)
-    })
+    })*/
   }
 
   render() {
