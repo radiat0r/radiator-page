@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "radiator-page that serves radiator.run",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "module": "./dist/components/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
