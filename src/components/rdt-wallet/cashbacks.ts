@@ -7,6 +7,7 @@ export type CashbackConfig = {
     limitNordicStake?: number,
     vikingland: string,
     telegram: string,
+    limitedProject?: string,
     calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet) => number,
 }
 
@@ -88,6 +89,7 @@ export const Cashbacks = [
         limitRdt: 300,
         vikingland: 'https://www.vikingland.io/collection/Roidettes',
         telegram: 'https://t.me/radix_radiator/3605',
+        limitedProject: 'vikingland_roidettes',
         calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
             if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
                 return config.maxCashback
@@ -102,6 +104,7 @@ export const Cashbacks = [
         limitRdt: 500,
         vikingland: 'https://www.vikingland.io/collection/Horrible%20Heads',
         telegram: 'https://t.me/radix_radiator/4571',
+        limitedProject: 'vikingland_horribleheads',
         calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
             if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
                 return config.maxCashback
@@ -116,6 +119,7 @@ export const Cashbacks = [
         limitRdt: 500,
         vikingland: 'https://www.vikingland.io/collection/Radix%20Ratz',
         telegram: 'https://t.me/radix_radiator/4886',
+        limitedProject: 'vikingland_radixratz',
         calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
             if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
                 return config.maxCashback

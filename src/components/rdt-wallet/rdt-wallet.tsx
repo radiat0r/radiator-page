@@ -2,7 +2,7 @@ import { Component, Fragment, getAssetPath, Host, h, Prop, State } from '@stenci
 import { Notify } from 'notiflix/build/notiflix-notify-aio'
 import { WalletService, Wallet } from '../../assets/wallet/wallet-service'
 import { Cashbacks, CashbackConfig } from './cashbacks';
-import { LimitedCashbacks, LimitedCashbacksService } from '../../assets/limited-cashbacks/limited-cashbacks'
+import { LimitedCashback, LimitedCashbacks, LimitedCashbacksService } from '../../assets/limited-cashbacks/limited-cashbacks'
 
 @Component({
   tag: 'rdt-wallet',
@@ -170,7 +170,7 @@ export class RdtWallet {
           Cashbacks.map((config) =>
             <tr>
               <td class="table-head text-start"><ins><a href={config.vikingland} target="_blank">{config.project}{this.getProjectUpToMsg(config.maxCashback)}</a></ins></td>
-              <td class="table-des text-start"><ins><a href={config.telegram} target="_blank">{this.getHoldRdtMsg(config, wallet)}{this.getStakeNordicMsg(config, wallet)}</a></ins></td>
+              <td class="table-des text-start"><ins><a href={config.telegram} target="_blank">{this.getHoldRdtMsg(config, wallet)}{this.getStakeNordicMsg(config, wallet)}{this.getLimitedCashbackMsg(config)}</a></ins></td>
               <td class="table-head">{this.renderBenefit(config.calcCashbackBenefit(config, wallet))}</td>
             </tr>
           )
@@ -194,6 +194,22 @@ export class RdtWallet {
       return (<Fragment><br />{this.renderOkNo(wallet.staked_at_nordic >= config.limitNordicStake)} Stake @ StakeNordic {config.limitNordicStake}XRD</Fragment>)
     }
   }
+
+  private getLimitedCashbackData(config: CashbackConfig): LimitedCashback {
+    if(config.limitedProject == null) {
+      return null
+    }
+    return this.limitedCashbacks.cashbacks.find(it => it.project == config.limitedProject)
+  }
+
+  private getLimitedCashbackMsg(config: CashbackConfig) {
+      let limitedCashback = this.getLimitedCashbackData(config)
+      if (limitedCashback == null) {
+        return (<Fragment></Fragment>)
+      } else {
+        return (<Fragment><br />{this.renderOkNo(limitedCashback['total-cashback-count'] < limitedCashback['max-cashback-count'])} {limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']} Cashbacks available</Fragment>)
+      }
+    }
 
   private renderOkNo(ok: boolean) {
     const okIconSrc = getAssetPath(`./assets/${this.okIcon}`);
