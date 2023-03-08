@@ -104,24 +104,31 @@ export class RdtWallet {
           <div class="col-sm-4">
             <div class="feature-text pb-3">
               <h6 class="title title-md">Roidettes</h6>
-              <p><strong>only {roidettes['max-cashback-count'] - roidettes['total-cashback-count']} left</strong></p>
+              {this.getLimitedCashbackMsg(roidettes)}
             </div>
           </div>
           <div class="col-sm-4">
             <div class="feature-text pb-3">
               <h6 class="title title-md">Horrible Heads</h6>
-              <p><strong>only {horrible['max-cashback-count'] - horrible['total-cashback-count']} left</strong></p>
+              {this.getLimitedCashbackMsg(horrible)}
             </div>
           </div>
           <div class="col-sm-4">
             <div class="feature-text pb-3">
               <h6 class="title title-md">Radix Ratz</h6>
-              <p><strong>only {ratz['max-cashback-count'] - ratz['total-cashback-count']} left</strong></p>
+              {this.getLimitedCashbackMsg(ratz)}
             </div>
           </div>
         </div>
       </Fragment>)
     }
+  }
+
+  private getLimitedCashbackMsg(limitedCashback: LimitedCashback) {
+    if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count']) {
+      return (<p><strong>All cashbacks have been used up</strong></p>)
+    }
+    return (<p><strong>only {limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']} left</strong></p>)
   }
 
   private renderWalletInfo(wallet: Wallet) {
