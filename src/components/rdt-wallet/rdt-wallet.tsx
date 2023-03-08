@@ -96,9 +96,9 @@ export class RdtWallet {
     }
 
     if (limitedCashbacks != null) {
-      let roidettes = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_roidettes");
-      let horrible = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_horribleheads");
-      let ratz = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_radixratz");
+      const roidettes = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_roidettes");
+      const horrible = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_horribleheads");
+      const ratz = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_radixratz");
       return (<Fragment>
         <div class="row">
           <div class="col-sm-4">
@@ -169,9 +169,9 @@ export class RdtWallet {
         {
           Cashbacks.map((config) =>
             <tr>
-              <td class="table-head text-start"><ins><a href={config.vikingland} target="_blank">{config.project}{this.getProjectUpToMsg(config.maxCashback)}</a></ins></td>
-              <td class="table-des text-start"><ins><a href={config.telegram} target="_blank">{this.getHoldRdtMsg(config, wallet)}{this.getStakeNordicMsg(config, wallet)}{this.getLimitedCashbackMsg(config)}</a></ins></td>
-              <td class="table-head">{this.renderBenefit(config.calcCashbackBenefit(config, wallet))}</td>
+              <td class="table-head text-start"><ins><a href={config.vikingland} target="_blank">{config.project}{this.getTableProjectUpToMsg(config.maxCashback)}</a></ins></td>
+              <td class="table-des text-start"><ins><a href={config.telegram} target="_blank">{this.getTableHoldRdtMsg(config, wallet)}{this.getTableStakeNordicMsg(config, wallet)}{this.getTableLimitedCashbackMsg(config)}</a></ins></td>
+              <td class="table-head">{this.getTableBenefitMsg(config, wallet)}</td>
             </tr>
           )
         }
@@ -179,15 +179,15 @@ export class RdtWallet {
     )
   }
 
-  private getProjectUpToMsg(value: number) {
+  private getTableProjectUpToMsg(value: number) {
     return (<Fragment><br />Up to {value}% cashback</Fragment>)
   }
 
-  private getHoldRdtMsg(config: CashbackConfig, wallet: Wallet) {
+  private getTableHoldRdtMsg(config: CashbackConfig, wallet: Wallet) {
     return (<Fragment>{this.renderOkNo((wallet.rdt_7_days_ago >= config.limitRdt) && (wallet.rdt >= config.limitRdt))} Hold {config.limitRdt}$RDT &gt; 7 days</Fragment>)
   }
 
-  private getStakeNordicMsg(config: CashbackConfig, wallet: Wallet) {
+  private getTableStakeNordicMsg(config: CashbackConfig, wallet: Wallet) {
     if (config.limitNordicStake == null || config.limitNordicStake == 0) {
       return (<Fragment></Fragment>)
     } else {
@@ -195,21 +195,35 @@ export class RdtWallet {
     }
   }
 
+  private getTableLimitedCashbackMsg(config: CashbackConfig) {
+    const limitedCashback = this.getLimitedCashbackData(config)
+    if (limitedCashback == null) {
+      return (<Fragment></Fragment>)
+    } else {
+      return (<Fragment><br />{this.renderOkNo(limitedCashback['total-cashback-count'] < limitedCashback['max-cashback-count'])} {limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']} Cashbacks available</Fragment>)
+    }
+  }
+
+  private getTableBenefitMsg(config: CashbackConfig, wallet: Wallet): string {
+    const limitedCashback = this.getLimitedCashbackData(config)
+    if (limitedCashback != null && (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count'])) {
+      return (<Fragment>Sorry all cashbacks have been used up</Fragment>)
+    }
+
+    const benefit = config.calcCashbackBenefit(config, wallet)
+    if (benefit == null) {
+      return (<Fragment>Sorry no cashback possible</Fragment>)
+    } else {
+      return (<Fragment>Your benefit:<br /> {benefit}% cashback</Fragment>)
+    }
+  }
+
   private getLimitedCashbackData(config: CashbackConfig): LimitedCashback {
-    if(config.limitedProject == null) {
+    if (config.limitedProject == null) {
       return null
     }
     return this.limitedCashbacks.cashbacks.find(it => it.project == config.limitedProject)
   }
-
-  private getLimitedCashbackMsg(config: CashbackConfig) {
-      let limitedCashback = this.getLimitedCashbackData(config)
-      if (limitedCashback == null) {
-        return (<Fragment></Fragment>)
-      } else {
-        return (<Fragment><br />{this.renderOkNo(limitedCashback['total-cashback-count'] < limitedCashback['max-cashback-count'])} {limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']} Cashbacks available</Fragment>)
-      }
-    }
 
   private renderOkNo(ok: boolean) {
     const okIconSrc = getAssetPath(`./assets/${this.okIcon}`);
@@ -222,13 +236,7 @@ export class RdtWallet {
     }
   }
 
-  private renderBenefit(benefit?: number): string {
-    if (benefit == null) {
-      return (<Fragment>Sorry no cashback possible</Fragment>)
-    } else {
-      return (<Fragment>Your benefit:<br /> {benefit}% cashback</Fragment>)
-    }
-  }
+  
 
   private walletKeyChange(event) {
     this.walletKey = event.target.value
