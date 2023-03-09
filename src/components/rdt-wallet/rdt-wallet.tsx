@@ -41,14 +41,9 @@ export class RdtWallet {
   render() {
     return (
       <Host>
-        <div class="feature feature-center card card-lg-y card-s4">
-          <div class="row justify-content-center">
-            <div class="col-sm-10">
-              <div class="feature-text">
-                {this.renderlimitedCashbacks(this.limitedCashbacks, this.limitedCashbacksError)}
-              </div>
-            </div>
-          </div>
+
+        <div class="feature-text">
+          {this.renderLimitedCashbacks(this.limitedCashbacks, this.limitedCashbacksError)}
         </div>
         <div class="feature feature-center card card-lg-y card-s4">
           <div class="row justify-content-center">
@@ -90,7 +85,7 @@ export class RdtWallet {
     )
   }
 
-  private renderlimitedCashbacks(limitedCashbacks: LimitedCashbacks, limitedCashbacksError: Boolean) {
+  private renderLimitedCashbacks(limitedCashbacks: LimitedCashbacks, limitedCashbacksError: Boolean) {
     if (limitedCashbacksError) {
       return (<p class="pb-3">An error occured, while checking limited cashbacks.<br /><a href="https://t.me/radix_radiator" target="_blank">Please get in touch with us and try again later.</a></p>)
     }
@@ -99,36 +94,34 @@ export class RdtWallet {
       const roidettes = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_roidettes");
       const horrible = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_horribleheads");
       const ratz = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_radixratz");
-      return (<Fragment>
+      return (
         <div class="row">
-          <div class="col-sm-4">
-            <div class="feature-text pb-3">
-              <h6 class="title title-md">Roidettes</h6>
-              {this.getLimitedCashbackMsg(roidettes)}
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="feature-text pb-3">
-              <h6 class="title title-md">Horrible Heads</h6>
-              {this.getLimitedCashbackMsg(horrible)}
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="feature-text pb-3">
-              <h6 class="title title-md">Radix Ratz</h6>
-              {this.getLimitedCashbackMsg(ratz)}
-            </div>
+          {this.renderLimitedCashback('Roidettes', roidettes)}
+          {this.renderLimitedCashback('Horrible Heads', horrible)}
+          {this.renderLimitedCashback('Radix Ratz', ratz)}
+        </div>
+      )
+    }
+  }
+
+  private renderLimitedCashback(name: string, limitedCashback: LimitedCashback) {
+    return (
+      <div class="col-sm-4">
+        <div class="feature feature-center card card-s4">
+          <div class="feature-text pb-3">
+            <h6 class="title title-md">{name}</h6>
+            {this.getLimitedCashbackMsg(limitedCashback)}
           </div>
         </div>
-      </Fragment>)
-    }
+      </div>
+    )
   }
 
   private getLimitedCashbackMsg(limitedCashback: LimitedCashback) {
     if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count']) {
-      return (<p><strong>All cashbacks have been used up</strong></p>)
+      return (<div>{this.renderOkNo(false)}<p class='pt-2'><strong>All cashbacks have been used up</strong></p></div>)
     }
-    return (<p><strong>only {limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']} left</strong></p>)
+    return (<div>{this.renderOkNo(true)}<p class='pt-2'>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p></div>)
   }
 
   private renderWalletInfo(wallet: Wallet) {
@@ -243,7 +236,7 @@ export class RdtWallet {
     }
   }
 
-  
+
 
   private walletKeyChange(event) {
     this.walletKey = event.target.value
