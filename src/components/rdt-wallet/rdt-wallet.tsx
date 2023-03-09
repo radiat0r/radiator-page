@@ -14,6 +14,9 @@ export class RdtWallet {
   @Prop() okIcon = "check.png";
   @Prop() errorIcon = "cancel.png";
 
+  @Prop() radiateIcon = "radiate.png";
+  @Prop() sadIcon = "sad.png";
+
   @State()
   limitedCashbacks: LimitedCashbacks
   @State()
@@ -125,10 +128,13 @@ export class RdtWallet {
   }
 
   private getLimitedCashbackMsg(limitedCashback: LimitedCashback) {
+    const radiateIconSrc = getAssetPath(`./assets/${this.radiateIcon}`);
+    const sadIconSrc = getAssetPath(`./assets/${this.sadIcon}`);
+
     if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count']) {
-      return (<div>{this.renderOkNo(false)}<p class='pt-2'><strong>No more cashbacks available</strong></p></div>)
+      return (<div><img src={sadIconSrc} alt="sad"></img><p class='pt-2'><strong>No more cashbacks available</strong></p></div>)
     }
-    return (<div>{this.renderOkNo(true)}<p class='pt-2'>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p></div>)
+    return (<div><img src={radiateIconSrc} alt="radiate"></img><p class='pt-2'>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p></div>)
   }
 
   private renderWalletInfo(wallet: Wallet) {
@@ -268,9 +274,6 @@ export class RdtWallet {
 
     WalletService.loadWallet(this.walletKey)
       .then(wallet => {
-        wallet.rdt = wallet.rdt * 10
-        wallet.rdt_7_days_ago = wallet.rdt_7_days_ago * 10
-        wallet.staked_at_nordic = wallet.staked_at_nordic * 10
         this.wallet = wallet
         console.log("Wallet: " + JSON.stringify(this.wallet))
       })
