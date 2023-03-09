@@ -132,9 +132,9 @@ export class RdtWallet {
     const sadIconSrc = getAssetPath(`./assets/${this.sadIcon}`);
 
     if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count']) {
-      return (<div><img src={sadIconSrc} alt="sad"></img><p class='pt-2'><strong>No more cashbacks available</strong></p></div>)
+      return (<div><p><strong>No more cashbacks available</strong></p><img src={sadIconSrc} alt="sad"></img></div>)
     }
-    return (<div><img src={radiateIconSrc} alt="radiate"></img><p class='pt-2'>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p></div>)
+    return (<div><p>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p><img src={radiateIconSrc} alt="radiate"></img></div>)
   }
 
   private renderWalletInfo(wallet: Wallet) {
