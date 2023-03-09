@@ -42,9 +42,6 @@ export class RdtWallet {
     return (
       <Host>
 
-        <div class="feature-text">
-          {this.renderLimitedCashbacks(this.limitedCashbacks, this.limitedCashbacksError)}
-        </div>
         <div class="feature feature-center card card-lg-y card-s4">
           <div class="row justify-content-center">
             <div class="col-sm-10">
@@ -78,6 +75,10 @@ export class RdtWallet {
           </div>
         </div>
 
+        <div class="feature-text">
+          {this.renderLimitedCashbacks(this.limitedCashbacks, this.limitedCashbacksError)}
+        </div>
+
         <div class="row pb-5">
         </div>
 
@@ -87,7 +88,13 @@ export class RdtWallet {
 
   private renderLimitedCashbacks(limitedCashbacks: LimitedCashbacks, limitedCashbacksError: Boolean) {
     if (limitedCashbacksError) {
-      return (<p class="pb-3">An error occured, while checking limited cashbacks.<br /><a href="https://t.me/radix_radiator" target="_blank">Please get in touch with us and try again later.</a></p>)
+      return (
+        <div class="col-sm-12">
+          <div class="feature feature-center card card-s4">
+            <p class="pb-3">An error occured, while checking limited cashbacks.<br /><a href="https://t.me/radix_radiator" target="_blank">Please get in touch with us and try again later.</a></p>
+          </div>
+        </div>
+      )
     }
 
     if (limitedCashbacks != null) {
@@ -119,7 +126,7 @@ export class RdtWallet {
 
   private getLimitedCashbackMsg(limitedCashback: LimitedCashback) {
     if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count']) {
-      return (<div>{this.renderOkNo(false)}<p class='pt-2'><strong>All cashbacks have been used up</strong></p></div>)
+      return (<div>{this.renderOkNo(false)}<p class='pt-2'><strong>No more cashbacks available</strong></p></div>)
     }
     return (<div>{this.renderOkNo(true)}<p class='pt-2'>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p></div>)
   }
@@ -207,7 +214,7 @@ export class RdtWallet {
   private getTableBenefitMsg(config: CashbackConfig, wallet: Wallet): string {
     const limitedCashback = this.getLimitedCashbackData(config)
     if (limitedCashback != null && (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count'])) {
-      return (<Fragment>Sorry all cashbacks have been used up</Fragment>)
+      return (<Fragment>Sorry, no more cashbacks available</Fragment>)
     }
 
     const benefit = config.calcCashbackBenefit(config, wallet)
@@ -261,6 +268,9 @@ export class RdtWallet {
 
     WalletService.loadWallet(this.walletKey)
       .then(wallet => {
+        wallet.rdt = wallet.rdt * 10
+        wallet.rdt_7_days_ago = wallet.rdt_7_days_ago * 10
+        wallet.staked_at_nordic = wallet.staked_at_nordic * 10
         this.wallet = wallet
         console.log("Wallet: " + JSON.stringify(this.wallet))
       })
