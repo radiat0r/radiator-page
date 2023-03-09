@@ -9,6 +9,8 @@ export namespace Components {
     interface RdtWallet {
         "errorIcon": string;
         "okIcon": string;
+        "radiateIcon": string;
+        "sadIcon": string;
     }
 }
 declare global {
@@ -26,6 +28,8 @@ declare namespace LocalJSX {
     interface RdtWallet {
         "errorIcon"?: string;
         "okIcon"?: string;
+        "radiateIcon"?: string;
+        "sadIcon"?: string;
     }
     interface IntrinsicElements {
         "rdt-wallet": RdtWallet;
