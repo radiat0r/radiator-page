@@ -8,9 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface RdtWallet {
         "errorIcon": string;
+        "happyIcon": string;
         "okIcon": string;
-        "radiateIcon": string;
         "sadIcon": string;
+        "scaredIcon": string;
     }
 }
 declare global {
@@ -27,9 +28,10 @@ declare global {
 declare namespace LocalJSX {
     interface RdtWallet {
         "errorIcon"?: string;
+        "happyIcon"?: string;
         "okIcon"?: string;
-        "radiateIcon"?: string;
         "sadIcon"?: string;
+        "scaredIcon"?: string;
     }
     interface IntrinsicElements {
         "rdt-wallet": RdtWallet;
