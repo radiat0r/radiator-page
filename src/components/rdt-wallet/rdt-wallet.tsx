@@ -135,36 +135,25 @@ export class RdtWallet {
 
     if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count']) {
       return (
-        <div class="row">
-          <div class="col-sm-6">
-            <p ><strong>No more cashbacks available</strong></p>
-          </div>
-          <div class="col-sm-6">
-            <img src={sadIconSrc} alt="sad" width="100"></img>
-          </div>
+        <div>
+          <p ><strong>No more cashbacks available</strong></p>
+          <img src={sadIconSrc} alt="sad" width="100"></img>
         </div>)
-    } 
+    }
     //under 50% left
     else if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count'] * 0.5) {
       return (
-        <div class="row">
-          <div class="col-sm-6">
-            <p>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p>
-          </div>
-          <div class="col-sm-6"><img src={scaredIconSrc} alt="radiate" width="100"></img>
-          </div>
+        <div>
+          <p>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p>
+          <img src={scaredIconSrc} alt="radiate" width="100"></img>
         </div >)
     } else {
       return (
-        <div class="row">
-          <div class="col-sm-6">
-            <p><strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> available</p>
-          </div>
-          <div class="col-sm-6"><img src={happyIconSrc} alt="radiate" width="100"></img>
-          </div>
+        <div>
+          <p><strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> available</p>
+          <img src={happyIconSrc} alt="radiate" width="100"></img>
         </div >)
     }
-
   }
 
   private renderWalletInfo(wallet: Wallet) {
