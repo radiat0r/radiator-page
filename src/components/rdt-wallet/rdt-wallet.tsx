@@ -14,8 +14,9 @@ export class RdtWallet {
   @Prop() okIcon = "check.png";
   @Prop() errorIcon = "cancel.png";
 
-  @Prop() radiateIcon = "radiate.png";
-  @Prop() sadIcon = "sad.png";
+  @Prop() happyIcon = "happy.svg";
+  @Prop() sadIcon = "sad.svg";
+  @Prop() scaredIcon = "scared.svg";
 
   @State()
   limitedCashbacks: LimitedCashbacks
@@ -118,7 +119,7 @@ export class RdtWallet {
     return (
       <div class="col-sm-4">
         <div class="feature feature-center card card-s4">
-          <div class="feature-text pb-3">
+          <div class="feature-text">
             <h6 class="title title-md">{name}</h6>
             {this.getLimitedCashbackMsg(limitedCashback)}
           </div>
@@ -128,13 +129,42 @@ export class RdtWallet {
   }
 
   private getLimitedCashbackMsg(limitedCashback: LimitedCashback) {
-    const radiateIconSrc = getAssetPath(`./assets/${this.radiateIcon}`);
+    const happyIconSrc = getAssetPath(`./assets/${this.happyIcon}`);
     const sadIconSrc = getAssetPath(`./assets/${this.sadIcon}`);
+    const scaredIconSrc = getAssetPath(`./assets/${this.scaredIcon}`);
 
     if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count']) {
-      return (<div><p><strong>No more cashbacks available</strong></p><img src={sadIconSrc} alt="sad"></img></div>)
+      return (
+        <div class="row">
+          <div class="col-sm-6">
+            <p ><strong>No more cashbacks available</strong></p>
+          </div>
+          <div class="col-sm-6">
+            <img src={sadIconSrc} alt="sad" width="100"></img>
+          </div>
+        </div>)
+    } 
+    //under 50% left
+    else if (limitedCashback['total-cashback-count'] >= limitedCashback['max-cashback-count'] * 0.5) {
+      return (
+        <div class="row">
+          <div class="col-sm-6">
+            <p>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p>
+          </div>
+          <div class="col-sm-6"><img src={scaredIconSrc} alt="radiate" width="100"></img>
+          </div>
+        </div >)
+    } else {
+      return (
+        <div class="row">
+          <div class="col-sm-6">
+            <p><strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> available</p>
+          </div>
+          <div class="col-sm-6"><img src={happyIconSrc} alt="radiate" width="100"></img>
+          </div>
+        </div >)
     }
-    return (<div><p>only <strong>{limitedCashback['max-cashback-count'] - limitedCashback['total-cashback-count']}</strong> left</p><img src={radiateIconSrc} alt="radiate"></img></div>)
+
   }
 
   private renderWalletInfo(wallet: Wallet) {
