@@ -14,6 +14,7 @@ export class RdtWallet {
   @Prop() okIcon = "check.png";
   @Prop() errorIcon = "cancel.png";
 
+  @Prop() limitedCashbacksIcon = "limited_cashbacks.svg";
   @Prop() happyIcon = "happy.svg";
   @Prop() sadIcon = "sad.svg";
   @Prop() scaredIcon = "scared.svg";
@@ -102,14 +103,22 @@ export class RdtWallet {
     }
 
     if (limitedCashbacks != null) {
+      const limitedCashbacksIconSrc = getAssetPath(`./assets/${this.limitedCashbacksIcon}`);
       const roidettes = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_roidettes");
       const horrible = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_horribleheads");
       const ratz = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_radixratz");
       return (
-        <div class="row">
-          {this.renderLimitedCashback('Roidettes', roidettes)}
-          {this.renderLimitedCashback('Horrible Heads', horrible)}
-          {this.renderLimitedCashback('Radix Ratz', ratz)}
+        <div>
+          <div class="col-sm-12 pt-3 feature feature-center">
+            <div class="feature feature-center card card-s4 pt-1 pb-1">
+              <img src={limitedCashbacksIconSrc} alt="limited_cashbacks" width="300"></img>
+            </div>
+          </div>
+          <div class="row">
+            {this.renderLimitedCashback('Roidettes', roidettes)}
+            {this.renderLimitedCashback('Horrible Heads', horrible)}
+            {this.renderLimitedCashback('Radix Ratz', ratz)}
+          </div>
         </div>
       )
     }
