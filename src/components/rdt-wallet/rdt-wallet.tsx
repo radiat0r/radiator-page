@@ -115,16 +115,18 @@ export class RdtWallet {
             </div>
           </div>
           <div class="row">
-            {this.renderLimitedCashback('Roidettes', roidettes)}
-            {this.renderLimitedCashback('Horrible Heads', horrible)}
-            {this.renderLimitedCashback('Radix Ratz', ratz)}
+            {this.renderLimitedCashback(roidettes)}
+            {this.renderLimitedCashback(horrible)}
+            {this.renderLimitedCashback(ratz)}
           </div>
         </div>
       )
     }
   }
 
-  private renderLimitedCashback(name: string, limitedCashback: LimitedCashback) {
+  private renderLimitedCashback(limitedCashback: LimitedCashback) {
+    let name = Cashbacks.find(it => it.limitedProject == limitedCashback.project)?.project ?? limitedCashback.project
+
     return (
       <div class="col-sm-4">
         <div class="feature feature-center card card-s4">
