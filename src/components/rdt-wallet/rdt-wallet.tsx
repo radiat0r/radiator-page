@@ -102,11 +102,17 @@ export class RdtWallet {
       )
     }
 
-    if (limitedCashbacks != null) {
+    if (limitedCashbacks != null && limitedCashbacks.cashbacks.length > 0) {
+      let cashbacks = limitedCashbacks.cashbacks
+      let chunks: LimitedCashback[][] = []
+      let chunkSize = 0
+      for (let i = 0; i < cashbacks.length; i += chunkSize) {
+        chunkSize = this.determineChunkSize(cashbacks.length - i)
+        const chunk = cashbacks.slice(i, i + chunkSize);
+        chunks.push(chunk)
+      }
+
       const limitedCashbacksIconSrc = getAssetPath(`./assets/${this.limitedCashbacksIcon}`);
-      const roidettes = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_roidettes");
-      const horrible = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_horribleheads");
-      const ratz = limitedCashbacks.cashbacks.find(element => element.project == "vikingland_radixratz");
       return (
         <div>
           <div class="col-sm-12 pt-3 feature feature-center">
@@ -114,21 +120,44 @@ export class RdtWallet {
               <img src={limitedCashbacksIconSrc} alt="limited_cashbacks" width="300"></img>
             </div>
           </div>
-          <div class="row">
-            {this.renderLimitedCashback(roidettes)}
-            {this.renderLimitedCashback(horrible)}
-            {this.renderLimitedCashback(ratz)}
-          </div>
+          {chunks.map(it => this.renderLimitedCashbacksChunk(it))}
         </div>
       )
     }
   }
 
-  private renderLimitedCashback(limitedCashback: LimitedCashback) {
+  private determineChunkSize(lengthLeft: number): number {
+    if(lengthLeft <= 3) {
+      return lengthLeft
+    } else if(lengthLeft == 4) {
+      return 2
+    } else {
+      return 3
+    }
+  }
+
+  private renderLimitedCashbacksChunk(limitedCashbacks: LimitedCashback[]) {
+    let colSize = "col-sm-4"
+    if (limitedCashbacks.length == 1) {
+      colSize = "col-sm-12"
+    } else if (limitedCashbacks.length == 2) {
+      colSize = "col-sm-6"
+    }
+
+    return (
+      <div class="row">
+        {
+          limitedCashbacks.map(it => this.renderLimitedCashback(it, colSize))
+        }
+      </div>
+    )
+  }
+
+  private renderLimitedCashback(limitedCashback: LimitedCashback, colSize: string) {
     let name = Cashbacks.find(it => it.limitedProject == limitedCashback.project)?.project ?? limitedCashback.project
 
     return (
-      <div class="col-sm-4">
+      <div class={colSize}>
         <div class="feature feature-center card card-s4">
           <div class="feature-text">
             <h6 class="title title-md">{name}</h6>
