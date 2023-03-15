@@ -20,6 +20,24 @@ td img {
     box-shadow: 0px 5px 46px rgba(235, 235, 235, 1);
 }
 
+.card{
+    background-color: #15225f;
+}
+
+p {
+    color: #f5f5f5;
+}
+
+h5, h6 {
+    color: #e1e1e1;
+}
+
+.input-bordered {
+    background-color: #0d42b2;
+    border: none;
+    color:  #dddddd;
+}
+
 .project-img {
     height: 6em;
 }
