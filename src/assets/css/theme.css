@@ -25,17 +25,25 @@ td img {
 }
 
 p {
-    color: #f5f5f5;
+    color: #f5f5f5
 }
 
-h5, h6 {
-    color: #e1e1e1;
+.feature-text > .lead{
+    color: #dddddd;
+}
+
+h4, h5, h6 {
+    color: #dddddd;
 }
 
 .input-bordered {
     background-color: #0d42b2;
     border: none;
     color:  #dddddd;
+}
+
+input::placeholder {
+  color: #999999;
 }
 
 .project-img {
@@ -60,4 +68,8 @@ h5, h6 {
 
 .line-height-55px {
     line-height: 55px;
+}
+
+.table-des {
+  color: #16a4fd;
 }
