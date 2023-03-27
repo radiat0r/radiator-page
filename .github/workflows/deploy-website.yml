@@ -51,4 +51,4 @@ jobs:
         run: |
           DATE=$(date +"%Y%m%d-%H%M%S")
           git tag $DATE -m "$DATE"
-          git push origin $DATE
+          git push --tags "https://${{ github.actor }}:${{ GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
