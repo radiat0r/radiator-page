@@ -13,6 +13,20 @@ export type CashbackConfig = {
 
 export const Cashbacks = [
     {
+        project: 'CerbyNFT',
+        maxCashback: 20,
+        limitRdt: 500,
+        vikingland: 'https://www.vikingland.io/collection/CerbyNFT',
+        telegram: 'https://t.me/radix_radiator/5611',
+        calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
+            if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
+                return config.maxCashback
+            } else {
+                return null
+            }
+        },
+    },
+    {
         project: 'CerberRADS',
         maxCashback: 20,
         limitRdt: 666,
