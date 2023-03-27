@@ -4,7 +4,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
   repository-projects: write
@@ -42,5 +42,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+      
+      # Create Release Tag
+      - name: Configure Git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Create tag
+        run: |
+          DATE=$(date +"%Y%m%d-%H%M%S")
+          git tag $DATE -m "$DATE"
+          git push --tags "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
         
      
