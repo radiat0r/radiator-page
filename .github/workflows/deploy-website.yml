@@ -31,7 +31,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       
-      # Deploy
+      # Deploy Page
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
@@ -41,3 +41,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        
+      # Create Release Tag
+      - name: Create tag
+        run: |
+          DATE=$(date +"%Y%m%d-%H%M%S")
+          git tag $DATE -m "$DATE"
+          git push origin $DATE
