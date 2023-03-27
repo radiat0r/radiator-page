@@ -43,6 +43,10 @@ jobs:
         uses: actions/deploy-pages@v1
         
       # Create Release Tag
+      - name: Configure Git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
       - name: Create tag
         run: |
           DATE=$(date +"%Y%m%d-%H%M%S")
