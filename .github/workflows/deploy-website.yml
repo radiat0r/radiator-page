@@ -48,9 +48,7 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
       - name: Create tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DATE=$(date +"%Y%m%d-%H%M%S")
           git tag $DATE -m "$DATE"
-          git push --tags "https://${{ github.actor }}:${{ GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          git push --tags "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
