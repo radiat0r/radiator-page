@@ -2,7 +2,8 @@ name: Create Tag
 on:
   [workflow_dispatch]
 
-permissions: read-all|write-all
+permissions: 
+  contents: read|write
 
 jobs:
   create-tag:
