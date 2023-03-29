@@ -106,20 +106,6 @@ export const Cashbacks = [
         },
     },
     {
-        project: 'Mystic Tiger Brotherhood',
-        maxCashback: 20,
-        limitRdt: 150,
-        vikingland: 'https://www.vikingland.net/collection/Mystic%20Tigers%20Brotherhood',
-        telegram: 'https://t.me/radix_radiator/1654',
-        calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
-            if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
-                return config.maxCashback
-            } else {
-                return null
-            }
-        },
-    },
-    {
         project: 'Mutant Cat Society',
         maxCashback: 20,
         limitRdt: 150,
