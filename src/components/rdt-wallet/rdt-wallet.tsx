@@ -1,8 +1,8 @@
 import { Component, Fragment, getAssetPath, Host, h, Prop, State } from '@stencil/core'
 import { Notify } from 'notiflix/build/notiflix-notify-aio'
-import { WalletService, Wallet } from '../../assets/wallet/wallet-service'
+import { WalletService, Wallet } from '../../assets/js/wallet/wallet-service'
 import { Cashbacks, CashbackConfig } from './cashbacks';
-import { LimitedCashback, LimitedCashbacks, LimitedCashbacksService } from '../../assets/limited-cashbacks/limited-cashbacks'
+import { LimitedCashback, LimitedCashbacks, LimitedCashbacksService } from '../../assets/js/limited-cashbacks/limited-cashbacks'
 
 @Component({
   tag: 'rdt-wallet',

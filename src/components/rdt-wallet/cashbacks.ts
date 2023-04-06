@@ -1,4 +1,4 @@
-import { Wallet } from '../../assets/wallet/wallet-service'
+import { Wallet } from '../../assets/js/wallet/wallet-service'
 
 export type CashbackConfig = {
     project: string,
