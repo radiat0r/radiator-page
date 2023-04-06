@@ -4,29 +4,10 @@ DONE:
 
 
 - copy manifest.json and use pics for apple
-- wallet limitierte nfts zählen
-- Tokenomics laden nicht mehr im hash-router triggern und kann an die charts.js import in der index.html loswerden?
-
-
-- Von den anderen
-    - staking gif erneuern
-    - Partner Bild irgendwo auf der Website?
-
+- staking video
+- OTC Seite
+  - Name OTC in Airdrop & Sales section of tokenomics
 
 - Finetuning:
-  - project side calc correct viewheight but how?
- 
   - regeln für die AirDrops transparent machen aktuell nur vage
-  - geringe Gebühren für das Staking herausstellen
 
-
-- Grafana für 2. Validator
-- 
-
-  Martin:
-  - VPS server Contabo
-    - host name setzen?
-    - ssh key?
-  - ionos backup 
-  - Python server
-  - Radorables
