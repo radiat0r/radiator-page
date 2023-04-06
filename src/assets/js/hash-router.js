@@ -12,7 +12,7 @@ const routes = {
 		template: "",
 	},
 	benefits: {
-		template: "assets/templates/benefits.html",
+		template: "assets/sites/benefits/benefits.html",
 	},
 	news: {
 		template: "assets/sites/news/news.html",
