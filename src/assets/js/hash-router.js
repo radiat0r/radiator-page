@@ -15,7 +15,7 @@ const routes = {
 		template: "assets/templates/benefits.html",
 	},
 	news: {
-		template: "assets/templates/news.html",
+		template: "assets/sites/news/news.html",
 	},
 	cashback: {
 		template: "assets/templates/cashback.html",
