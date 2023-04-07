@@ -24,10 +24,10 @@ const routes = {
 		template: "assets/sites/project/project.html",
 	},
 	tokenomics: {
-		template: "assets/templates/tokenomics.html",
+		template: "assets/sites/tokenomics/tokenomics.html",
 	},
 	stake: {
-		template: "assets/templates/stake.html",
+		template: "assets/sites/stake/stake.html",
 	},
 };
 
