@@ -7,39 +7,39 @@ Theme	 :  Default
 /*! WRITE YOUR CUSTOM STYLE **/
 
 @font-face {
-    font-family: Montserrat;
-    src: url("../fonts/montserrat/Montserrat-Regular.otf");
+  font-family: Montserrat;
+  src: url("../fonts/montserrat/Montserrat-Regular.otf");
 }
 
 td img {
-    height: 1rem;
+  height: 1rem;
 }
 
 .card-s4 {
-    padding: 2em 1em;
-    box-shadow: 0 5px 46px rgba(235, 235, 235, 1);
+  padding: 2em 1em;
+  box-shadow: 0 5px 46px rgba(235, 235, 235, 1);
 }
 
-.card{
-    background-color: #15225f;
+.card {
+  background-color: #15225f;
 }
 
 p {
-    color: #f5f5f5
+  color: #f5f5f5;
 }
 
-.feature-text > .lead{
-    color: #dddddd;
+.feature-text > .lead {
+  color: #dddddd;
 }
 
 h4, h5, h6 {
-    color: #dddddd;
+  color: #dddddd;
 }
 
 .input-bordered {
-    background-color: #0d42b2;
-    border: none;
-    color:  #dddddd;
+  background-color: #0d42b2;
+  border: none;
+  color: #dddddd;
 }
 
 input::placeholder {
@@ -47,11 +47,11 @@ input::placeholder {
 }
 
 .project-img {
-    height: 6em;
+  height: 6em;
 }
 
 .z0 {
-    z-index: 0;
+  z-index: 0;
 }
 
 .z-1 {
@@ -59,19 +59,19 @@ input::placeholder {
 }
 
 .fullsize {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .fade-in {
-    animation: fadeIn 2.5s;
-    -webkit-animation: fadeIn 2.5s;
-    -moz-animation: fadeIn 2.5s;
-    -o-animation: fadeIn 2.5s;
-    -ms-animation: fadeIn 2.5s;
+  animation: fadeIn 2.5s;
+  -webkit-animation: fadeIn 2.5s;
+  -moz-animation: fadeIn 2.5s;
+  -o-animation: fadeIn 2.5s;
+  -ms-animation: fadeIn 2.5s;
 }
 
 .line-height-55px {
-    line-height: 55px;
+  line-height: 55px;
 }
 
 .table-des {
