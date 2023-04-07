@@ -21,7 +21,7 @@ const routes = {
 		template: "assets/sites/cashback/cashback.html",
 	},
 	project: {
-		template: "assets/templates/project.html",
+		template: "assets/sites/project/project.html",
 	},
 	tokenomics: {
 		template: "assets/templates/tokenomics.html",
