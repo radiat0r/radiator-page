@@ -1,3 +1,7 @@
+- Text zum kaufen von RDT einfügen
+- Kaufen der Coins wie bei Delphibets anbieten
+
+
 DONE:
 - Connecting Values beide Anfangsbuchstaben groß und der korrekte Font wird verwendet
 - SEO Begriffe

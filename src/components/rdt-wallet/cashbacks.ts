@@ -87,25 +87,6 @@ export const Cashbacks = [
         },
     },
     {
-        project: 'Mutant Cat Society',
-        maxCashback: 20,
-        limitRdt: 150,
-        limitNordicStake: 1000,
-        vikingland: 'https://www.vikingland.net/collection/Mutant%20Cat%20Society',
-        telegram: 'https://t.me/radix_radiator/1886',
-        calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
-            if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
-                if (wallet.staked_at_nordic >= config.limitNordicStake) {
-                    return config.maxCashback
-                } else {
-                    return 15
-                }
-            } else {
-                return null
-            }
-        },
-    },
-    {
         project: 'Shardeez',
         maxCashback: 25,
         limitRdt: 150,
