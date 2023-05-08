@@ -5,16 +5,18 @@
                 <div class='col-sm-12 feature card card-lg-y card-s4'>
                     <div class="section-head text-center">
                         <h2 class="title tc-secondary">Contact</h2>
-                        <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" id="name" name="name" required>
-                                <label for="email">E-Mail:</label>
-                                <input type="email" id="email" name="email" required>
-                                <label for="message">Message:</label>
-                                <textarea id="message" name="message" required></textarea>
-                                <button type="submit" onclick="sendEmail">Send message</button>
-                              </form>                                   
-                        </div>            
+                        <form id="contactformular">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" aria-describedby="name"
+                                    placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                    placeholder="Enter your email address" required>
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                    anyone
                                     else.</small>
                             </div>
                             <div class="form-group">
