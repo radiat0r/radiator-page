@@ -1,77 +1,48 @@
-class FormValidator {
-    selector: JQuery;
-    constructor(selector) {
-        this.Validate(selector);
-    }
-    Validate(selector) {
-        this.LengthValidate(5);
-        // this.TextareaValidate();
-        this.SendValues()
-    }
+ /*
+    console.log("test!")
+    Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "radixradiator@gmail.com",
+        Password : "F0D2F96AAA6D5E6AA084D8E80458A81E6494",
+        To : 'martin.koetzing@gmail.com',
+        From : "radixradiator@gmail.com",
+        Subject : "This is the subject",
+        Body : "And this is the body"
+    }).then(
+    message => alert(message)
+    );
+*/
 
-    LengthValidate(min: number, max?: number) {
-        $("input, textarea").on('keyup', (event: JqueryEventObject) => {
-            var target: Jquery = $(event.target);
-            var value = target.val();
-            if (value.length < min) {
-                target.addClass("error");
-            }
-            else {
-                target.removeClass("error");
-            }
-        });
-    }
-    TextareaValidate() {
-        var selector: string = $("textarea");
-        $("textarea").on('blur', (event: JqueryEventObject) => {
-            var target: Jquery = $(event.target);
-            var value = target.val();
-            if (value) {
-                target.addClass('error');
-            }
-            else {
-                target.removeClass();
-            }
-        });
-    }
-    SendValues() {
-        $(".send").click((event: JqueryEventObject) => {
-            var errorsClass = $('form').find('.error').length;
-            var EmptyInputs = $("input, textarea");
-            var errors = [];
-            EmptyInputs.each((index: number, elem: any) => {
-                var target = $(elem);
-                if (target.val().length <= 0) {
-                    errors.push(target);
-                    target.addClass("error");
-                }
-            });
-            if (!errorsClass && errors.length == 0) {
-              var url = "";
-              var data = [];
-                  
-                  $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: data,
-                    beforeSend: ()=> {
-                      $(".send").text("Sending...");
-                    },
-                      success: ()=>{
-                       setTimeout(()=>{
-                         alert("Form Sent");
-                       $(".send").text("Form Sent");
-                    },10000);
-                     
-                    }
-                  })
-            }
-            else {
-                alert("Fields contain errors");
-                event.preventDefault();
-            }
-        });
-    }
-}
+// pw: F0D2F96AAA6D5E6AA084D8E80458A81E6494
+// token: 7779d413-d224-468f-936b-9ac5e0b8086c
 
-new FormValidator();
+// Event-Listener zum Abfangen des Absendeereignisses des Formulars
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault(); // Verhindert das Standardverhalten des Formulars (Seitenneuladung)
+
+  // Die Daten aus dem Formular abrufen
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var message = document.getElementById("message").value;
+
+  // E-Mail-Einstellungen für den SMTP.js-Dienst
+  var emailConfig = {
+    SecureToken: "7779d413-d224-468f-936b-9ac5e0b8086c",
+    To: "info@radiator.run",
+    From: email,
+    Subject: "Neue Kontaktanfrage",
+    Body: "Name: " + name + "<br>" + "E-Mail: " + email + "<br>" + "Nachricht: " + message
+  };
+
+  // E-Mail senden mit SMTP.js
+  Email.send(emailConfig).then(
+    function(response) {
+      alert("E-Mail erfolgreich gesendet!"); // Erfolgsbenachrichtigung
+      // Hier kannst du weitere Aktionen nach dem Versenden der E-Mail ausführen
+    },
+    function(error) {
+      console.error("E-Mail konnte nicht gesendet werden:", error); // Fehlermeldung
+      // Hier kannst du Fehlerbehandlungsmaßnahmen ergreifen, wenn das Senden fehlschlägt
+    }
+  );
+});

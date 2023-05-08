@@ -6,17 +6,6 @@ Theme	 :  Default
 */
 /*! WRITE YOUR CUSTOM STYLE **/
 
-form {
-  position: relative;
-}
-
-label {
-  display: none;
-  position: absolute;
-  top: 0%;
-  left: 0;
-}
-
 @font-face {
   font-family: Montserrat;
   src: url("../fonts/montserrat/Montserrat-Regular.otf");
