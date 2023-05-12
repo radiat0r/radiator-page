@@ -13,27 +13,30 @@ const contactformular = async () => {
     Body: "Name: " + name + "<br>" + "E-Mail: " + email + "<br>" + "Nachricht: " + message
   };
 
-  // send email with smtpjs
-  Email.send(emailConfig).then(
-    (response) => { 
-      console.log(response);
-      if (response == "OK") {
-        Notiflix.Notify.success("E-Mail sent successfully!")
-        form.reset();
+  if (name.length > 0 && email.length > 0 && message.length > 0) {
+    // send email with smtpjs
+    Email.send(emailConfig).then(
+      (response) => { 
+        if (response == "OK") {
+          Notiflix.Notify.success("E-Mail sent successfully!")
+          form.reset();
+        }
       }
-    }
-  )
-  .catch(
-    (response) => { 
-      console.log(response);
-      Notiflix.Notify.failure(response)
-    }
-  );
+    )
+    .catch(
+      (response) => { 
+        console.log(response);
+        Notiflix.Notify.failure(response)
+      }
+    );  
+  } else {
+    Notiflix.Notify.info("Please fill out all fields. Thank you.")
+  }
 }
 
 
 
-/* SmtpJS.com - v3.0.0 
+/* SmtpJS.com - v3.0.0 */
 var Email = {
   send: function(a) {
       return new Promise(function(n, e) {
@@ -63,4 +66,3 @@ var Email = {
       return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t
   }
 };
-*/
