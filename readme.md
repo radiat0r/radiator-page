@@ -73,3 +73,12 @@ The first step for all three of these strategies is to [publish to NPM](https://
 - Run `npm install my-component --save`
 - Add an import to the npm packages `import my-component;`
 - Then you can use the element anywhere in your template, JSX, html etc
+
+### contactformular
+
+- elasticmail serves as smtp server
+- cloudflare dns points to elasticmail
+- smtpjs for token creation
+- API FE3A70B50E7D286787A5BBFB8E58E943B2ABC91D0CE893D8AFBB4B3F4184E8576EE7F48A1A5BD4DB675ECB7070EF89DC
+- PW 8EA3FE37E39BDAE62D1ED34872DFCF2C6297
+- TOKEN PORT 2525 7ee76e43-fcd4-495f-a5c0-2b32cff5223a

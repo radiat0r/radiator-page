@@ -29,6 +29,9 @@ const routes = {
 	stake: {
 		template: "assets/sites/stake/stake.html",
 	},
+	contact: {
+		template: "assets/sites/contact/contact.html",
+	},
 };
 
 // create a function that watches the url and calls the urlLocationHandler
