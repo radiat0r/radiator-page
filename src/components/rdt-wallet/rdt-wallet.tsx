@@ -32,9 +32,6 @@ export class RdtWallet {
   @State()
   wallet: Wallet;
 
-  logoOci: string = getAssetPath(`./assets/logo-oci.png`);
-  logoDoge: string = getAssetPath(`./assets/logo-doge.png`);
-
   componentWillLoad() {
     this.limitedCashbacksError = false;
     LimitedCashbacksService.loadLimitedCashbacks().then(limitedCashbacks => {
@@ -92,29 +89,6 @@ export class RdtWallet {
 
         <div class='feature-text'>
           {this.renderLimitedCashbacks(this.limitedCashbacks, this.limitedCashbacksError)}
-        </div>
-
-        <div class='feature feature-center card card-lg-y card-s4'>
-          <div class='row justify-content-center'>
-            <div class='col-sm-10'>
-              <div class='feature-text'>
-                <h5 class='title title-md pb-2'>Missing $RDT for cashback? Buy here:</h5>
-                <div class='row justify-content-center'>
-                  <div class='col-sm-5 pb-2'>
-                    <a href='https://ociswap.com/radiator' target='_blank'>
-                      <img src={this.logoOci} alt='OciSwap' width='100'></img>
-                    </a>
-                  </div>
-                  <div class='col-sm-5 pb-2'>
-                    <a href='https://dogecubex.live/swap?to=RDT&xrd=100' target='_blank'>
-                      <img src={this.logoDoge} alt='DogeCube' width='100'></img>
-                    </a>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class='row pb-5'>
