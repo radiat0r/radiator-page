@@ -13,6 +13,21 @@ export type CashbackConfig = {
 
 export const Cashbacks = [
   {
+    project: 'Arcane Labyrinth NFT',
+    maxCashback: 20,
+    limitRdt: 500,
+    vikingland: 'https://www.vikingland.io/collection/Arcane%20Labyrinth%20NFT',
+    telegram: 'https://twitter.com/radix_radiator/status/1663848979203751942?s=20',
+    limitedProject: 'vikingland_arcanelabyrinth',
+    calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
+      if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
+        return config.maxCashback;
+      } else {
+        return null;
+      }
+    },
+  },
+  {
     project: 'Babylon Carnival',
     maxCashback: 25,
     limitRdt: 500,
