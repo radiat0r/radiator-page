@@ -7,12 +7,14 @@ export type Wallet = {
     rdt: number,
     rdt_7_days_ago: number,
     staked_at_nordic: number,
+    staked_at_radipux: number,
 }
 
 export class WalletService {
 
     private static readonly RDT_IDENTIFIER = "rdt_rr1qwencdmhktehqfcha2yp3sxghqlzyf5eplkf4ac8dvdq5k8pka"
     private static readonly NORDIC_NODE_IDENTIFIER = "rv1qvq5dpfrte49l3hdzzarftmsqejqzf3d8dxnrx2tzdc0ljcrg88uvnlvpau"
+    private static readonly RADIPUX_NODE_IDENTIFIER = "rv1qwh7gp573289twupwrn06ny987nt7ga3r6njmcxnzhelmq7muvdgqg6k7ju"
     private static readonly XRD_IDENTIFIER = "xrd_rr1qy5wfsfh"
     private static readonly RDT_HOLD_TIME_DAYS = 7
     private static readonly HOLD_TIME = WalletService.RDT_HOLD_TIME_DAYS * 24 * 60 * 60 * 1000
@@ -42,7 +44,8 @@ export class WalletService {
                         key: walletKey,
                         rdt: rdt,
                         rdt_7_days_ago: this.getRdt7DaysAgo(transactions, walletKey, rdt),
-                        staked_at_nordic: this.getStakedXrdAtNordic(stake)
+                        staked_at_nordic: this.getStakedXrd(stake, this.NORDIC_NODE_IDENTIFIER),
+                        staked_at_radipux: this.getStakedXrd(stake, this.RADIPUX_NODE_IDENTIFIER)
                     }
                     resolve(wallet)
 
@@ -70,7 +73,7 @@ export class WalletService {
         return rdt
     }
 
-    static getStakedXrdAtNordic(stake: AccountStake): number {
+    static getStakedXrd(stake: AccountStake, nodeIdentifier: string): number {
 
         if (stake == null || stake.stakes == null) {
             return 0
@@ -78,7 +81,7 @@ export class WalletService {
 
         let stakedXrd = 0
         stake.stakes.forEach(stake => {
-            if (stake.validator_identifier.address == this.NORDIC_NODE_IDENTIFIER
+            if (stake.validator_identifier.address == nodeIdentifier
                 && stake.delegated_stake.token_identifier.rri == this.XRD_IDENTIFIER) {
 
                 stakedXrd = parseInt(stake.delegated_stake.value) / 10e17

@@ -227,6 +227,10 @@ export class RdtWallet {
               <td class='table-head'>Staked @ StakeNordic</td>
               <td class='table-des'>{wallet.staked_at_nordic.toFixed(2)}</td>
             </tr>
+            <tr>
+              <td class='table-head'>Staked @ RadiPux</td>
+              <td class='table-des'>{wallet.staked_at_radipux.toFixed(2)}</td>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -259,7 +263,7 @@ export class RdtWallet {
             </td>
             <td class='table-des text-start'>
               <ins><a href={config.telegram}
-                      target='_blank'>{this.getTableHoldRdtMsg(config, wallet)}{this.getTableStakeNordicMsg(config, wallet)}{this.getTableLimitedCashbackMsg(config)}</a>
+                      target='_blank'>{this.getTableHoldRdtMsg(config, wallet)}{this.getTableStakeNordicMsg(config, wallet)}{this.getTableStakeRadiPuxMsg(config, wallet)}{this.getTableLimitedCashbackMsg(config)}</a>
               </ins>
             </td>
             <td class='table-head'>{this.getTableBenefitMsg(config, wallet)}</td>
@@ -286,6 +290,15 @@ export class RdtWallet {
     } else {
       return (<Fragment><br />{this.renderOkNo(wallet.staked_at_nordic >= config.limitNordicStake)} Stake @
         StakeNordic {config.limitNordicStake}XRD</Fragment>);
+    }
+  }
+
+  private getTableStakeRadiPuxMsg(config: CashbackConfig, wallet: Wallet) {
+    if (config.limitRadipuxStake == null || config.limitRadipuxStake == 0) {
+      return (<Fragment></Fragment>);
+    } else {
+      return (<Fragment><br />{this.renderOkNo(wallet.staked_at_radipux >= config.limitRadipuxStake)} Stake @
+        RadiPux {config.limitRadipuxStake}XRD</Fragment>);
     }
   }
 

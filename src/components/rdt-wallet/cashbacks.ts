@@ -5,6 +5,7 @@ export type CashbackConfig = {
   maxCashback: number,
   limitRdt: number,
   limitNordicStake?: number,
+  limitRadipuxStake?: number,
   vikingland: string,
   telegram: string,
   limitedProject?: string,
@@ -12,6 +13,29 @@ export type CashbackConfig = {
 }
 
 export const Cashbacks = [
+  {
+    project: 'RadiPux',
+    maxCashback: 15,
+    limitRdt: 500,
+    limitRadipuxStake: 90,
+    vikingland: 'https://www.vikingland.net/collection/RadiPux',
+    telegram: 'https://twitter.com/radix_radiator/status/1673280062316060673',
+    calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
+      if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
+        if (wallet.staked_at_radipux >= 90) {
+          return 5;
+        } else if (wallet.staked_at_radipux >= 1001) {
+          return 10;
+        } else if (wallet.staked_at_radipux >= 5000) {
+          return 15;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    },
+  },
   {
     project: 'Arcane Labyrinth NFT',
     maxCashback: 20,
