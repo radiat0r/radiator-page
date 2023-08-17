@@ -82,20 +82,6 @@ export const Cashbacks = [
     },
   },
   {
-    project: 'CerberRADS',
-    maxCashback: 20,
-    limitRdt: 666,
-    vikingland: 'https://www.vikingland.io/collection/CerberRADS',
-    telegram: 'https://t.me/radix_radiator/5556',
-    calcCashbackBenefit: (config: CashbackConfig, wallet: Wallet): number => {
-      if (wallet.rdt >= config.limitRdt && wallet.rdt_7_days_ago >= config.limitRdt) {
-        return config.maxCashback;
-      } else {
-        return null;
-      }
-    },
-  },
-  {
     project: 'Radix Ratz',
     maxCashback: 30,
     limitRdt: 500,
