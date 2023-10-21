@@ -1,5 +1,5 @@
-- Text zum kaufen von RDT einfügen
-- Kaufen der Coins wie bei Delphibets anbieten
+- Benefits Seite deaktivieren
+- DogeCube und Astrolescent Links bei den Buy Links anpassen
 
 
 DONE:
