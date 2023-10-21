@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<svg width="128" height="128" viewBox="0,0,128,128" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+        <radialGradient id="rg" cx="0.5" cy="0.5" r="0.4">
+            <stop stop-color="#2956A0" offset="0" />
+            <stop stop-color="#000172" offset="1" />
+        </radialGradient>
+    </defs>
+    <circle cx="64" cy="64" r="60" fill="url(#rg)"></circle>
+    <path id="wing"
+        d="M 60 7  Q 83 19 84 44 Q 83 67 94 83 Q 72 73 72 51 Q 72 25 60 7 Z " fill="#FEFEFE" />
+    <use href="#wing" transform="rotate(120 64 64)" />
+    <use href="#wing" transform="rotate(240 64 64)" />
+</svg>
