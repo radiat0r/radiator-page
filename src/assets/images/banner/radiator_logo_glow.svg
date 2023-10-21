@@ -7,14 +7,16 @@
         </radialGradient>
     </defs>
     <filter id="gaussBlur">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="6" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
     </filter>
-    <circle id="glow" cx="64" cy="64" r="58" fill="white" filter="url(#gaussBlur)"></circle>
+    <circle id="glow" cx="64" cy="64" r="55" fill="white" filter="url(#gaussBlur)"></circle>
     <g id="logo" transform="scale(.8) translate(16 16)">
         <circle cx="64" cy="64" r="60" fill="url(#rg)"></circle>
-        <path id="wing"
-            d="M 60 7  Q 83 19 84 44 Q 83 67 94 83 Q 72 73 72 51 Q 72 25 60 7 Z " fill="white" />
-        <use href="#wing" transform="rotate(120 64 64)" />
-        <use href="#wing" transform="rotate(240 64 64)" />
+        <g transform="scale(.8) translate(16 16)">
+            <path id="wing"
+            d="M 60 7  Q 83 19 85 44 Q 85 67 95 83 Q 72 72 72 51 Q 72 25 60 7 Z " fill="#FEFEFE" />
+            <use href="#wing" transform="rotate(120 64 64)" />
+            <use href="#wing" transform="rotate(240 64 64)" />
+        </g>
     </g>
 </svg>
