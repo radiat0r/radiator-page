@@ -13,7 +13,7 @@ export const config: Config = {
       copy: [
         {
           // this copies the logo.png into the root of the www folder
-          src: './*.{jpg,png,svg}',
+          src: './*.{jpg,png,svg,ico}',
           dest: 'www',
           warn: true,
         }
