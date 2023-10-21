@@ -1,7 +1,7 @@
 {
   "name": "Radiator - Connecting Values",
   "short_name": "Radiator",
-  "description": "A sample web app manifest file",
+  "description": "Radiator page",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
