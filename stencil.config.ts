@@ -16,6 +16,12 @@ export const config: Config = {
           src: './*.{jpg,png,svg,ico,webmanifest}',
           dest: 'www',
           warn: true,
+        },
+        {
+          // this copies the dao logos into the root of the www folder
+          src: './daopics/*.{jpg,png,svg,ico,webmanifest}',
+          dest: 'www/daopics',
+          warn: true,
         }
       ]
     },
