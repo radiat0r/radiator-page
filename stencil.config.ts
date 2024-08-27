@@ -1,8 +1,11 @@
 import { Config } from '@stencil/core';
-import { sass } from "@stencil/sass";
+import nodePolyfills from 'rollup-plugin-node-polyfills';
+import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'ui-stencil',
+  globalScript: 'src/global.ts',
+  globalStyle: 'src/global.scss',
   outputTargets: [
     {
       type: 'www',
@@ -12,21 +15,20 @@ export const config: Config = {
       type: 'dist-custom-elements',
       copy: [
         {
-          // this copies the logo.png into the root of the www folder
-          src: './*.{jpg,png,svg,ico,webmanifest}',
+          // this copies the favicon.ico into the root of the www folder
+          src: './*.{ico,png}',
           dest: 'www',
           warn: true,
         },
-        {
-          // this copies the dao logos into the root of the www folder
-          src: './daopics/*.{jpg,png,svg,ico,webmanifest}',
-          dest: 'www/daopics',
-          warn: true,
-        }
-      ]
+      ],
     },
   ],
+  rollupPlugins: {
+    after: [
+      nodePolyfills(),
+    ],
+  },
   plugins: [
-    sass()
-  ]
+    sass(),
+  ],
 };

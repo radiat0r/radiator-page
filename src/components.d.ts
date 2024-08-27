@@ -6,44 +6,45 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface RdtWallet {
-        "errorIcon": string;
-        "happyIcon": string;
-        "limitedCashbacksIcon": string;
-        "okIcon": string;
-        "sadIcon": string;
-        "scaredIcon": string;
+    interface AboutPage {
+    }
+    interface PortfolioPage {
     }
 }
 declare global {
-    interface HTMLRdtWalletElement extends Components.RdtWallet, HTMLStencilElement {
+    interface HTMLAboutPageElement extends Components.AboutPage, HTMLStencilElement {
     }
-    var HTMLRdtWalletElement: {
-        prototype: HTMLRdtWalletElement;
-        new (): HTMLRdtWalletElement;
+    var HTMLAboutPageElement: {
+        prototype: HTMLAboutPageElement;
+        new (): HTMLAboutPageElement;
+    };
+    interface HTMLPortfolioPageElement extends Components.PortfolioPage, HTMLStencilElement {
+    }
+    var HTMLPortfolioPageElement: {
+        prototype: HTMLPortfolioPageElement;
+        new (): HTMLPortfolioPageElement;
     };
     interface HTMLElementTagNameMap {
-        "rdt-wallet": HTMLRdtWalletElement;
+        "about-page": HTMLAboutPageElement;
+        "portfolio-page": HTMLPortfolioPageElement;
     }
 }
 declare namespace LocalJSX {
-    interface RdtWallet {
-        "errorIcon"?: string;
-        "happyIcon"?: string;
-        "limitedCashbacksIcon"?: string;
-        "okIcon"?: string;
-        "sadIcon"?: string;
-        "scaredIcon"?: string;
+    interface AboutPage {
+    }
+    interface PortfolioPage {
     }
     interface IntrinsicElements {
-        "rdt-wallet": RdtWallet;
+        "about-page": AboutPage;
+        "portfolio-page": PortfolioPage;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "rdt-wallet": LocalJSX.RdtWallet & JSXBase.HTMLAttributes<HTMLRdtWalletElement>;
+            "about-page": LocalJSX.AboutPage & JSXBase.HTMLAttributes<HTMLAboutPageElement>;
+            "portfolio-page": LocalJSX.PortfolioPage & JSXBase.HTMLAttributes<HTMLPortfolioPageElement>;
         }
     }
 }

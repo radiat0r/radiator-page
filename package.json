@@ -1,35 +1,40 @@
 {
-  "name": "radiator-page",
-  "version": "1.0.0",
-  "description": "radiator-page that serves radiator.run",
+  "name": "portfolio-page",
+  "version": "0.1.0",
+  "description": "Portfolio project.",
   "main": "dist/index.cjs.js",
-  "module": "./dist/components/index.js",
+  "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
+  "types": "dist/types/components.d.ts",
+  "unpkg": "dist/my-project-name/my-project-name.esm.js",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/ui-stencil/ui-stencil.esm.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
-  },
+  "collection": "dist/collection/collection-manifest.json",
   "files": [
     "dist/",
+    "css/",
     "loader/"
   ],
+  "engines": {
+    "node": ">=18.12.0"
+  },
   "scripts": {
-    "build": "stencil build",
+    "build": "stencil build --ci --no-cache",
+    "build-copy": "npm run build && rm -rf ../service/site/build && mkdir -p ../service/site/build && cp -r www/* ../service/site/build",
     "start": "stencil build --dev --watch --serve --no-open",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^4.5.0",
-    "notiflix": "^3.2.6"
+    "@radixdlt/babylon-gateway-api-sdk": "^1.6.1",
+    "@radixdlt/radix-dapp-toolkit": "^2.0.3",
+    "@stencil/core": "^4.20.0",
+    "bootstrap": "^5.3.3",
+    "notiflix": "^3.2.7"
   },
   "devDependencies": {
-    "@stencil/sass": "^3.0.6"
+    "@stencil/sass": "^3.0.12",
+    "rollup-plugin-node-polyfills": "^0.2.1"
   }
 }

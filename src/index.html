@@ -1,333 +1,41 @@
 <!DOCTYPE html>
-<html lang='en' class='js'>
+<html lang='en'>
 
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0' />
+  <title>Portfolio</title>
+  <meta content=" Radixportfolio " name="description" />
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+        name="viewport" />
+  <meta
+    content=" radixdlt, radix, xrd, radorables, crumbs token, crumb hub, crumb dao, validator, stake, staking, cerberus, ledger, blockchain "
+    name="keywords" />
+  <meta content="index,follow" name="robots">
+  <meta content="#031163" name="theme-color" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="IE=Edge" http-equiv="x-ua-compatible" />
 
-  <title>⚡️ RADIATOR ⚡️</title>
-  <meta name='description'
-        content=' RADIATOR is a radixDLT based project node. RADIATOR offers cashback benefits for our partners. '>
-  <meta name='keywords' content='
-    radiator, radixdlt, radix, xrd, cashback web3, rewards web3, radix cashback, radix rewards, radixdlt cashback, coinmarketcap, ociswap, delphibets, , rdt token, defi, validator, stake, staking, cerberus, ledger, blockchain
-    ' />
-  <meta name='author' content='radiator' />
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="/rdt-logo.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
-  <!--<link rel="manifest" href="/manifest.webmanifest">-->
+  <link href="/favicon.ico" rel="icon" sizes="32x32">
+  <link href="/assets/logo.png" rel="icon" type="image/svg+xml">
+  <link href="/assets/manifest.webmanifest" rel="manifest">
 
-  <!-- Bundle and Base CSS -->
-  <link rel='stylesheet' href='assets/css/vendor.bundle.css?ver=210'>
-  <link rel='stylesheet' href='assets/css/style-azure.css?ver=210'>
-  <!-- Extra CSS -->
-  <link rel='stylesheet' href='assets/css/theme.css?ver=210'>
-  <script type='module' src='build/ui-stencil.esm.js'></script>
-  <script nomodule src='build/ui-stencil.js'></script>
+  <script src="/build/ui-stencil.esm.js" type="module"></script>
+  <script nomodule src="/build/ui-stencil.js"></script>
+  <!-- Google tag (gtag.js) 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RBR8PZ75N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-5RBR8PZ75N');
+  </script>-->
 </head>
 
-<body class='nk-body'>
-<div class='nk-wrap'>
-  <header class='nk-header page-header is-transparent is-sticky is-shrink is-dark' id='header'>
-    <div class='header-main'>
-      <div class='header-container container'>
-        <!-- HEADER NAVBAR -->
-        <div class='header-wrap'>
-          <div class='header-logo header-logo-ls logo-md animated' data-animate='fadeInDown' data-delay='.65'>
-            <a href='#home' class='logo-link'>
-              <img class='logo-light' src='assets/images/banner/radiator_logo_glow.svg' alt='logo'>
-            </a>
-          </div>
-          <div class='header-nav-toggle'>
-            <a href='#' class='navbar-toggle' data-menu-toggle='rdt-navbar-menu'>
-              <div class='toggle-line'>
-                <span></span>
-              </div>
-            </a>
-          </div>
-          <div class='header-navbar header-navbar-s3'>
-            <nav class='header-menu justify-content-between' id='rdt-navbar-menu'>
-              <ul class='menu menu-s2 animated' data-animate='fadeInDown' data-delay='.75'>
-                <li class='menu-item'><a class='menu-link nav-link' href='#benefits'>Benefits</a></li>
-                <li class='menu-item'><a class='menu-link nav-link' href='#news'>News</a></li>
-                <li class='menu-item'><a class='menu-link nav-link' href='#project'>Project</a></li>
-                <li class='menu-item'><a class='menu-link nav-link' href='#stake'>Stake</a></li>
-                <li class='menu-item'><a class='menu-link nav-link' href='#cashback'>Cashback</a></li>
-                <li class='menu-item'><a class='menu-link nav-link' href='#tokenomics'>Tokenomics</a></li>
-                <li class='menu-item'><a class='menu-link nav-link' href='https://radix.wiki/ecosystem/radiator' target='_blank'>Wiki</a></li>
-                <li class='menu-item'><a class='menu-link nav-link' href='#contact'>Contact</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Banner -->
-    <div id='banner' class='header-banner bg-theme'>
-      <div class='nk-banner fade-in'>
-        <div class='banner banner-fs tc-light pb-0'>
-          <div class='banner-wrap'>
-            <div class='container'>
-              <div class='row align-items-center justify-content-center'>
-                <div class='col-lg-6 order-lg-last'>
-                  <div class='banner-gfx banner-gfx-re-s3'>
-                    <img src='assets/images/banner/gfx-d-dark.png' alt='header'>
-                    <img class='banner-gfx-icon banner-gfx-icon-1' style='width: 5.25%; left: 43.2%'
-                         src='assets/images/banner/radix_icon_round_glow.svg' alt='radix'>
-                    <img class='banner-gfx-icon banner-gfx-icon-2' style='width: 5.25%; right: 39.9%'
-                         src='assets/images/banner/radiator_logo_glow.svg' alt='radiator'>
-                  </div>
-                </div>
-                <div class='col-lg-6'>
-                  <div class='banner-caption wide-auto text-center'>
-                    <div class='cpn-head'>
-                      <img src='assets/images/banner/banner_2_small.png' alt='RADIATOR'>
-                    </div>
-                    <div class='cpn-text-center cpn-text-s1'>
-                      <h2 style='font-family: Montserrat;'>Connecting Values</h2>
-                    </div>
-                  </div>
-                  <div class='cpn-social text-center'>
-                    <ul class='social'>
-                      <li><a target='_blank' href='https://twitter.com/radix_radiator'><em
-                        class='social-icon fab fa-twitter'></em></a></li>
-                      <li><a target='_blank' href='https://t.me/radix_radiator'><em
-                        class='social-icon fab fa-telegram'></em></a></li>
-                      <li><a href='mailto:info@radiator.run'><em class='social-icon fa fa-envelope'></em></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class='nk-ovm shape-u shape-contain shape-left-top'></div>
-        <!-- Place Particle Js -->
-        <div id='particles-bg' class='particles-container particles-bg' data-pt-base='#00c0fa' data-pt-base-op='.3'
-             data-pt-line='#2b56f5' data-pt-line-op='.5' data-pt-shape='#00c0fa' data-pt-shape-op='.2'></div>
-      </div><!-- .nk-banner -->
-    </div>
-  </header>
-  <main class='bg-transparent'>
-    <div id='content'></div>
-    <section class='section bg-theme tc-light'>
-      <div class='container'>
-        <!-- Block @s -->
-        <div class='nk-block nk-block-features-s2'>
-          <div class='row align-items-center justify-content-between gutter-vr-30px'>
-            <div class='col-lg-8'>
-              <div class='features-list gutter-vr-20px flex-wrap'>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='#benefits'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/hand-holding-dollar-solid.svg' alt='Benefits' width='60%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>BENEFITS</ins>
-                        </h5>
-                        <p>Check if you can benefit from our CASHBACK campaigns.</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='#news'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/bullhorn-solid.svg' alt='Stake' width='50%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>NEWS</ins>
-                        </h5>
-                        <p>New partners and project updates.</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='#project'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/logo_white.png' alt='Project' width='65%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>PROJECT</ins>
-                        </h5>
-                        <p>The features of the Radiator project and the benefits for its community.</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='#stake'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/database-solid.svg' alt='Stake' width='50%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>STAKE</ins>
-                        </h5>
-                        <p>Stake with us and earn $RDT.</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='#cashback'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/arrows-rotate-solid.svg' alt='Cashback' width='60%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>CASHBACK</ins>
-                        </h5>
-                        <p>The reward system for the RADIX network.</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='#tokenomics'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/dollar-sign-solid.svg' alt='Tokenomics' width='40%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>TOKENOMICS</ins>
-                        </h5>
-                        <p>$RDT is the first cashback utility token exclusively on Radix DLT.</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='https://radix.wiki/ecosystem/radiator' target='_blank'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/wiki.svg' alt='Contact' width='60%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>Wiki</ins>
-                        </h5>
-                        <p>Radiator on RADIX.wiki</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div class='feature feature-s3 feature-s3-alt'>
-                  <a href='#contact'>
-                    <div class='feature-inline'>
-                      <div class='feature-icon feature-icon-sm feature-icon-s6 line-height-55px'>
-                        <img src='assets/images/links/mail.svg' alt='Contact' width='60%'>
-                      </div>
-                      <div class='feature-text feature-text-s1'>
-                        <h5 class='title title-md'>
-                          <ins>Contact</ins>
-                        </h5>
-                        <p>Get in touch with us.</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-              </div>
-            </div><!-- .col -->
-          </div><!-- .row -->
-        </div><!-- .block @e -->
-      </div>
-      <div class='nk-ovm mask-c mask-contain-bottoms'></div>
-    </section>
-
-  </main>
-</div>
-
-<!-- Buy $RDT Button -->
-<div class='overlay-button' data-bs-toggle='modal' data-bs-target='#buyRdtModal'>
-  Buy $RDT
-</div>
-
-<!-- Modal -->
-<div class='modal fade' id='buyRdtModal' tabindex='-1' aria-labelledby='getRdtModalLabel' aria-hidden='true'>
-  <div class='modal-dialog modal-dialog-centered'>
-    <div class='modal-content'>
-      <div class='feature feature-center card card-lg-y card-s4'>
-          <button type='button' class='btn-close float-end' data-bs-dismiss='modal'
-                  aria-label='Close'></button>
-          <h3 class='modal-title tc-secondary pb-5' id='getRdtModalLabel'>Buy $RDT here</h3>
-
-        <div class='row justify-content-center pb-3'>
-
-          <div class='col-sm-6 col-md-3 pb-5'>
-            <a href='https://ociswap.com/resource_rdx1t4xkx270sg2hs397dzetux64c3q0gzpa2kjepetrf6mqkz3k35hm9j' target='_blank'>
-              <img src='assets/images/exchanges/logo-oci.png' alt='OciSwap' width='100'></img>
-            </a>
-          </div>
-
-          <div class='col-sm-6 col-md-3 pb-5'>
-            <a href='https://dogecubex.live/swap?to=RDT&xrd=100' target='_blank'>
-              <img src='assets/images/exchanges/logo-doge.png' alt='DogeCube' width='100'></img>
-            </a>
-          </div>
-
-          <div class='col-sm-6 col-md-3 pb-5'>
-            <a href='https://astrolescent.com/token/RDT' target='_blank'>
-              <img src='assets/images/exchanges/logo-astrolescent.png' alt='Astrolescent' width='100'></img>
-            </a>
-          </div>
-
-        </div>
-
-        <p style='font-size: 0.8rem'><span style='text-decoration: underline'>Please note:</span><br>We do not take
-          responsibility for information or content provided on third-party websites. The responsibility lies with the
-          respective providers or operators of the websites. The use of the linked services is at your own risk and
-          diligence is recommended.</p>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Preloader -->
-<div class='preloader'><span class='spinner spinner-round'></span></div>
-
-<!-- JavaScript -->
-<script src='assets/js/jquery.bundle.js?ver=210'></script>
-<script src='assets/js/scripts.js?ver=210'></script>
-<script src='assets/js/contactform.js'></script>
-<script src='assets/js/hash-router.js'></script>
-<script src='assets/js/copy-content.js'></script>
-<script src='assets/js/notiflix-aio-3.2.6.min.js'></script>
-<!-- Google tag (gtag.js) -->
-<script async src='https://www.googletagmanager.com/gtag/js?id=G-2QYP9Z05LH'></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-
-  gtag('js', new Date());
-  gtag('config', 'G-2QYP9Z05LH');
-
-
-</script>
+<body>
+  <portfolio-page></portfolio-page>
 </body>
+
 
 </html>
