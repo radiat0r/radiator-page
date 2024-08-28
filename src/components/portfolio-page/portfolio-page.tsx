@@ -1,5 +1,5 @@
 import { Component, getAssetPath, h, Host, State } from '@stencil/core';
-import { rdt, DappUtils } from '../../scripts/connect-button';
+import { rdt } from '../../scripts/connect-button';
 
 @Component({
   tag: 'portfolio-page',
@@ -65,14 +65,7 @@ export class PortfolioPage {
         return <about-page></about-page>;
       }
       else {
-        const address = DappUtils.getWalletAccountAddress();
-        const label = DappUtils.getWalletDetails();
-        const balance = DappUtils.getFungibleBalanceForAccount(address, "resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd");
-        return (<div>
-        <div>{address}</div> 
-        <div>{label}</div> 
-        <div>{balance}</div>
-        </div>);
+        return <div class="container d-block"><portfolio-chart></portfolio-chart></div>
       }
   }
 

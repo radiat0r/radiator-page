@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AboutPage {
     }
+    interface PortfolioChart {
+    }
     interface PortfolioPage {
     }
 }
@@ -18,6 +20,12 @@ declare global {
         prototype: HTMLAboutPageElement;
         new (): HTMLAboutPageElement;
     };
+    interface HTMLPortfolioChartElement extends Components.PortfolioChart, HTMLStencilElement {
+    }
+    var HTMLPortfolioChartElement: {
+        prototype: HTMLPortfolioChartElement;
+        new (): HTMLPortfolioChartElement;
+    };
     interface HTMLPortfolioPageElement extends Components.PortfolioPage, HTMLStencilElement {
     }
     var HTMLPortfolioPageElement: {
@@ -26,16 +34,20 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "about-page": HTMLAboutPageElement;
+        "portfolio-chart": HTMLPortfolioChartElement;
         "portfolio-page": HTMLPortfolioPageElement;
     }
 }
 declare namespace LocalJSX {
     interface AboutPage {
     }
+    interface PortfolioChart {
+    }
     interface PortfolioPage {
     }
     interface IntrinsicElements {
         "about-page": AboutPage;
+        "portfolio-chart": PortfolioChart;
         "portfolio-page": PortfolioPage;
     }
 }
@@ -44,6 +56,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "about-page": LocalJSX.AboutPage & JSXBase.HTMLAttributes<HTMLAboutPageElement>;
+            "portfolio-chart": LocalJSX.PortfolioChart & JSXBase.HTMLAttributes<HTMLPortfolioChartElement>;
             "portfolio-page": LocalJSX.PortfolioPage & JSXBase.HTMLAttributes<HTMLPortfolioPageElement>;
         }
     }
