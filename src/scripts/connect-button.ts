@@ -1,4 +1,4 @@
-import { 
+  import { 
   RadixDappToolkit,
   DataRequestBuilder
  } from '@radixdlt/radix-dapp-toolkit';
@@ -14,24 +14,26 @@ export const rdt = RadixDappToolkit({
     applicationVersion: '1.0.0',
   });
 
-  /*
+  
   export const gatewayApi = GatewayApiClient.initialize(
     rdt.gatewayApi.clientConfig,
   );
   
+  
   rdt.walletApi.setRequestData(
-    DataRequestBuilder.persona().withProof(),
-    DataRequestBuilder.accounts().exactly(1).withProof(),
+    DataRequestBuilder.persona().withProof(false),
+    DataRequestBuilder.accounts().atLeast(1).withProof(false),
   );
-
+  
+  
   export class DappUtils {
 
     static getWalletAccountAddress(): string {
       return rdt.walletApi.getWalletData()!!.accounts[0].address;
     }
   
-    static async isWalletConnected() {
-      (rdt.walletApi.getWalletData()?.accounts.length ?? 0) > 0;
+    static getWalletDetails(): string {
+      return rdt.walletApi.getWalletData()!!.accounts[0].label;
     }
   
 
@@ -49,4 +51,4 @@ export const rdt = RadixDappToolkit({
     }
   
   }
-  */
+  

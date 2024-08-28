@@ -1,6 +1,5 @@
 import { Component, getAssetPath, h, Host, State } from '@stencil/core';
-import { rdt } from '../../scripts/connect-button';
-import { DataRequestBuilder } from '@radixdlt/radix-dapp-toolkit';
+import { rdt, DappUtils } from '../../scripts/connect-button';
 
 @Component({
   tag: 'portfolio-page',
@@ -10,9 +9,8 @@ export class PortfolioPage {
 
   @State()
   location: string = window.location.hash.replace('#', '');
-
   logoSrc: string = getAssetPath(`../assets/logo.png`);
-
+  balance: string = "0.0";
 
   componentDidLoad() {
     window.addEventListener('hashchange', this.onHashChange.bind(this));
@@ -36,7 +34,6 @@ export class PortfolioPage {
 
   private renderNavBar() {
     rdt.buttonApi.setTheme('radix-blue');
-    rdt.walletApi.setRequestData(DataRequestBuilder.accounts().exactly(1).withProof);
     return <nav class="navbar navbar-expand-lg navbar-light fixed-top crumb-page-navbar fade-in-down">
       <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="#">
@@ -68,8 +65,14 @@ export class PortfolioPage {
         return <about-page></about-page>;
       }
       else {
-        //const address = DappUtils.getWalletAccountAddress();
-        return <div>test</div>;
+        const address = DappUtils.getWalletAccountAddress();
+        const label = DappUtils.getWalletDetails();
+        const balance = DappUtils.getFungibleBalanceForAccount(address, "resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd");
+        return (<div>
+        <div>{address}</div> 
+        <div>{label}</div> 
+        <div>{this.balance}</div>
+        </div>);
       }
   }
 
