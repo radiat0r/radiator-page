@@ -1,0 +1,9 @@
+{
+  "name": "RadixPortfolio Platform",
+  "short_name": "RPF",
+  "description": "i need a good portfolio view",
+  "icons": [
+    { "src": "/assets/logo.png", "type": "image/png", "sizes": "192x192" }
+  ],
+  "background_color": "#ffffff"
+}

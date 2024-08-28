@@ -1,0 +1,2 @@
+import{p as o,b as a}from"./p-e6af9842.js";export{s as setNonce}from"./p-e6af9842.js";import{g as t}from"./p-d807e065.js";var r=()=>{const a=import.meta.url;const t={};if(a!==""){t.resourcesUrl=new URL(".",a).href}return o(t)};r().then((async o=>{await t();return a([["p-49d4a048",[[0,"portfolio-page",{location:[32]}],[0,"about-page"],[1,"portfolio-chart"]]]],o)}));
+//# sourceMappingURL=ui-stencil.esm.js.map
