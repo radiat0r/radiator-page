@@ -24,7 +24,8 @@
     "start": "stencil build --dev --watch --serve --no-open",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "deploy": "npm run build && npx gh-pages -d www"
   },
   "dependencies": {
     "@radixdlt/babylon-gateway-api-sdk": "^1.6.1",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@stencil/sass": "^3.0.12",
+    "gh-pages": "^6.1.1",
     "rollup-plugin-node-polyfills": "^0.2.1"
   }
 }
