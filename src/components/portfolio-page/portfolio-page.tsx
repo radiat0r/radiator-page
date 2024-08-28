@@ -71,7 +71,7 @@ export class PortfolioPage {
         return (<div>
         <div>{address}</div> 
         <div>{label}</div> 
-        <div>{this.balance}</div>
+        <div>{balance}</div>
         </div>);
       }
   }
