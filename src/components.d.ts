@@ -9,6 +9,9 @@ export namespace Components {
     interface AboutPage {
     }
     interface PortfolioChart {
+        "chartdata": number [];
+        "chartdates": string [];
+        "label": string;
     }
     interface PortfolioPage {
     }
@@ -42,6 +45,9 @@ declare namespace LocalJSX {
     interface AboutPage {
     }
     interface PortfolioChart {
+        "chartdata"?: number [];
+        "chartdates"?: string [];
+        "label"?: string;
     }
     interface PortfolioPage {
     }

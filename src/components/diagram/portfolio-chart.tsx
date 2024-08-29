@@ -1,28 +1,25 @@
-import { Component, h, Element } from '@stencil/core';
-import { DappUtils } from '../../scripts/connect-button';
+import { Component, h, Element, Prop } from '@stencil/core';
 import Chart from 'chart.js/auto';
 
 @Component({
   tag: 'portfolio-chart',
-  styleUrl: 'diagram.scss',
+  styleUrl: 'portfolio-chart.scss',
   shadow: true,
 })
-export class MyChart {
+
+export class PortfolioChart {
   @Element() el!: HTMLElement;
   chart: any;
+
+  @Prop() label: string = "";
+  @Prop() chartdata: number [] = [];
+  @Prop() chartdates: string [] = [];
 
   componentDidLoad() {
     this.createChart();
   }
 
   createChart() {
-    const address = DappUtils.getWalletAccountAddress();
-    const label = DappUtils.getWalletDetails();
-    const balance = DappUtils.getFungibleBalanceForAccount(address, "resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd");
-    
-    console.info('label', label);
-    console.info('balance', balance);
-
     // Verwende querySelector, um das Canvas-Element zu finden
     const canvas = this.el.shadowRoot?.querySelector('#portfolio') as HTMLCanvasElement | null;
 
@@ -36,11 +33,11 @@ export class MyChart {
         this.chart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'],
+            labels: this.chartdates,
             datasets: [
               {
-                label: '# of Votes',
-                data: [1, 4, 2, 5, 2, 8, 12, 19, 6, 5, 8, 12],
+                label: this.label,
+                data: this.chartdata,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,

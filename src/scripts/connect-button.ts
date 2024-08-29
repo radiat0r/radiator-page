@@ -2,7 +2,7 @@
   RadixDappToolkit,
   DataRequestBuilder
  } from '@radixdlt/radix-dapp-toolkit';
-import { GatewayApiClient } from '@radixdlt/babylon-gateway-api-sdk';
+import { GatewayApiClient, instanceOfLedgerState, LedgerStateSelector, StateEntityDetailsOptions } from '@radixdlt/babylon-gateway-api-sdk';
 import { getConfig } from '../../src/config';
 
 const config = getConfig();
@@ -45,6 +45,24 @@ export const rdt = RadixDappToolkit({
       const fungibles = result.fungible_resources.items.find((item) => item.resource_address === resourceAddress)?.vaults.items || [];
       const balance = fungibles.reduce((acc, item) => acc + parseFloat(item.amount), 0);
   
+      console.info(`Account: ${accountAddress} | Fungible Resources: ${resourceAddress} | Balance: ${balance}`);
+  
+      return balance;
+    }
+
+    static async getFungibleBalanceForAccountAndTime(accountAddress: string, resourceAddress: string, d: Date): Promise<number> {
+      const options: StateEntityDetailsOptions = {}
+      
+      const ls_opts: LedgerStateSelector = { timestamp: d};
+
+      const result = await gatewayApi.state.getEntityDetailsVaultAggregated(accountAddress,options,ls_opts)
+      
+      console.info('Failed to determine amount of fungibles in wallet. Please try again later.');
+        
+      const fungibles = result.fungible_resources.items.find((item) => item.resource_address === resourceAddress)?.vaults.items || [];
+      const balance = fungibles.reduce((acc, item) => acc + parseFloat(item.amount), 0);
+  
+      console.info(result)
       console.info(`Account: ${accountAddress} | Fungible Resources: ${resourceAddress} | Balance: ${balance}`);
   
       return balance;
