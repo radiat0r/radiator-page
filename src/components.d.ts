@@ -17,9 +17,16 @@ export namespace Components {
     }
     interface PortfolioPage {
     }
+    interface ResourceDropdown {
+        "resources": string[];
+    }
     interface WalletDropdown {
         "wallets": WalletDataStateAccount[];
     }
+}
+export interface ResourceDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLResourceDropdownElement;
 }
 export interface WalletDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -44,8 +51,25 @@ declare global {
         prototype: HTMLPortfolioPageElement;
         new (): HTMLPortfolioPageElement;
     };
+    interface HTMLResourceDropdownElementEventMap {
+        "resourceSelected": any;
+    }
+    interface HTMLResourceDropdownElement extends Components.ResourceDropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLResourceDropdownElementEventMap>(type: K, listener: (this: HTMLResourceDropdownElement, ev: ResourceDropdownCustomEvent<HTMLResourceDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLResourceDropdownElementEventMap>(type: K, listener: (this: HTMLResourceDropdownElement, ev: ResourceDropdownCustomEvent<HTMLResourceDropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLResourceDropdownElement: {
+        prototype: HTMLResourceDropdownElement;
+        new (): HTMLResourceDropdownElement;
+    };
     interface HTMLWalletDropdownElementEventMap {
-        "optionSelected": any;
+        "walletSelected": any;
     }
     interface HTMLWalletDropdownElement extends Components.WalletDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLWalletDropdownElementEventMap>(type: K, listener: (this: HTMLWalletDropdownElement, ev: WalletDropdownCustomEvent<HTMLWalletDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -65,6 +89,7 @@ declare global {
         "about-page": HTMLAboutPageElement;
         "portfolio-chart": HTMLPortfolioChartElement;
         "portfolio-page": HTMLPortfolioPageElement;
+        "resource-dropdown": HTMLResourceDropdownElement;
         "wallet-dropdown": HTMLWalletDropdownElement;
     }
 }
@@ -78,14 +103,19 @@ declare namespace LocalJSX {
     }
     interface PortfolioPage {
     }
+    interface ResourceDropdown {
+        "onResourceSelected"?: (event: ResourceDropdownCustomEvent<any>) => void;
+        "resources"?: string[];
+    }
     interface WalletDropdown {
-        "onOptionSelected"?: (event: WalletDropdownCustomEvent<any>) => void;
+        "onWalletSelected"?: (event: WalletDropdownCustomEvent<any>) => void;
         "wallets"?: WalletDataStateAccount[];
     }
     interface IntrinsicElements {
         "about-page": AboutPage;
         "portfolio-chart": PortfolioChart;
         "portfolio-page": PortfolioPage;
+        "resource-dropdown": ResourceDropdown;
         "wallet-dropdown": WalletDropdown;
     }
 }
@@ -96,6 +126,7 @@ declare module "@stencil/core" {
             "about-page": LocalJSX.AboutPage & JSXBase.HTMLAttributes<HTMLAboutPageElement>;
             "portfolio-chart": LocalJSX.PortfolioChart & JSXBase.HTMLAttributes<HTMLPortfolioChartElement>;
             "portfolio-page": LocalJSX.PortfolioPage & JSXBase.HTMLAttributes<HTMLPortfolioPageElement>;
+            "resource-dropdown": LocalJSX.ResourceDropdown & JSXBase.HTMLAttributes<HTMLResourceDropdownElement>;
             "wallet-dropdown": LocalJSX.WalletDropdown & JSXBase.HTMLAttributes<HTMLWalletDropdownElement>;
         }
     }

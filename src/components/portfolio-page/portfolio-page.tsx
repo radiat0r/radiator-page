@@ -11,14 +11,15 @@ export class PortfolioPage {
   @State()
   location: string = window.location.hash.replace('#', '');
   logoSrc: string = getAssetPath(`../assets/logo.png`);
-  xrd_res: string = 'resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd';
-  lsu_res: string = 'resource_rdx1tkw9gqj0kl3jy0y6s0jfs8344xgf56l2cnlsk7wgpa6mrfvzv3jzaz';
+  resources: string[] = ['resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd', 'resource_rdx1tkw9gqj0kl3jy0y6s0jfs8344xgf56l2cnlsk7wgpa6mrfvzv3jzaz'];
+
 
   @State() chartData: number[] = [];
   @State() chartDates: string[] = [];
 
   @State() wallets: WalletDataStateAccount[] = [];
   @State() selectedWallet: WalletDataStateAccount | null = null;
+  @State() selectedResource: string = 'resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd';
 
   @State() loading: boolean = true;
   @State() error: string | null = null;
@@ -32,15 +33,24 @@ export class PortfolioPage {
     window.addEventListener('hashchange', this.onHashChange.bind(this));
   }
 
-  handleOptionSelected(event: CustomEvent<WalletDataStateAccount>) {
+  handleWalletSelected(event: CustomEvent<WalletDataStateAccount>) {
     this.selectedWallet = event.detail;
     console.log('Selected option:', this.selectedWallet.label);
   }
 
+  handleResourceSelected(event: CustomEvent<string>) {
+    this.selectedResource = event.detail;
+    console.log('Selected option:', this.selectedResource);
+  }
+  
+  @Watch('selectedResource')
   @Watch('selectedWallet')
   countChanged() {
     this.fetchData();
   }
+
+
+
 
   async fetchData() {
     const data = [];
@@ -49,10 +59,10 @@ export class PortfolioPage {
       if (this.selectedWallet !== null) {
         
         const currentDate = new Date();
-        currentDate.setMonth(currentDate.getMonth() - 11)
-        for (let i = 0; i < 11; i++) {
-          currentDate.setMonth(currentDate.getMonth() + 1);
-          const b1 = await DappUtils.getFungibleBalanceForAccountAndTime(this.selectedWallet?.address, this.lsu_res, currentDate);
+        currentDate.setMonth(currentDate.getMonth() - 3)
+        while (currentDate != new Date()) {
+          currentDate.setDate(currentDate.getDate() + 1);
+          const b1 = await DappUtils.getFungibleBalanceForAccountAndTime(this.selectedWallet?.address, this.selectedResource, currentDate);
           data.push(b1);
           dates.push(currentDate.toDateString());
         }
@@ -114,7 +124,8 @@ export class PortfolioPage {
     }
     else {
       return <div class="container d-block">
-        <wallet-dropdown wallets={this.wallets} onOptionSelected={(event: CustomEvent<WalletDataStateAccount>) => this.handleOptionSelected(event)}></wallet-dropdown>
+        <wallet-dropdown wallets={this.wallets} onWalletSelected={(event: CustomEvent<WalletDataStateAccount>) => this.handleWalletSelected(event)}></wallet-dropdown>
+        <resource-dropdown resources={this.resources} onResourceSelected={(event: CustomEvent<string>) => this.handleResourceSelected(event)}></resource-dropdown>
         <portfolio-chart chartdata={this.chartData} label={this.selectedWallet?.label} chartdates={this.chartDates}></portfolio-chart>
       </div>
     }
