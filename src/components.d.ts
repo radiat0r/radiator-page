@@ -5,16 +5,25 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { WalletDataStateAccount } from "@radixdlt/radix-dapp-toolkit";
+export { WalletDataStateAccount } from "@radixdlt/radix-dapp-toolkit";
 export namespace Components {
     interface AboutPage {
     }
     interface PortfolioChart {
-        "chartdata": number [];
-        "chartdates": string [];
+        "chartdata": number[];
+        "chartdates": string[];
         "label": string;
     }
     interface PortfolioPage {
     }
+    interface WalletDropdown {
+        "wallets": WalletDataStateAccount[];
+    }
+}
+export interface WalletDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWalletDropdownElement;
 }
 declare global {
     interface HTMLAboutPageElement extends Components.AboutPage, HTMLStencilElement {
@@ -35,26 +44,49 @@ declare global {
         prototype: HTMLPortfolioPageElement;
         new (): HTMLPortfolioPageElement;
     };
+    interface HTMLWalletDropdownElementEventMap {
+        "optionSelected": any;
+    }
+    interface HTMLWalletDropdownElement extends Components.WalletDropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWalletDropdownElementEventMap>(type: K, listener: (this: HTMLWalletDropdownElement, ev: WalletDropdownCustomEvent<HTMLWalletDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWalletDropdownElementEventMap>(type: K, listener: (this: HTMLWalletDropdownElement, ev: WalletDropdownCustomEvent<HTMLWalletDropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWalletDropdownElement: {
+        prototype: HTMLWalletDropdownElement;
+        new (): HTMLWalletDropdownElement;
+    };
     interface HTMLElementTagNameMap {
         "about-page": HTMLAboutPageElement;
         "portfolio-chart": HTMLPortfolioChartElement;
         "portfolio-page": HTMLPortfolioPageElement;
+        "wallet-dropdown": HTMLWalletDropdownElement;
     }
 }
 declare namespace LocalJSX {
     interface AboutPage {
     }
     interface PortfolioChart {
-        "chartdata"?: number [];
-        "chartdates"?: string [];
+        "chartdata"?: number[];
+        "chartdates"?: string[];
         "label"?: string;
     }
     interface PortfolioPage {
+    }
+    interface WalletDropdown {
+        "onOptionSelected"?: (event: WalletDropdownCustomEvent<any>) => void;
+        "wallets"?: WalletDataStateAccount[];
     }
     interface IntrinsicElements {
         "about-page": AboutPage;
         "portfolio-chart": PortfolioChart;
         "portfolio-page": PortfolioPage;
+        "wallet-dropdown": WalletDropdown;
     }
 }
 export { LocalJSX as JSX };
@@ -64,6 +96,7 @@ declare module "@stencil/core" {
             "about-page": LocalJSX.AboutPage & JSXBase.HTMLAttributes<HTMLAboutPageElement>;
             "portfolio-chart": LocalJSX.PortfolioChart & JSXBase.HTMLAttributes<HTMLPortfolioChartElement>;
             "portfolio-page": LocalJSX.PortfolioPage & JSXBase.HTMLAttributes<HTMLPortfolioPageElement>;
+            "wallet-dropdown": LocalJSX.WalletDropdown & JSXBase.HTMLAttributes<HTMLWalletDropdownElement>;
         }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop } from '@stencil/core';
+import { Component, h, Element, Prop, Watch, State } from '@stencil/core';
 import Chart from 'chart.js/auto';
 
 @Component({
@@ -9,17 +9,28 @@ import Chart from 'chart.js/auto';
 
 export class PortfolioChart {
   @Element() el!: HTMLElement;
-  chart: any;
+
+  @State() chart: Chart | null = null; // State, um die Chart-Instanz zu verwalten
 
   @Prop() label: string = "";
-  @Prop() chartdata: number [] = [];
-  @Prop() chartdates: string [] = [];
+  @Prop() chartdata: number[] = [];
+  @Prop() chartdates: string[] = [];
 
   componentDidLoad() {
-    this.createChart();
+    this.initializeChart();
   }
 
-  createChart() {
+  @Watch('chartdata')
+  labelsChangedHandler() {
+    if (this.chart) {
+      this.chart.data.labels = this.chartdates;
+      this.chart.data.datasets[0].data = this.chartdata; // Aktualisieren der Daten
+      this.chart.data.datasets[0].label = this.label; // Aktualisieren der Daten
+      this.chart.update()
+    }
+  }
+  
+  initializeChart() {
     // Verwende querySelector, um das Canvas-Element zu finden
     const canvas = this.el.shadowRoot?.querySelector('#portfolio') as HTMLCanvasElement | null;
 
@@ -27,7 +38,7 @@ export class PortfolioChart {
     if (canvas) {
       // Versuche, den 2D-Kontext des Canvas-Elements zu erhalten
       const ctx = canvas.getContext('2d');
-      
+
       // Überprüfe, ob der Kontext erfolgreich abgerufen wurde
       if (ctx) {
         this.chart = new Chart(ctx, {

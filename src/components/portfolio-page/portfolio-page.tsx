@@ -1,5 +1,6 @@
-import { Component, getAssetPath, h, Host, State } from '@stencil/core';
+import { Component, getAssetPath, h, Host, State, Watch } from '@stencil/core';
 import { rdt, DappUtils } from '../../scripts/connect-button';
+import { WalletDataStateAccount } from '@radixdlt/radix-dapp-toolkit';
 
 @Component({
   tag: 'portfolio-page',
@@ -15,50 +16,56 @@ export class PortfolioPage {
 
   @State() chartData: number[] = [];
   @State() chartDates: string[] = [];
-  @State() chartLabel: string = "";
+
+  @State() wallets: WalletDataStateAccount[] = [];
+  @State() selectedWallet: WalletDataStateAccount | null = null;
+
   @State() loading: boolean = true;
   @State() error: string | null = null;
 
-    // Lifecycle-Methode, die ausgeführt wird, bevor die Komponente geladen wird
-    componentWillLoad() {
-      this.fetchData();  // Asynchrone Datenabrufmethode aufrufen
-    }
-  
-    async fetchData(){
-      try {
-        const address = DappUtils.getWalletAccountAddress();
-        const l = DappUtils.getWalletDetails();
-        this.chartLabel = l;
-        
-        const currentDate = new Date();
-        currentDate.setMonth(currentDate.getMonth()- 11)
-        for (let i = 0; i < 11; i++) {
-          currentDate.setMonth(currentDate.getMonth()+1);
-          const b1 = await DappUtils.getFungibleBalanceForAccountAndTime(address, this.lsu_res, currentDate);
-          this.chartData.push(b1);
-          this.chartDates.push(currentDate.toDateString());
-        }
-
-        
-        console.info('label - ', this.chartLabel);
-        console.info('balance', this.chartData);
-      } catch (err) {
-        // Fehlerstatus aktualisieren
-        this.error = 'Daten konnten nicht geladen werden';
-      } finally {
-        // Ladezustand beenden
-        this.loading = false;
-      }
-    }
+  // Lifecycle-Methode, die ausgeführt wird, bevor die Komponente geladen wird
+  componentWillLoad() {
+    this.wallets = DappUtils.getWallets();
+  }
 
   componentDidLoad() {
     window.addEventListener('hashchange', this.onHashChange.bind(this));
   }
 
+  handleOptionSelected(event: CustomEvent<WalletDataStateAccount>) {
+    this.selectedWallet = event.detail;
+    console.log('Selected option:', this.selectedWallet.label);
+  }
+
+  @Watch('selectedWallet')
+  countChanged() {
+    this.fetchData();
+  }
+
+  async fetchData() {
+    const data = [];
+    const dates = [];
+    try {
+      if (this.selectedWallet !== null) {
+        
+        const currentDate = new Date();
+        currentDate.setMonth(currentDate.getMonth() - 11)
+        for (let i = 0; i < 11; i++) {
+          currentDate.setMonth(currentDate.getMonth() + 1);
+          const b1 = await DappUtils.getFungibleBalanceForAccountAndTime(this.selectedWallet?.address, this.lsu_res, currentDate);
+          data.push(b1);
+          dates.push(currentDate.toDateString());
+        }
+      }
+    } catch (err) {
+      this.error = 'Couldnt load values';
+    } finally {
+      this.chartData = data;
+      this.chartDates = dates;
+    }
+  }
+
   render() {
-    console.info('rendering')
-    console.info(this.chartData)
-    console.info(this.chartDates)
     return (
       <Host>
         {this.renderNavBar()}
@@ -82,9 +89,8 @@ export class PortfolioPage {
           <img src={this.logoSrc} alt="radixportfolio logo" width="64" class="p-2"></img>
           Radixportfolio
         </a>
-
         <div class="offcanvas offcanvas-end" tabindex={-1} id="offcanvasNavbar"
-             aria-labelledby="offcanvasNavbarLabel">
+          aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">CrumbsUp</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -99,17 +105,19 @@ export class PortfolioPage {
         </div>
       </div>
     </nav>;
-     
+
   }
 
   private renderContent() {
-      if (this.location === 'about') {
-        return <about-page></about-page>;
-      }
-      else {
-        //const address = DappUtils.getWalletAccountAddress();
-        return <div class="container d-block"><portfolio-chart chartdata={this.chartData} label={this.chartLabel} chartdates={this.chartDates}></portfolio-chart></div>
-      }
+    if (this.location === 'about') {
+      return <about-page></about-page>;
+    }
+    else {
+      return <div class="container d-block">
+        <wallet-dropdown wallets={this.wallets} onOptionSelected={(event: CustomEvent<WalletDataStateAccount>) => this.handleOptionSelected(event)}></wallet-dropdown>
+        <portfolio-chart chartdata={this.chartData} label={this.selectedWallet?.label} chartdates={this.chartDates}></portfolio-chart>
+      </div>
+    }
   }
 
   private renderFooter() {
