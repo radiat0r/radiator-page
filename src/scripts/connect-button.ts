@@ -3,7 +3,7 @@ import {
   DataRequestBuilder,
   WalletDataStateAccount
 } from '@radixdlt/radix-dapp-toolkit';
-import { GatewayApiClient, LedgerStateSelector, StateEntityDetailsOptions } from '@radixdlt/babylon-gateway-api-sdk';
+import { FungibleResourcesCollectionItemVaultAggregated, GatewayApiClient, LedgerStateSelector, StateEntityDetailsVaultResponseItem } from '@radixdlt/babylon-gateway-api-sdk';
 import { getConfig } from '../../src/config';
 
 const config = getConfig();
@@ -27,23 +27,18 @@ rdt.walletApi.setRequestData(
 );
 
 
-
 export class DappUtils {
 
   static getWallets(): WalletDataStateAccount[] {
     return rdt.walletApi.getWalletData()!!.accounts;
   }
 
-
-  /*static getWalletAccountAddress(): string {
-    return rdt.walletApi.getWalletData()!!.accounts[0].address;
+  static async getEntityDetails(entityAddress: string):Promise<StateEntityDetailsVaultResponseItem>{
+    const entityDetails = await gatewayApi.state.getEntityDetailsVaultAggregated(entityAddress);
+    return entityDetails;
   }
 
-  static getWalletDetails(): string {
-    return rdt.walletApi.getWalletData()!!.accounts[0].label;
-  }*/
-
-
+/*
   static async getFungibleBalanceForAccount(accountAddress: string, resourceAddress: string): Promise<number> {
     const result = await gatewayApi.state.getEntityDetailsVaultAggregated(accountAddress);
 
@@ -55,23 +50,29 @@ export class DappUtils {
     console.info(`Account: ${accountAddress} | Fungible Resources: ${resourceAddress} | Balance: ${balance}`);
 
     return balance;
-  }
+  }*/
 
-  static async getFungibleBalanceForAccountAndTime(accountAddress: string, resourceAddress: string, d: Date): Promise<number> {
-    const options: StateEntityDetailsOptions = {}
+    // returns all balances at timestamp
+  static async getFungibleBalanceForAccountAndTime(accountAddress: string, d: Date): Promise<FungibleResourcesCollectionItemVaultAggregated[]> { 
+    try {
+      const ls_opts: LedgerStateSelector = { timestamp: d };
+  
+      const result = await gatewayApi.state.getEntityDetailsVaultAggregated(accountAddress,{},ls_opts)
+      
+      const ress: FungibleResourcesCollectionItemVaultAggregated[] = result.fungible_resources.items;
+      return ress;
+      /*
+      const fungibles = result.fungible_resources.items.find((item) => item.resource_address === resourceAddress)?.vaults.items || [];
 
-    const ls_opts: LedgerStateSelector = { timestamp: d };
-
-    const result = await gatewayApi.state.getEntityDetailsVaultAggregated(accountAddress, options, ls_opts)
-
-    console.info('Failed to determine amount of fungibles in wallet. Please try again later.');
-
-    const fungibles = result.fungible_resources.items.find((item) => item.resource_address === resourceAddress)?.vaults.items || [];
-    const balance = fungibles.reduce((acc, item) => acc + parseFloat(item.amount), 0);
-
-    console.info(`Account: ${accountAddress} | Fungible Resources: ${resourceAddress} | Balance: ${balance}`);
-
-    return balance;
+      const balance = fungibles.reduce((acc, item) => acc + parseFloat(item.amount), 0);
+  
+      console.info(`Account: ${accountAddress} | Fungible Resources: ${resourceAddress} | Balance: ${balance}`);
+  
+      return balance; */
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(new Error("Fehler beim Abrufen der Daten")); 
+    }
   }
 
 }

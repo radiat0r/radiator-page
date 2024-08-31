@@ -5,6 +5,8 @@ import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
     styleUrl: 'resource-dropdown.scss',
     shadow: true,
 })
+
+
 export class ResourceDropdownMenu {
     @State() isOpen: boolean = false;  // Zustand zum Verwalten der Sichtbarkeit des Dropdowns
     @State() buttonlabel: string = "Resource Select";
@@ -12,6 +14,7 @@ export class ResourceDropdownMenu {
 
     // Definition des Custom Events
     @Event() resourceSelected: EventEmitter<string> | undefined;
+
 
     toggleDropdown() {
         this.isOpen = !this.isOpen;  // Umschalten der Sichtbarkeit des Dropdowns

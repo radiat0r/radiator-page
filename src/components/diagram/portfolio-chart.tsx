@@ -24,8 +24,8 @@ export class PortfolioChart {
   labelsChangedHandler() {
     if (this.chart) {
       this.chart.data.labels = this.chartdates;
-      this.chart.data.datasets[0].data = this.chartdata; // Aktualisieren der Daten
-      this.chart.data.datasets[0].label = this.label; // Aktualisieren der Daten
+      this.chart.data.datasets[0].data = this.chartdata; 
+      this.chart.data.datasets[0].label = this.label;
       this.chart.update()
     }
   }
