@@ -8,17 +8,22 @@ import { FungibleResourcesCollectionItemVaultAggregated, FungibleResourcesVaultC
   styleUrl: 'portfolio-page.scss',
 })
 
+//xrd: resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd
+
+//bobby: validator_rdx1s0k2g57gxld3nydl8535e2tkp6tduh6pmynd3mf2a3q428zh09n24s 
+//internal_vault of validator: internal_vault_rdx1tpt9lgwrtscat7pn0w4ad3kxedelwenz2tqvre2t5a7jyr67dygatk
+// lsu of bobby: resource_rdx1tkw9gqj0kl3jy0y6s0jfs8344xgf56l2cnlsk7wgpa6mrfvzv3jzaz
 
 export class PortfolioPage {
 
   @State()
   location: string = window.location.hash.replace('#', '');
   logoSrc: string = getAssetPath(`../assets/logo.png`);
-  
+
   allResourceData: { [key: string]: number[] } = {
-    'timestamps':[],
+    'timestamps': [],
   };
-  
+
 
   @State() walletResources: string[] = [];
   @State() chartData: number[] = [0];
@@ -26,12 +31,12 @@ export class PortfolioPage {
 
   @State() wallets: WalletDataStateAccount[] = [];
   @State() selectedWallet: WalletDataStateAccount | null = null;
-  @State() selectedResource: string = "";
+  @State() selectedResource: string = "resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd";
+  @State() selectedResourceisLSUofValidator: string = "";
 
   @State() loading: boolean = true;
   @State() error: string | null = null;
 
-  // Lifecycle-Methode, die ausgeführt wird, bevor die Komponente geladen wird
   componentWillLoad() {
     this.wallets = DappUtils.getWallets();
   }
@@ -52,13 +57,32 @@ export class PortfolioPage {
   resourceChanged() {
     // update chart
     this.chartData = this.allResourceData[this.selectedResource];
-    this.chartDates = this.allResourceData['timestamps'].map(timestamp => {const date = new Date(timestamp);return date.toLocaleDateString()});
+    this.chartDates = this.allResourceData['timestamps'].map(timestamp => { const date = new Date(timestamp); return date.toLocaleDateString() });
+
+    this.isResourceLSUofValidator();
+  }
+
+  async isResourceLSUofValidator() {
+    try {
+      const resDetails: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(this.selectedResource);
+      if (resDetails && resDetails.metadata) {
+        const val = resDetails.metadata?.items.find(item => item.key === "validator");
+        if (val?.value) {
+          console.log(val.value);
+
+
+          
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   @Watch('selectedWallet')
   walletChanged() {
-    this.fetchData();
     this.fetchWalletResources();
+    this.fetchData();
   }
 
 
@@ -89,18 +113,18 @@ export class PortfolioPage {
     try {
       if (this.selectedWallet !== null && this.selectedResource !== "") {
 
-        this.allResourceData={};
-        this.allResourceData['timestamps']=[];
+        this.allResourceData = {};
+        this.allResourceData['timestamps'] = [];
 
-        const startDate = new Date('2024-08-17');
+        const startDate = new Date('2024-08-01');
         const endDate = new Date('2024-08-31');
 
         const currentDate = new Date(startDate);
-     
+
         while (currentDate <= endDate) {
           console.log(currentDate);
           this.allResourceData['timestamps'].push(currentDate.valueOf());
-          
+
           const b1: FungibleResourcesCollectionItemVaultAggregated[] = await DappUtils.getFungibleBalanceForAccountAndTime(this.selectedWallet?.address, currentDate);
 
           for (const el of b1) {
@@ -118,9 +142,9 @@ export class PortfolioPage {
                 this.allResourceData[res] = [0];
               }
             }
-            
+
           }
-          
+
           currentDate.setDate(currentDate.getDate() + 1); // Einen Tag hinzufügen
         }
       }
@@ -129,7 +153,7 @@ export class PortfolioPage {
       this.error = 'Couldnt load values';
     } finally {
       this.chartData = this.allResourceData[this.selectedResource];
-      this.chartDates = this.allResourceData['timestamps'].map(timestamp => {const date = new Date(timestamp);return date.toLocaleDateString()});
+      this.chartDates = this.allResourceData['timestamps'].map(timestamp => { const date = new Date(timestamp); return date.toLocaleDateString() });
     }
   }
 
