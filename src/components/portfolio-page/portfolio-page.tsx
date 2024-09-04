@@ -1,7 +1,17 @@
 import { Component, getAssetPath, h, Host, State, Watch } from '@stencil/core';
 import { rdt, DappUtils } from '../../scripts/connect-button';
 import { WalletDataStateAccount } from '@radixdlt/radix-dapp-toolkit';
-import { FungibleResourcesCollectionItemVaultAggregated, FungibleResourcesVaultCollection, StateEntityDetailsVaultResponseItem } from '@radixdlt/babylon-gateway-api-sdk';
+import {
+  FungibleResourcesCollectionItemVaultAggregated,
+  FungibleResourcesVaultCollection,
+  MetadataGlobalAddressValue,
+  MetadataGlobalAddressValueFromJSON,
+  StateEntityDetailsResponseComponentDetails,
+  StateEntityDetailsResponseFungibleResourceDetails,
+  StateEntityDetailsResponseItemDetails,
+  StateEntityDetailsResponseItemDetailsFromJSON,
+  StateEntityDetailsVaultResponseItem
+} from '@radixdlt/babylon-gateway-api-sdk';
 
 @Component({
   tag: 'portfolio-page',
@@ -25,14 +35,14 @@ export class PortfolioPage {
   };
 
 
-  @State() walletResources: string[] = [];
+  @State() wallet_resources: string[] = [];
   @State() chartData: number[] = [0];
   @State() chartDates: string[] = ["0"];
 
   @State() wallets: WalletDataStateAccount[] = [];
-  @State() selectedWallet: WalletDataStateAccount | null = null;
-  @State() selectedResource: string = "resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd";
-  @State() selectedResourceisLSUofValidator: string = "";
+  @State() selected_wallet: WalletDataStateAccount | null = null;
+  @State() selected_resource: string = "resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd";
+  @State() selected_resource_is_LSU_of_Validator: string = "";
 
   @State() loading: boolean = true;
   @State() error: string | null = null;
@@ -46,17 +56,17 @@ export class PortfolioPage {
   }
 
   handleWalletSelected(event: CustomEvent<WalletDataStateAccount>) {
-    this.selectedWallet = event.detail;
+    this.selected_wallet = event.detail;
   }
 
   handleResourceSelected(event: CustomEvent<string>) {
-    this.selectedResource = event.detail;
+    this.selected_resource = event.detail;
   }
 
-  @Watch('selectedResource')
+  @Watch('selected_resource')
   resourceChanged() {
     // update chart
-    this.chartData = this.allResourceData[this.selectedResource];
+    this.chartData = this.allResourceData[this.selected_resource];
     this.chartDates = this.allResourceData['timestamps'].map(timestamp => { const date = new Date(timestamp); return date.toLocaleDateString() });
 
     this.isResourceLSUofValidator();
@@ -64,14 +74,31 @@ export class PortfolioPage {
 
   async isResourceLSUofValidator() {
     try {
-      const resDetails: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(this.selectedResource);
-      if (resDetails && resDetails.metadata) {
-        const val = resDetails.metadata?.items.find(item => item.key === "validator");
+      const lsu_details: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(this.selected_resource);
+      
+      if (lsu_details && lsu_details.metadata) {
+        const val = lsu_details.metadata?.items.find(item => item.key === "validator");
         if (val?.value) {
-          console.log(val.value);
+          // first get corresponding validator
+          const ga: MetadataGlobalAddressValue = MetadataGlobalAddressValueFromJSON(val.value.typed);
+          const validator_address: string = ga.value
+          if (validator_address) {
+            console.log(validator_address);
+            this.selected_resource_is_LSU_of_Validator = validator_address;
+          }
 
+          // second get corresponding internal_vault
+          const validator_details: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(validator_address);
+          const a: StateEntityDetailsResponseComponentDetails = StateEntityDetailsResponseItemDetailsFromJSON(validator_details.details) as StateEntityDetailsResponseComponentDetails;
 
-          
+          console.log(a)
+          //const b: StateEntityDetailsResponseComponentDetails = StateEntityDetailsResponseItemDetailsFromJSON(a.type);
+
+          //const b: StateEntityDetailsResponseComponentDetails = a;
+          console.log(validator_details)
+          // get entityDetails with balances for internal validator vault for calculating LSU token value
+          //const vault: string = await DappUtils.getFungibleBalanceForVaultandTime("internal_vault_rdx1tpt9lgwrtscat7pn0w4ad3kxedelwenz2tqvre2t5a7jyr67dygatk", new Date())
+          //console.log(vault);
         }
       }
     } catch (error) {
@@ -79,7 +106,7 @@ export class PortfolioPage {
     }
   }
 
-  @Watch('selectedWallet')
+  @Watch('selected_wallet')
   walletChanged() {
     this.fetchWalletResources();
     this.fetchData();
@@ -88,19 +115,19 @@ export class PortfolioPage {
 
   async fetchWalletResources() {
     try {
-      if (this.selectedWallet) {
-        const entityDetails: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(this.selectedWallet?.address);
+      if (this.selected_wallet) {
+        const entityDetails: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(this.selected_wallet?.address);
 
         const r: FungibleResourcesVaultCollection = entityDetails.fungible_resources;
         console.info(entityDetails);
         console.info(r.items);
 
-        this.walletResources = [];
+        this.wallet_resources = [];
         const i: FungibleResourcesCollectionItemVaultAggregated[] = r.items;
         for (let index = 0; index < i.length; index++) {
           const res: FungibleResourcesCollectionItemVaultAggregated = i[index];
           if (Number(res.vaults.items[0].amount) > 1) {
-            this.walletResources.push(res.resource_address);
+            this.wallet_resources.push(res.resource_address);
           }
         }
       }
@@ -111,7 +138,7 @@ export class PortfolioPage {
 
   async fetchData() {
     try {
-      if (this.selectedWallet !== null && this.selectedResource !== "") {
+      if (this.selected_wallet !== null && this.selected_resource !== "") {
 
         this.allResourceData = {};
         this.allResourceData['timestamps'] = [];
@@ -125,7 +152,7 @@ export class PortfolioPage {
           console.log(currentDate);
           this.allResourceData['timestamps'].push(currentDate.valueOf());
 
-          const b1: FungibleResourcesCollectionItemVaultAggregated[] = await DappUtils.getFungibleBalanceForAccountAndTime(this.selectedWallet?.address, currentDate);
+          const b1: FungibleResourcesCollectionItemVaultAggregated[] = await DappUtils.getFungibleBalanceForAccountAndTime(this.selected_wallet?.address, currentDate);
 
           for (const el of b1) {
             const res = el.resource_address;
@@ -152,7 +179,7 @@ export class PortfolioPage {
       console.error(err);
       this.error = 'Couldnt load values';
     } finally {
-      this.chartData = this.allResourceData[this.selectedResource];
+      this.chartData = this.allResourceData[this.selected_resource];
       this.chartDates = this.allResourceData['timestamps'].map(timestamp => { const date = new Date(timestamp); return date.toLocaleDateString() });
     }
   }
@@ -207,8 +234,8 @@ export class PortfolioPage {
     else {
       return <div class="container d-block">
         <div><wallet-dropdown wallets={this.wallets} onWalletSelected={(event: CustomEvent<WalletDataStateAccount>) => this.handleWalletSelected(event)}></wallet-dropdown>
-          <resource-dropdown resources={this.walletResources} onResourceSelected={(event: CustomEvent<string>) => this.handleResourceSelected(event)}></resource-dropdown></div>
-        <div><portfolio-chart chartdata={this.chartData} label={this.selectedWallet?.label} chartdates={this.chartDates}></portfolio-chart></div>
+          <resource-dropdown resources={this.wallet_resources} onResourceSelected={(event: CustomEvent<string>) => this.handleResourceSelected(event)}></resource-dropdown></div>
+        <div><portfolio-chart chartdata={this.chartData} label={this.selected_wallet?.label} chartdates={this.chartDates}></portfolio-chart></div>
       </div>
     }
   }
