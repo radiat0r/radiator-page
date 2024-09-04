@@ -3,7 +3,15 @@ import {
   DataRequestBuilder,
   WalletDataStateAccount
 } from '@radixdlt/radix-dapp-toolkit';
-import { FungibleResourcesCollectionItemVaultAggregated, GatewayApiClient, LedgerStateSelector, StateEntityDetailsOptions, StateEntityDetailsResponseItem, StateEntityDetailsResponseItemDetails, StateEntityDetailsVaultResponseItem } from '@radixdlt/babylon-gateway-api-sdk';
+import {
+  FungibleResourcesCollectionItemVaultAggregated,
+  GatewayApiClient,
+  LedgerStateSelector,
+  StateEntityDetailsOptions,
+  StateEntityDetailsResponseFungibleVaultDetails,
+  StateEntityDetailsResponseItem,
+  StateEntityDetailsVaultResponseItem
+} from '@radixdlt/babylon-gateway-api-sdk';
 import { getConfig } from '../../src/config';
 
 const config = getConfig();
@@ -46,21 +54,7 @@ export class DappUtils {
   }
 
 
-  /*
-    static async getFungibleBalanceForAccount(accountAddress: string, resourceAddress: string): Promise<number> {
-      const result = await gatewayApi.state.getEntityDetailsVaultAggregated(accountAddress);
-  
-      console.info('Failed to determine amount of fungibles in wallet. Please try again later.');
-  
-      const fungibles = result.fungible_resources.items.find((item) => item.resource_address === resourceAddress)?.vaults.items || [];
-      const balance = fungibles.reduce((acc, item) => acc + parseFloat(item.amount), 0);
-  
-      console.info(`Account: ${accountAddress} | Fungible Resources: ${resourceAddress} | Balance: ${balance}`);
-  
-      return balance;
-    }*/
-
-  // returns all balances at timestamp
+  // returns all resource balances at timestamp for wallet account
   static async getFungibleBalanceForAccountAndTime(accountAddress: string, d: Date): Promise<FungibleResourcesCollectionItemVaultAggregated[]> {
     try {
       const ls_opts: LedgerStateSelector = { timestamp: d };
@@ -71,38 +65,30 @@ export class DappUtils {
       return ress;
     } catch (error) {
       console.error(error);
-      return Promise.reject(new Error("Fehler beim Abrufen der Daten"));
+      return Promise.reject(new Error("Error retrieving data"));
     }
   }
 
-  // returns all balances at timestamp
-  static async getFungibleBalanceForVaultandTime(entityAddress: string, d: Date): Promise<string> {
+  // returns all balance for vault at timestamp
+  static async getFungibleBalanceForVaultandTime(vault_address: string, d: Date): Promise<number> {
     try {
       const ls_opts: LedgerStateSelector = { timestamp: d };
 
+      const result: StateEntityDetailsResponseItem = await gatewayApi.state.getEntityDetailsVaultAggregated(vault_address, {}, ls_opts)
+      let balance: number = 0;
 
-      const options: StateEntityDetailsOptions = {
-        explicitMetadata: [],
-        ancestorIdentities: true,
-        nonFungibleIncludeNfids: false,
-        packageRoyaltyVaultBalance: true,
-        componentRoyaltyVaultBalance: true
-      };
-
-      const result: StateEntityDetailsResponseItem = await gatewayApi.state.getEntityDetailsVaultAggregated(entityAddress, options, ls_opts)
-
-      const vaultDetails: (StateEntityDetailsResponseItemDetails | undefined | null) = result.details;
-
-      if (vaultDetails) {
-        console.log(vaultDetails);
+      if (result.details) {
+        const vaultDetails = result.details as StateEntityDetailsResponseFungibleVaultDetails;
+        if (vaultDetails) {
+          balance = parseFloat(vaultDetails.balance.amount);
+          //console.log(vaultDetails);
+        }
       }
 
-
-
-      return "vaultBalance";
+      return balance;
     } catch (error) {
       console.error(error);
-      return Promise.reject(new Error("Fehler beim Abrufen der Daten"));
+      return Promise.reject(new Error("Error retrieving data"));
     }
   }
 

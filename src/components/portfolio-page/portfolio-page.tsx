@@ -7,11 +7,14 @@ import {
   MetadataGlobalAddressValue,
   MetadataGlobalAddressValueFromJSON,
   StateEntityDetailsResponseComponentDetails,
-  StateEntityDetailsResponseFungibleResourceDetails,
-  StateEntityDetailsResponseItemDetails,
   StateEntityDetailsResponseItemDetailsFromJSON,
   StateEntityDetailsVaultResponseItem
 } from '@radixdlt/babylon-gateway-api-sdk';
+
+import {
+  ValidatorFieldStateValueFromJSON,
+  ValidatorFieldStateValue
+} from "@radixdlt/babylon-core-api-sdk"
 
 @Component({
   tag: 'portfolio-page',
@@ -75,7 +78,7 @@ export class PortfolioPage {
   async isResourceLSUofValidator() {
     try {
       const lsu_details: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(this.selected_resource);
-      
+
       if (lsu_details && lsu_details.metadata) {
         const val = lsu_details.metadata?.items.find(item => item.key === "validator");
         if (val?.value) {
@@ -90,15 +93,13 @@ export class PortfolioPage {
           // second get corresponding internal_vault
           const validator_details: StateEntityDetailsVaultResponseItem = await DappUtils.getEntityDetails(validator_address);
           const a: StateEntityDetailsResponseComponentDetails = StateEntityDetailsResponseItemDetailsFromJSON(validator_details.details) as StateEntityDetailsResponseComponentDetails;
+          const b: ValidatorFieldStateValue = ValidatorFieldStateValueFromJSON(a.state);
+          console.log(b.stake_xrd_vault.entity_address)
+          const validator_internal_vault_address: string = b.stake_xrd_vault.entity_address;
 
-          console.log(a)
-          //const b: StateEntityDetailsResponseComponentDetails = StateEntityDetailsResponseItemDetailsFromJSON(a.type);
-
-          //const b: StateEntityDetailsResponseComponentDetails = a;
-          console.log(validator_details)
-          // get entityDetails with balances for internal validator vault for calculating LSU token value
-          //const vault: string = await DappUtils.getFungibleBalanceForVaultandTime("internal_vault_rdx1tpt9lgwrtscat7pn0w4ad3kxedelwenz2tqvre2t5a7jyr67dygatk", new Date())
-          //console.log(vault);
+          // third get entityDetails with balances for internal validator vault for calculating LSU token value
+          const vault_balance: number = await DappUtils.getFungibleBalanceForVaultandTime(validator_internal_vault_address, new Date())
+          console.log(vault_balance);
         }
       }
     } catch (error) {
@@ -143,8 +144,8 @@ export class PortfolioPage {
         this.allResourceData = {};
         this.allResourceData['timestamps'] = [];
 
-        const startDate = new Date('2024-08-01');
-        const endDate = new Date('2024-08-31');
+        const startDate = new Date('2024-08-31');
+        const endDate = new Date();
 
         const currentDate = new Date(startDate);
 

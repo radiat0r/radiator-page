@@ -28,6 +28,7 @@
     "deploy": "npm run build && npx gh-pages -d www"
   },
   "dependencies": {
+    "@radixdlt/babylon-core-api-sdk": "^1.2.0",
     "@radixdlt/babylon-gateway-api-sdk": "^1.6.1",
     "@radixdlt/radix-dapp-toolkit": "^2.0.3",
     "@stencil/core": "^4.20.0",
