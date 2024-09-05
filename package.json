@@ -33,6 +33,7 @@
     "@radixdlt/radix-dapp-toolkit": "^2.0.3",
     "@stencil/core": "^4.20.0",
     "@types/vanillajs-datepicker": "^1.3.5",
+    "assert": "^2.1.0",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.4"
   },

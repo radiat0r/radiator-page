@@ -34,6 +34,10 @@ rdt.walletApi.setRequestData(
   DataRequestBuilder.accounts().atLeast(1).withProof(false),
 );
 
+export class ResourceDetails {
+  name: string = "";
+  address: string = "";
+}
 
 export class DappUtils {
 

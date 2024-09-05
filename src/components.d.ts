@@ -5,7 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ResourceDetails } from "./scripts/connect-button";
 import { WalletDataStateAccount } from "@radixdlt/radix-dapp-toolkit";
+export { ResourceDetails } from "./scripts/connect-button";
 export { WalletDataStateAccount } from "@radixdlt/radix-dapp-toolkit";
 export namespace Components {
     interface AboutPage {
@@ -18,7 +20,7 @@ export namespace Components {
     interface PortfolioPage {
     }
     interface ResourceDropdown {
-        "resources": string[];
+        "resources": ResourceDetails[];
     }
     interface WalletDropdown {
         "wallets": WalletDataStateAccount[];
@@ -105,7 +107,7 @@ declare namespace LocalJSX {
     }
     interface ResourceDropdown {
         "onResourceSelected"?: (event: ResourceDropdownCustomEvent<any>) => void;
-        "resources"?: string[];
+        "resources"?: ResourceDetails[];
     }
     interface WalletDropdown {
         "onWalletSelected"?: (event: WalletDropdownCustomEvent<any>) => void;

@@ -1,4 +1,5 @@
 import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { ResourceDetails } from '../../scripts/connect-button';
 
 @Component({
     tag: 'resource-dropdown',
@@ -10,20 +11,20 @@ import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 export class ResourceDropdownMenu {
     @State() isOpen: boolean = false;  // Zustand zum Verwalten der Sichtbarkeit des Dropdowns
     @State() buttonlabel: string = "Resource Select";
-    @Prop() resources: string[] = [];
+    @Prop() resources: ResourceDetails[] = [];
 
     // Definition des Custom Events
-    @Event() resourceSelected: EventEmitter<string> | undefined;
+    @Event() resourceSelected: EventEmitter<ResourceDetails> | undefined;
 
 
     toggleDropdown() {
         this.isOpen = !this.isOpen;  // Umschalten der Sichtbarkeit des Dropdowns
     }
 
-    handleOptionClick(option: string): void {
+    handleOptionClick(option: ResourceDetails): void {
         if (this.resourceSelected) {
             this.resourceSelected.emit(option); // Event auslösen und die ausgewählte Option senden
-            this.buttonlabel = option;
+            this.buttonlabel = option.name;
         }
         this.isOpen = false; // Dropdown schließen
     }
@@ -38,7 +39,7 @@ export class ResourceDropdownMenu {
                     <ul class="dropdown-menu">
                         {this.resources.map(option => (
                             <li class="dropdown-item" onClick={() => this.handleOptionClick(option)}>
-                                {option}
+                                {option.name}
                             </li>
                         ))}
                     </ul>
