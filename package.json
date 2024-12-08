@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@stencil/core": "^4.5.0",
-    "notiflix": "^3.2.6"
+    "notiflix": "^3.2.7"
   },
   "devDependencies": {
     "@stencil/sass": "^3.0.6"
